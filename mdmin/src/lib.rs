@@ -9,6 +9,7 @@
 #![forbid(unsafe_code)]
 
 mod engine;
+mod grammar;
 mod passes;
 
 pub use engine::Minifier;
@@ -75,6 +76,8 @@ pub struct Config {
     pub code_blocks: CodeBlockMode,
     /// Prepend a legend line explaining prefix conventions (L3/L4 only).
     pub legend: bool,
+    /// Strip filler words, articles, aux verbs, hedging from prose.
+    pub grammar_strip: bool,
 }
 
 impl Config {
@@ -85,6 +88,7 @@ impl Config {
             level,
             code_blocks: CodeBlockMode::Preserve,
             legend: true,
+            grammar_strip: false,
         }
     }
 
@@ -99,6 +103,13 @@ impl Config {
     #[must_use]
     pub fn with_legend(mut self, enabled: bool) -> Self {
         self.legend = enabled;
+        self
+    }
+
+    /// Enable or disable grammar stripping (filler words, articles, etc.).
+    #[must_use]
+    pub fn with_grammar_strip(mut self, enabled: bool) -> Self {
+        self.grammar_strip = enabled;
         self
     }
 }

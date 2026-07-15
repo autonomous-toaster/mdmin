@@ -43,6 +43,10 @@ struct Args {
     /// Suppress the prefix legend in L3/L4 output.
     #[arg(long = "no-legend")]
     no_legend: bool,
+
+    /// Strip filler words, articles, aux verbs, hedging from prose.
+    #[arg(short = 'g', long = "grammar-strip")]
+    grammar_strip: bool,
 }
 
 fn main() {
@@ -90,7 +94,8 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
     // Minify
     let config = Config::new(level)
         .with_code_blocks(code_blocks)
-        .with_legend(!args.no_legend);
+        .with_legend(!args.no_legend)
+        .with_grammar_strip(args.grammar_strip);
     let mut minifier = Minifier::new(&config)
         .map_err(|e| format!("initializing minifier: {e}"))?;
     let result = minifier

@@ -4,6 +4,7 @@ use std::fmt;
 
 use tree_sitter::{Node, Parser, Tree};
 
+use crate::grammar;
 use crate::passes;
 use crate::{CodeBlockMode, Config, Level, MinifyResult};
 
@@ -87,6 +88,13 @@ impl Minifier {
 
         // Apply edits to produce output
         let output = apply_edits(input, &edits);
+
+        // Apply grammar stripping if enabled (after structural transforms, before L3/L4)
+        let output = if self.config.grammar_strip {
+            grammar::strip(&output)
+        } else {
+            output
+        };
 
         // Apply Level 3 or 4 structural passes on the already-minified text
         let output = match self.config.level {
