@@ -94,6 +94,13 @@ impl Minifier {
             Level::Ultra => passes::apply_level_4(&output),
             _ => output,
         };
+
+        // Prepend legend for L3/L4 if enabled
+        let output = if self.config.legend && (self.config.level == Level::Structured || self.config.level == Level::Ultra) {
+            format!("[mdmin: -=list +=done !=todo]\n{output}")
+        } else {
+            output
+        };
         let output_tokens = estimate_tokens(&output);
 
         let savings_pct = if input_tokens > 0 {
@@ -395,7 +402,7 @@ fn handle_code_block(
 }
 
 /// Handle a task list item (checklist).
-/// Converts `- [x] text` to `+ text` and `- [ ] text` to `- text`.
+/// Converts `- [x] text` to `+ text` and `- [ ] text` to `! text`.
 fn handle_task_list_item(
     node: &Node,
     source: &str,
@@ -416,7 +423,7 @@ fn handle_task_list_item(
                 replacement,
             });
         } else if let Some(rest) = text.strip_prefix("[ ] ") {
-            let replacement = format!("- {rest}");
+            let replacement = format!("! {rest}");
             edits.push(Edit {
                 start: node.start_byte(),
                 end: node.end_byte(),
@@ -573,7 +580,7 @@ mod tests {
         let mut minifier = Minifier::new(&config).unwrap();
         let result = minifier.minify(input).unwrap();
         assert!(result.output.contains("+ Login"), "checked item should use +");
-        assert!(result.output.contains("- Logout"), "unchecked item should use -");
+        assert!(result.output.contains("! Logout"), "unchecked item should use !");
         assert!(!result.output.contains("[x]"), "no markdown checkbox syntax");
     }
 

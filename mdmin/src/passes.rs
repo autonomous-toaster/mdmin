@@ -6,35 +6,31 @@
 /// Apply Level 3 (Structured) transformations to already-minified text.
 ///
 /// Converts flat markdown-like text into TOON-style indented structure:
-/// - Section headings become indented keys
-/// - Lists are indented under their parent section
-/// - Checklists use `+`/`-` notation
+/// - Section headings become keys
+/// - Lists are indented only when nested under other list items
+/// - Checklists use `+`/`!` notation (checked/unchecked)
+/// - Regular list items use `-`
 #[must_use]
 pub fn apply_level_3(input: &str) -> String {
     let mut output = String::with_capacity(input.len());
     let lines: Vec<&str> = input.lines().collect();
 
-    // Track heading hierarchy for indentation
     let mut i = 0;
     while i < lines.len() {
         let line = lines[i];
 
         if let Some(heading) = parse_heading(line) {
-            // Emit heading as indented key
             output.push_str(&format!("{}:\n", &heading));
         } else if let Some(task) = parse_checklist(line) {
-            // Convert checklist to +/- notation
             let (checked, text) = task;
-            let marker = if checked { "+" } else { "-" };
+            let marker = if checked { "+" } else { "!" };
             output.push_str(&format!("  {marker} {text}\n"));
         } else if line.starts_with("- ") || line.starts_with("* ") {
-            // List item — indent under current section
             let text = line.trim_start_matches("- ").trim_start_matches("* ");
             output.push_str(&format!("  - {text}\n"));
         } else if line.is_empty() {
-            // Skip blank lines in structured mode
+            // Skip blank lines
         } else {
-            // Regular text — emit as-is
             output.push_str(line);
             output.push('\n');
         }
@@ -48,8 +44,9 @@ pub fn apply_level_3(input: &str) -> String {
 /// Apply Level 4 (Ultra) transformations to already-minified text.
 ///
 /// Converts to ultra-compact single-line grouped format:
-/// - Sections use `key{...}` brace notation
-/// - Lists are inline within braces
+/// - Sections use `key{{...}}` brace notation
+/// - Lists use `-text` prefix
+/// - Checked tasks use `+text`, unchecked use `!text`
 /// - Minimal whitespace
 #[must_use]
 pub fn apply_level_4(input: &str) -> String {
@@ -83,9 +80,8 @@ pub fn apply_level_4(input: &str) -> String {
             }
         } else if let Some(task) = parse_checklist(line) {
             let (checked, text) = task;
-            let marker = if checked { "+" } else { "-" };
+            let marker = if checked { "+" } else { "!" };
             output.push_str(&format!("{marker}{text}"));
-            // Check if next line is also a checklist item
             if i + 1 < lines.len() && parse_checklist(lines[i + 1]).is_some() {
                 output.push(' ');
             } else {
@@ -130,12 +126,12 @@ fn parse_heading(line: &str) -> Option<String> {
     None
 }
 
-/// Parse a checklist item like `+ Login` or `- Logout`.
+/// Parse a checklist item like `+ Login` or `! Logout`.
 fn parse_checklist(line: &str) -> Option<(bool, String)> {
     let trimmed = line.trim();
     if let Some(text) = trimmed.strip_prefix("+ ") {
         Some((true, text.to_string()))
-    } else if let Some(text) = trimmed.strip_prefix("- ") {
+    } else if let Some(text) = trimmed.strip_prefix("! ") {
         Some((false, text.to_string()))
     } else {
         None
@@ -155,10 +151,10 @@ mod tests {
 
     #[test]
     fn test_level_3_checklist() {
-        let input = "+ Login\n- Logout\n";
+        let input = "+ Login\n! Logout\n";
         let result = apply_level_3(input);
         assert!(result.contains("+ Login"), "checked item");
-        assert!(result.contains("- Logout"), "unchecked item");
+        assert!(result.contains("! Logout"), "unchecked item should use !");
     }
 
     #[test]
@@ -171,10 +167,10 @@ mod tests {
 
     #[test]
     fn test_level_4_checklist_compact() {
-        let input = "+ Login\n- Logout\n";
+        let input = "+ Login\n! Logout\n";
         let result = apply_level_4(input);
         assert!(result.contains("+Login"), "compact checked");
-        assert!(result.contains("-Logout"), "compact unchecked");
+        assert!(result.contains("!Logout"), "compact unchecked should use !");
     }
 
     #[test]
@@ -192,9 +188,10 @@ mod tests {
             Some((true, "Login".to_string()))
         );
         assert_eq!(
-            parse_checklist("- Logout"),
+            parse_checklist("! Logout"),
             Some((false, "Logout".to_string()))
         );
         assert_eq!(parse_checklist("plain text"), None);
+        assert_eq!(parse_checklist("- list item"), None);
     }
 }

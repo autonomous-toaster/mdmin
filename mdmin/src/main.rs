@@ -39,6 +39,10 @@ struct Args {
     /// Suppress warnings on stderr.
     #[arg(short = 'q', long = "quiet")]
     quiet: bool,
+
+    /// Suppress the prefix legend in L3/L4 output.
+    #[arg(long = "no-legend")]
+    no_legend: bool,
 }
 
 fn main() {
@@ -84,7 +88,9 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     // Minify
-    let config = Config::new(level).with_code_blocks(code_blocks);
+    let config = Config::new(level)
+        .with_code_blocks(code_blocks)
+        .with_legend(!args.no_legend);
     let mut minifier = Minifier::new(&config)
         .map_err(|e| format!("initializing minifier: {e}"))?;
     let result = minifier

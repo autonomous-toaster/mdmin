@@ -73,6 +73,8 @@ pub struct Config {
     pub level: Level,
     /// Code block handling mode.
     pub code_blocks: CodeBlockMode,
+    /// Prepend a legend line explaining prefix conventions (L3/L4 only).
+    pub legend: bool,
 }
 
 impl Config {
@@ -82,6 +84,7 @@ impl Config {
         Self {
             level,
             code_blocks: CodeBlockMode::Preserve,
+            legend: true,
         }
     }
 
@@ -89,6 +92,13 @@ impl Config {
     #[must_use]
     pub fn with_code_blocks(mut self, mode: CodeBlockMode) -> Self {
         self.code_blocks = mode;
+        self
+    }
+
+    /// Enable or disable the prefix legend in L3/L4 output.
+    #[must_use]
+    pub fn with_legend(mut self, enabled: bool) -> Self {
+        self.legend = enabled;
         self
     }
 }
