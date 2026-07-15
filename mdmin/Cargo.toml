@@ -1,0 +1,22 @@
+[package]
+name = "mdmin"
+version = "0.1.0"
+edition = "2024"
+description = "Tree-sitter-based Markdown minifier for LLM token optimization"
+
+[[bin]]
+name = "mdmin"
+path = "src/main.rs"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = "deny"
+pedantic = "deny"
+nursery = "deny"
+
+[dependencies]
+clap = { version = "4", features = ["derive", "env"] }
+tree-sitter = "0.26.11"
+tree-sitter-markdown-fork = "0.7.3"
