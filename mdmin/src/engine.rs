@@ -67,13 +67,24 @@ impl Minifier {
     pub fn minify(&mut self, input: &str) -> Result<MinifyResult, Error> {
         let input_tokens = estimate_tokens(input);
 
-        // Level 0: no-op, skip parse entirely
+        // Level 0: no-op, skip parse entirely (but still apply grammar strip if enabled)
         if self.config.level == Level::Off {
+            let output = if self.config.grammar_strip {
+                grammar::strip(input)
+            } else {
+                input.to_string()
+            };
+            let output_tokens = estimate_tokens(&output);
+            let savings_pct = if input_tokens > 0 {
+                ((input_tokens.saturating_sub(output_tokens)) as f64 / input_tokens as f64) * 100.0
+            } else {
+                0.0
+            };
             return Ok(MinifyResult {
-                output: input.to_string(),
+                output,
                 input_tokens,
-                output_tokens: input_tokens,
-                savings_pct: 0.0,
+                output_tokens,
+                savings_pct,
             });
         }
 
