@@ -3,6 +3,7 @@ name = "mdmin"
 version = "0.1.0"
 edition = "2024"
 description = "Tree-sitter-based Markdown minifier for LLM token optimization"
+license = "WTFPL"
 
 [[bin]]
 name = "mdmin"
