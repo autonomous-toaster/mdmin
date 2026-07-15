@@ -282,8 +282,9 @@ fn handle_atx_heading(
         if !heading_text.is_empty() {
             match config.level {
                 Level::Medium | Level::Structured | Level::Ultra => {
-                    // `## Title` → `title:\n`
-                    let normalized = format!("{}:\n", heading_text.to_lowercase());
+                    // `## Title` → `title:` (no trailing newline — the original
+                    // newline after the heading node is preserved by the edit logic)
+                    let normalized = format!("{}:", heading_text.to_lowercase());
                     edits.push(Edit {
                         start: node.start_byte(),
                         end: node.end_byte(),
@@ -340,18 +341,11 @@ fn handle_table(
                 .collect();
 
             if cells.len() == 1 && header_cells.len() == 1 {
+                // Single column: keep column:value format (adds context, no ambiguity)
                 lines.push(format!("{}:{}", header_cells[0], cells[0]));
             } else {
-                let line: String = cells
-                    .iter()
-                    .enumerate()
-                    .map(|(i, cell)| {
-                        let key = header_cells.get(i).map_or("?", |s| s.as_str());
-                        format!("{key}:{cell}")
-                    })
-                    .collect::<Vec<_>>()
-                    .join(" ");
-                lines.push(line);
+                // Multi-column: positional format (space-separated values)
+                lines.push(cells.join(" "));
             }
         }
     }
@@ -361,6 +355,13 @@ fn handle_table(
     }
 
     let replacement = lines.join("\n") + "\n";
+
+    // Size guard: skip compression if it would increase byte count
+    let original_size = node.end_byte() - node.start_byte();
+    if replacement.len() > original_size {
+        return Ok(());
+    }
+
     edits.push(Edit {
         start: node.start_byte(),
         end: node.end_byte(),

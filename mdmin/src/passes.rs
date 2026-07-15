@@ -24,10 +24,14 @@ pub fn apply_level_3(input: &str) -> String {
         } else if let Some(task) = parse_checklist(line) {
             let (checked, text) = task;
             let marker = if checked { "+" } else { "!" };
-            output.push_str(&format!("  {marker} {text}\n"));
-        } else if line.starts_with("- ") || line.starts_with("* ") {
-            let text = line.trim_start_matches("- ").trim_start_matches("* ");
-            output.push_str(&format!("  - {text}\n"));
+            // Only indent if the original line had leading whitespace (nested)
+            let indent = if line.starts_with(' ') { "  " } else { "" };
+            output.push_str(&format!("{indent}{marker} {text}\n"));
+        } else if line.trim_start().starts_with("- ") || line.trim_start().starts_with("* ") {
+            let text = line.trim().trim_start_matches("- ").trim_start_matches("* ");
+            // Only indent if the original line had leading whitespace (nested)
+            let indent = if line.starts_with(' ') { "  " } else { "" };
+            output.push_str(&format!("{indent}- {text}\n"));
         } else if line.is_empty() {
             // Skip blank lines
         } else {
