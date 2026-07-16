@@ -60,6 +60,7 @@ struct Candidate<'a> {
 
 /// Find repeated substrings using LZ77-style approach.
 /// For each position, find the longest substring that appears elsewhere.
+/// Only matches at word boundaries to avoid fragments.
 fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
     let bytes = text.as_bytes();
     let n = bytes.len();
@@ -95,7 +96,7 @@ fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
 
     // For each position, find the longest match
     let mut candidates: Vec<Candidate> = Vec::new();
-    let mut seen_regions: Vec<(usize, usize)> = Vec::new(); // (start, end) of already-matched regions
+    let mut seen_regions: Vec<(usize, usize)> = Vec::new();
 
     for idx in 0..char_positions.len() - MIN_LEN {
         let start = char_positions[idx];
@@ -121,31 +122,62 @@ fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
             None => continue,
         };
 
-        // Extend the match as far as possible
-        let mut match_len = MIN_LEN;
-        let max_len = 60.min(n - start).min(n - first_pos);
-        while match_len < max_len {
-            let c1_start = start + match_len;
-            let c2_start = first_pos + match_len;
-            if c1_start >= n || c2_start >= n {
+        // Extend the match to word boundaries
+        let mut match_start = start;
+        let mut match_end = start + MIN_LEN;
+        let _other_end = first_pos + MIN_LEN;
+
+        // Extend backward to word boundary (max 10 chars back)
+        while match_start > 0 && start - match_start < 10 {
+            // Get the character just before match_start using chars().last()
+            let prefix = &text[..match_start];
+            let prev_char = match prefix.chars().last() {
+                Some(c) => c,
+                None => break,
+            };
+            let prev_char_len = prev_char.len_utf8();
+            
+            if prev_char.is_alphanumeric() || prev_char == '_' || prev_char == '/' || prev_char == '.' || prev_char == '-' {
+                match_start -= prev_char_len;
+            } else {
                 break;
             }
-            if bytes[c1_start] != bytes[c2_start] {
-                break;
-            }
-            match_len += 1;
         }
 
-        if match_len < MIN_LEN {
+        // Extend forward to word boundary
+        let backward_offset = start - match_start;
+        let other_start = if backward_offset <= first_pos {
+            first_pos - backward_offset
+        } else {
+            // Can't extend backward as much on the other occurrence
+            first_pos
+        };
+        let max_len = 60.min(n - match_start).min(n - other_start);
+        while match_end < match_start + max_len {
+            let c = text[match_end..].chars().next().unwrap_or('\0');
+            if c.is_alphanumeric() || c == '_' || c == '/' || c == '.' || c == '-' || c == ':' {
+                match_end += c.len_utf8();
+            } else {
+                break;
+            }
+        }
+
+        let matched = &text[match_start..match_end];
+
+        // Skip if too short after boundary adjustment
+        if matched.len() < MIN_LEN {
             continue;
         }
 
-        // Get the matched string
-        let matched = &text[start..start + match_len];
+        // Skip candidates containing markdown link syntax
+        if matched.contains("](") || matched.contains("](https") {
+            continue;
+        }
 
-        // Skip pure punctuation
-        let alpha = matched.chars().filter(|c| c.is_alphanumeric()).count();
-        if alpha < 3 {
+        // Skip candidates that are mostly non-alphanumeric
+        let alpha_count = matched.chars().filter(|c| c.is_alphanumeric()).count();
+        let alpha_ratio = alpha_count as f64 / matched.len() as f64;
+        if alpha_ratio < 0.4 || alpha_count < 5 {
             continue;
         }
 
@@ -164,7 +196,7 @@ fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
         }
 
         candidates.push(Candidate { string: matched, count });
-        seen_regions.push((start, start + match_len));
+        seen_regions.push((match_start, match_end));
     }
 
     // Sort by net savings
@@ -174,10 +206,10 @@ fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
         b_save.cmp(&a_save)
     });
 
-    // Deduplicate by string value
+    // Deduplicate: remove candidates that are substrings of other candidates
     let mut seen_strings: Vec<&str> = Vec::new();
     candidates.retain(|c| {
-        if seen_strings.contains(&c.string) {
+        if seen_strings.iter().any(|s| s.contains(c.string) || c.string.contains(*s)) {
             false
         } else {
             seen_strings.push(c.string);
