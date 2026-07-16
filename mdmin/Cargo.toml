@@ -17,6 +17,12 @@ all = "deny"
 pedantic = "deny"
 nursery = "deny"
 
+[profile.release]
+panic = "abort"
+
+[profile.dev]
+panic = "abort"
+
 [dependencies]
 clap = { version = "4", features = ["derive", "env"] }
 regex-lite = "0.1.9"

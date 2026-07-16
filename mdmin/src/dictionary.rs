@@ -124,8 +124,8 @@ fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
 
         // Extend the match to word boundaries
         let mut match_start = start;
-        let mut match_end = start + MIN_LEN;
-        let _other_end = first_pos + MIN_LEN;
+        let mut match_end = char_positions[idx + MIN_LEN];
+        let _other_start_pos = first_pos + (match_end - start);
 
         // Extend backward to word boundary (max 10 chars back)
         while match_start > 0 && start - match_start < 10 {
@@ -137,7 +137,7 @@ fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
             };
             let prev_char_len = prev_char.len_utf8();
             
-            if prev_char.is_alphanumeric() || prev_char == '_' || prev_char == '/' || prev_char == '.' || prev_char == '-' {
+            if prev_char.is_alphanumeric() || prev_char == '_' || prev_char == '/' || prev_char == '.' || prev_char == '-' || prev_char == '\'' {
                 match_start -= prev_char_len;
             } else {
                 break;
@@ -155,22 +155,29 @@ fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
         let max_len = 60.min(n - match_start).min(n - other_start);
         while match_end < match_start + max_len {
             let c = text[match_end..].chars().next().unwrap_or('\0');
-            if c.is_alphanumeric() || c == '_' || c == '/' || c == '.' || c == '-' || c == ':' {
+            if c.is_alphanumeric() || c == '_' || c == '/' || c == '.' || c == '-' {
                 match_end += c.len_utf8();
             } else {
                 break;
             }
         }
 
-        let matched = &text[match_start..match_end];
+        let matched_raw = &text[match_start..match_end];
+        let matched = matched_raw.trim();
 
-        // Skip if too short after boundary adjustment
+        // Skip if too short after boundary adjustment or trimming
         if matched.len() < MIN_LEN {
             continue;
         }
 
-        // Skip candidates containing markdown link syntax
-        if matched.contains("](") || matched.contains("](https") {
+        // Skip candidates containing newlines or markdown link syntax
+        if matched.contains('\n') || matched.contains("](") || matched.contains("](https") {
+            continue;
+        }
+
+        // Skip candidates that start with non-alphanumeric (except / for paths)
+        let first = matched.chars().next().unwrap_or('\0');
+        if !first.is_alphanumeric() && first != '/' {
             continue;
         }
 
