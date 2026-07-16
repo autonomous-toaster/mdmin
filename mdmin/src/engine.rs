@@ -4,6 +4,7 @@ use std::fmt;
 
 use tree_sitter::{Node, Parser, Tree};
 
+use crate::dictionary;
 use crate::grammar;
 use crate::passes;
 use crate::{CodeBlockMode, Config, Level, MinifyResult};
@@ -103,6 +104,13 @@ impl Minifier {
         // Apply grammar stripping if enabled (after structural transforms, before L3/L4)
         let output = if self.config.grammar_strip {
             grammar::strip(&output)
+        } else {
+            output
+        };
+
+        // Apply local dictionary compression if enabled (after grammar strip, before L3/L4)
+        let output = if self.config.dictionary {
+            dictionary::compress(&output)
         } else {
             output
         };

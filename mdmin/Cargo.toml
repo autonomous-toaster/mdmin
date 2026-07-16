@@ -19,6 +19,7 @@ nursery = "deny"
 
 [dependencies]
 clap = { version = "4", features = ["derive", "env"] }
+regex-lite = "0.1.9"
 stop-words = "0.10.0"
 tree-sitter = "0.26.11"
 tree-sitter-markdown-fork = "0.7.3"

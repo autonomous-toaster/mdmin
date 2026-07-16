@@ -8,6 +8,7 @@
 #![deny(missing_docs)]
 #![forbid(unsafe_code)]
 
+mod dictionary;
 mod engine;
 mod grammar;
 mod passes;
@@ -78,6 +79,8 @@ pub struct Config {
     pub legend: bool,
     /// Strip filler words, articles, aux verbs, hedging from prose.
     pub grammar_strip: bool,
+    /// Compress long repeated strings (paths, URLs, identifiers) with a local dictionary.
+    pub dictionary: bool,
 }
 
 impl Config {
@@ -89,6 +92,7 @@ impl Config {
             code_blocks: CodeBlockMode::Preserve,
             legend: true,
             grammar_strip: false,
+            dictionary: false,
         }
     }
 
@@ -110,6 +114,13 @@ impl Config {
     #[must_use]
     pub fn with_grammar_strip(mut self, enabled: bool) -> Self {
         self.grammar_strip = enabled;
+        self
+    }
+
+    /// Enable or disable local dictionary compression (long repeated strings).
+    #[must_use]
+    pub fn with_dictionary(mut self, enabled: bool) -> Self {
+        self.dictionary = enabled;
         self
     }
 }

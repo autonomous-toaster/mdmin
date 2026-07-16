@@ -47,6 +47,10 @@ struct Args {
     /// Strip filler words, articles, aux verbs, hedging from prose.
     #[arg(short = 'g', long = "grammar-strip")]
     grammar_strip: bool,
+
+    /// Compress long repeated strings (paths, URLs, identifiers) with a local dictionary.
+    #[arg(short = 'd', long = "dictionary")]
+    dictionary: bool,
 }
 
 fn main() {
@@ -95,7 +99,8 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
     let config = Config::new(level)
         .with_code_blocks(code_blocks)
         .with_legend(!args.no_legend)
-        .with_grammar_strip(args.grammar_strip);
+        .with_grammar_strip(args.grammar_strip)
+        .with_dictionary(args.dictionary);
     let mut minifier = Minifier::new(&config)
         .map_err(|e| format!("initializing minifier: {e}"))?;
     let result = minifier
