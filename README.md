@@ -19,6 +19,12 @@ MDMIN_LEVEL=3 mdmin doc.md
 # Grammar stripping (remove filler words, articles, aux verbs)
 mdmin -l 2 -g doc.md
 
+# Local dictionary (compress repeated long strings)
+mdmin -l 2 -d doc.md
+
+# All options combined
+mdmin -l 2 -g -d doc.md
+
 # Show token savings
 mdmin -l 2 -s doc.md
 # stderr: tokens: 1200 → 720 (40% savings)
@@ -33,7 +39,7 @@ mdmin -l 2 -o out.md doc.md
 |-------|------|-------------|----------------|
 | 0 | Off | No-op, input == output | ✅ |
 | 1 | Light | Strip bold, italic, HR, HTML comments, strikethrough | ✅ |
-| 2 | Medium | Normalize headings, compress tables (positional format) | ✅ |
+| 2 | Medium | Normalize headings, compress tables, flatten nested lists, inline tiny sections | ✅ |
 | 3 | Structured | TOON-like indented structure, `+`/`!` checklists | ❌ |
 | 4 | Ultra | `{}` brace grouping, minimal whitespace | ❌ |
 
@@ -48,6 +54,21 @@ Orthogonal config option, works at any level. Removes filler words, articles, au
 
 Adds 5-10pp additional token savings on real-world files.
 
+## Local Dictionary (`-d`)
+
+Orthogonal config option, works at any level. Finds repeated substrings of 15+ chars using LZ77-style search and replaces them with short `@N` references. Dictionary header emitted at top of output.
+
+```
+@dict:
+  @1: /managed-agents
+  @2: budget_tokens
+  @3: messages.create
+
+Use @1 API with @2 and @3.
+```
+
+Adds 1-3pp additional savings on files with repeated paths, URLs, or identifiers.
+
 ## CLI
 
 ```
@@ -61,6 +82,7 @@ OPTIONS:
   -c, --code-blocks <MODE> Code block handling [default: preserve] [env: MDMIN_CODE_BLOCKS]
                             preserve | compress
   -g, --grammar-strip      Strip filler words, articles, aux verbs, hedging
+  -d, --dictionary         Compress repeated long strings with local dictionary
   -o, --output <FILE>      Write to file instead of stdout
   -s, --stats              Show token savings on stderr
   -q, --quiet              Suppress warnings on stderr
@@ -76,7 +98,8 @@ use mdmin::{Config, Level, CodeBlockMode, Minifier};
 
 let config = Config::new(Level::Medium)
     .with_code_blocks(CodeBlockMode::Preserve)
-    .with_grammar_strip(true);
+    .with_grammar_strip(true)
+    .with_dictionary(true);
 
 let mut minifier = Minifier::new(&config)?;
 let result = minifier.minify(input)?;
@@ -91,10 +114,12 @@ println!("{} tokens ({}% savings)",
 1. **Parse** — tree-sitter-markdown produces a CST with byte-accurate node positions
 2. **Walk** — recursive tree walk matches node kinds and collects edits (deletions/replacements)
 3. **Apply** — edits are sorted by position and applied to the source text
-4. **Grammar strip** — optional pass removes filler words, articles, aux verbs (negation-aware, RFC 2119-safe)
-5. **Structure** — for L3/L4, an additional pass restructures the output into compact formats
+4. **L2 text passes** — nested list flattening, inline tiny sections
+5. **Grammar strip** — optional pass removes filler words, articles, aux verbs (negation-aware, RFC 2119-safe)
+6. **Dictionary** — optional LZ77-style pass finds repeated substrings, emits `@dict` header
+7. **Structure** — for L3/L4, an additional pass restructures the output into compact formats
 
-No dictionary, no iteration loop — single-pass, deterministic.
+No iteration loop — single-pass, deterministic.
 
 ## Inspirations & Sources
 
@@ -110,6 +135,9 @@ mdmin builds on ideas from several projects and papers in the LLM token optimiza
 ### Papers
 
 - **[ONTO: A Token-Efficient Columnar Notation for LLM Input Optimization](https://arxiv.org/abs/2604.17512)** (arXiv 2604.17512) — Columnar notation that declares field names once then lists values positionally, achieving 46-51% token reduction vs JSON. Validates mdmin's positional table compression approach.
+- **[Lossless Prompt Compression via Dictionary-Encoding and In-Context Learning](https://arxiv.org/abs/2604.13066)** (arXiv 2604.13066) — Demonstrates that LLMs can understand compressed meta-tokens when given a dictionary. Validates mdmin's `-d` flag approach and shows that aggressive dictionary compression is safe for LLM consumption.
+- **[Lossless Token Sequence Compression via Meta-Tokens](https://arxiv.org/abs/2506.00307)** (arXiv 2506.00307) — LZ77-style compression at the token level, achieving 27% average reduction. mdmin's n-gram dictionary applies the same principle at the text level.
+- **[CompactPrompt: A Unified Pipeline for Prompt and Data Compression in LLM Workflows](https://arxiv.org/abs/2510.18043)** (arXiv 2510.18043) — Uses n-gram abbreviation, self-information scoring, and numerical quantization for prompt compression. Inspired mdmin's multi-pass approach.
 - **[Large Language Model as Token Compressor and Decompressor](https://arxiv.org/abs/2603.25340)** (arXiv 2603.25340) — Explores using LLMs themselves for lossy compression. Complementary approach to mdmin's deterministic method.
 
 ### Principles
@@ -117,7 +145,7 @@ mdmin builds on ideas from several projects and papers in the LLM token optimiza
 - **Deterministic over learned** — mdmin uses rule-based transformations, not ML models. Predictable, debuggable, zero runtime cost.
 - **Structure-aware** — tree-sitter CST enables precise surgical edits without regex fragility.
 - **Single-pass** — each level is one walk through the CST. No iteration, no convergence loops.
-- **Orthogonal options** — grammar stripping is a config flag, not a level. Composability over monolithic modes.
+- **Orthogonal options** — grammar stripping and dictionary are config flags, not levels. Composability over monolithic modes.
 
 ## License
 
