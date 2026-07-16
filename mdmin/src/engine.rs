@@ -101,6 +101,14 @@ impl Minifier {
         // Apply edits to produce output
         let output = apply_edits(input, &edits);
 
+        // Apply L2 text-level passes: nested list flattening, inline tiny sections
+        let output = if self.config.level as u8 >= 2 {
+            let output = flatten_nested_lists(&output);
+            inline_tiny_sections(&output)
+        } else {
+            output
+        };
+
         // Apply grammar stripping if enabled (after structural transforms, before L3/L4)
         let output = if self.config.grammar_strip {
             grammar::strip(&output)
@@ -483,6 +491,89 @@ fn collapse_blank_lines(s: &str) -> String {
     result
 }
 
+/// Flatten nested lists: `- Parent\n  - Child1\n  - Child2` → `Parent: Child1, Child2`.
+fn flatten_nested_lists(text: &str) -> String {
+    let mut result = String::with_capacity(text.len());
+    let lines: Vec<&str> = text.lines().collect();
+    let mut i = 0;
+
+    while i < lines.len() {
+        let line = lines[i];
+
+        // Check if this is a parent list item with children on next lines
+        if (line.starts_with("- ") || line.starts_with("* ")) && !line.starts_with("  ") {
+            // Look ahead for indented children
+            let parent_text = line.trim_start_matches("- ").trim_start_matches("* ");
+            let mut children: Vec<&str> = Vec::new();
+            let mut j = i + 1;
+
+            while j < lines.len() {
+                let next = lines[j];
+                if next.starts_with("  - ") || next.starts_with("  * ") {
+                    let child_text = next.trim().trim_start_matches("- ").trim_start_matches("* ");
+                    children.push(child_text);
+                    j += 1;
+                } else if next.trim().is_empty() {
+                    j += 1;
+                } else {
+                    break;
+                }
+            }
+
+            if !children.is_empty() {
+                // Flatten: Parent: Child1, Child2
+                result.push_str(&format!("{}: {}\n", parent_text, children.join(", ")));
+                i = j;
+                continue;
+            }
+        }
+
+        result.push_str(line);
+        result.push('\n');
+        i += 1;
+    }
+
+    result
+}
+
+/// Inline tiny sections: `title:\nshort text` → `title: short text`.
+fn inline_tiny_sections(text: &str) -> String {
+    let mut result = String::with_capacity(text.len());
+    let lines: Vec<&str> = text.lines().collect();
+    let mut i = 0;
+
+    while i < lines.len() {
+        let line = lines[i];
+
+        // Check if this is a heading line (ends with :)
+        if line.ends_with(':') && !line.starts_with(' ') && !line.starts_with('@') {
+            // Only inline if the NEXT line (no blank lines between) is a short paragraph
+            if i + 1 < lines.len() {
+                let next = lines[i + 1].trim();
+                // Only inline if paragraph is short (≤50 chars), not a list, not a heading
+                if !next.is_empty()
+                    && next.len() <= 50
+                    && !next.starts_with("- ")
+                    && !next.starts_with("* ")
+                    && !next.ends_with(':')
+                {
+                    // Merge: "title" + ": short text"
+                    let heading = line.trim_end_matches(':');
+                    result.push_str(&format!("{}: {}\n", heading, next));
+                    i += 2;
+                    continue;
+                }
+            }
+        }
+
+        result.push_str(line);
+        result.push('\n');
+        i += 1;
+    }
+
+    result
+}
+
 /// Apply a sorted list of edits to the source text.
 fn apply_edits(source: &str, edits: &[Edit]) -> String {
     if edits.is_empty() {
@@ -622,6 +713,10 @@ mod tests {
         assert!(result.output.contains("}"), "should close brace");
     }
 }
+
+
+
+
 
 
 
