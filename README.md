@@ -47,10 +47,20 @@ mdmin -l 2 -o out.md doc.md
 
 Orthogonal config option, works at any level. Removes filler words, articles, aux verbs, hedging, and conjunctions from prose text. Pure Rust, no Python dependency.
 
-- **RFC 2119 protected**: SHALL, MUST, MAY, SHOULD never removed
-- **Negation-safe**: words after not/never/no preserved
-- **Code-safe**: backtick regions preserved verbatim
-- **Language-aware**: uses `whatlang` for detection, per-language word lists
+Uses **entropy-based word scoring** — each word gets a frequency score (0.0–1.0) combined with heuristics for word length and sentence position. Words above a configurable threshold are removed.
+
+**Levels:**
+- `-g` or `-g medium` — default, removes moderately common words (score ≥ 0.6)
+- `-g light` — conservative, only removes very common words (score ≥ 0.8)
+- `-g aggressive` — aggressive, removes less common filler too (score ≥ 0.4)
+
+**Protected words** — temporal/spatial words (before, after, between, within, etc.) are never removed, preserving meaning in spec documents.
+
+**Safeguards:**
+- RFC 2119 protected: SHALL, MUST, MAY, SHOULD never removed
+- Negation-safe: words after not/never/no preserved
+- Code-safe: backtick regions preserved verbatim
+- Language-aware: uses `whatlang` for detection, per-language word lists
 
 Adds 5-10pp additional token savings on real-world files.
 
@@ -81,7 +91,8 @@ OPTIONS:
                             0 | 1 | 2 | 3 | 4
   -c, --code-blocks <MODE> Code block handling [default: preserve] [env: MDMIN_CODE_BLOCKS]
                             preserve | compress
-  -g, --grammar-strip      Strip filler words, articles, aux verbs, hedging
+  -g, --grammar-strip [<LEVEL>]  Strip filler words, articles, aux verbs, hedging
+                                 [levels: light, medium (default), aggressive]
   -d, --dictionary         Compress repeated long strings with local dictionary
   -o, --output <FILE>      Write to file instead of stdout
   -s, --stats              Show token savings on stderr
@@ -98,7 +109,7 @@ use mdmin::{Config, Level, CodeBlockMode, Minifier};
 
 let config = Config::new(Level::Medium)
     .with_code_blocks(CodeBlockMode::Preserve)
-    .with_grammar_strip(true)
+    .with_grammar_strip(GrammarLevel::Medium)
     .with_dictionary(true);
 
 let mut minifier = Minifier::new(&config)?;
@@ -139,6 +150,7 @@ mdmin builds on ideas from several projects and papers in the LLM token optimiza
 - **[Lossless Token Sequence Compression via Meta-Tokens](https://arxiv.org/abs/2506.00307)** (arXiv 2506.00307) — LZ77-style compression at the token level, achieving 27% average reduction. mdmin's n-gram dictionary applies the same principle at the text level.
 - **[CompactPrompt: A Unified Pipeline for Prompt and Data Compression in LLM Workflows](https://arxiv.org/abs/2510.18043)** (arXiv 2510.18043) — Uses n-gram abbreviation, self-information scoring, and numerical quantization for prompt compression. Inspired mdmin's multi-pass approach.
 - **[Large Language Model as Token Compressor and Decompressor](https://arxiv.org/abs/2603.25340)** (arXiv 2603.25340) — Explores using LLMs themselves for lossy compression. Complementary approach to mdmin's deterministic method.
+- **[Entropy Gate: Entropy Quenching for Near-Lossless Token Compression in LLM Pipelines](https://arxiv.org/abs/2606.03739)** (arXiv 2606.03739) — Scores each token by multi-factor information energy combining statistical, structural, and positional components. Inspired mdmin's entropy-based word scoring for grammar stripping.
 
 ### Principles
 

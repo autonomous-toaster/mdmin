@@ -14,6 +14,7 @@ mod grammar;
 mod passes;
 
 pub use engine::Minifier;
+pub use grammar::Level as GrammarLevel;
 
 /// Compression level.
 ///
@@ -77,8 +78,8 @@ pub struct Config {
     pub code_blocks: CodeBlockMode,
     /// Prepend a legend line explaining prefix conventions (L3/L4 only).
     pub legend: bool,
-    /// Strip filler words, articles, aux verbs, hedging from prose.
-    pub grammar_strip: bool,
+    /// Grammar stripping level (None = disabled).
+    pub grammar_strip: Option<GrammarLevel>,
     /// Compress long repeated strings (paths, URLs, identifiers) with a local dictionary.
     pub dictionary: bool,
 }
@@ -91,7 +92,7 @@ impl Config {
             level,
             code_blocks: CodeBlockMode::Preserve,
             legend: true,
-            grammar_strip: false,
+            grammar_strip: None,
             dictionary: false,
         }
     }
@@ -110,10 +111,17 @@ impl Config {
         self
     }
 
-    /// Enable or disable grammar stripping (filler words, articles, etc.).
+    /// Enable grammar stripping with a specific level.
     #[must_use]
-    pub fn with_grammar_strip(mut self, enabled: bool) -> Self {
-        self.grammar_strip = enabled;
+    pub fn with_grammar_strip(mut self, level: GrammarLevel) -> Self {
+        self.grammar_strip = Some(level);
+        self
+    }
+
+    /// Disable grammar stripping.
+    #[must_use]
+    pub fn without_grammar_strip(mut self) -> Self {
+        self.grammar_strip = None;
         self
     }
 
@@ -128,6 +136,20 @@ impl Config {
 impl Default for Config {
     fn default() -> Self {
         Self::new(Level::Medium)
+    }
+}
+
+impl Config {
+    /// Check if grammar stripping is enabled.
+    #[must_use]
+    pub const fn is_grammar_strip_enabled(&self) -> bool {
+        self.grammar_strip.is_some()
+    }
+
+    /// Get the grammar stripping level, if enabled.
+    #[must_use]
+    pub const fn grammar_level(&self) -> Option<GrammarLevel> {
+        self.grammar_strip
     }
 }
 

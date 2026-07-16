@@ -11,7 +11,7 @@ use std::path::PathBuf;
 
 use clap::Parser;
 
-use mdmin::{CodeBlockMode, Config, Level, Minifier};
+use mdmin::{CodeBlockMode, Config, GrammarLevel, Level, Minifier};
 
 /// Tree-sitter-based Markdown minifier for LLM token optimization.
 #[derive(Parser)]
@@ -45,8 +45,9 @@ struct Args {
     no_legend: bool,
 
     /// Strip filler words, articles, aux verbs, hedging from prose.
-    #[arg(short = 'g', long = "grammar-strip")]
-    grammar_strip: bool,
+    /// Optionally specify level: light, medium (default), aggressive.
+    #[arg(short = 'g', long = "grammar-strip", num_args = 0..=1, default_missing_value = "medium")]
+    grammar_strip: Option<String>,
 
     /// Compress long repeated strings (paths, URLs, identifiers) with a local dictionary.
     #[arg(short = 'd', long = "dictionary")]
@@ -82,6 +83,14 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
         None => CodeBlockMode::Preserve,
     };
 
+    // Resolve grammar strip level
+    let grammar_level = match args.grammar_strip.as_deref() {
+        Some(s) => Some(GrammarLevel::from_str(s).ok_or_else(|| {
+            format!("invalid grammar level '{}': use light, medium, or aggressive", s)
+        })?),
+        None => None,
+    };
+
     // Read input
     let input = match &args.file {
         Some(path) => std::fs::read_to_string(path)
@@ -99,8 +108,11 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
     let config = Config::new(level)
         .with_code_blocks(code_blocks)
         .with_legend(!args.no_legend)
-        .with_grammar_strip(args.grammar_strip)
         .with_dictionary(args.dictionary);
+    let config = match grammar_level {
+        Some(l) => config.with_grammar_strip(l),
+        None => config.without_grammar_strip(),
+    };
     let mut minifier = Minifier::new(&config)
         .map_err(|e| format!("initializing minifier: {e}"))?;
     let result = minifier

@@ -70,8 +70,8 @@ impl Minifier {
 
         // Level 0: no-op, skip parse entirely (but still apply grammar strip if enabled)
         if self.config.level == Level::Off {
-            let output = if self.config.grammar_strip {
-                grammar::strip(input)
+            let output = if let Some(level) = self.config.grammar_level() {
+                grammar::strip_with_level(input, level)
             } else {
                 input.to_string()
             };
@@ -110,8 +110,8 @@ impl Minifier {
         };
 
         // Apply grammar stripping if enabled (after structural transforms, before L3/L4)
-        let output = if self.config.grammar_strip {
-            grammar::strip(&output)
+        let output = if let Some(level) = self.config.grammar_level() {
+            grammar::strip_with_level(&output, level)
         } else {
             output
         };
