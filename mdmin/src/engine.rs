@@ -124,17 +124,44 @@ impl Minifier {
         };
 
         // Apply Level 3 or 4 structural passes on the already-minified text
+        // Size guard: if restructuring + legend doesn't reduce size, keep original
+        let pre_restructure = output.clone();
         let output = match self.config.level {
-            Level::Structured => passes::apply_level_3(&output),
-            Level::Ultra => passes::apply_level_4(&output),
+            Level::Structured => {
+                let restructured = passes::apply_level_3(&output);
+                let has_lists = restructured.lines().any(|l| {
+                    let t = l.trim();
+                    t.starts_with("- ") || t.starts_with("+ ") || t.starts_with("! ")
+                });
+                let with_legend = if self.config.legend && has_lists {
+                    format!("[mdmin: -=list +=done !=todo]\n{restructured}")
+                } else {
+                    restructured
+                };
+                if with_legend.len() < pre_restructure.len() {
+                    with_legend
+                } else {
+                    pre_restructure
+                }
+            }
+            Level::Ultra => {
+                let restructured = passes::apply_level_4(&output);
+                let has_lists = restructured.lines().any(|l| {
+                    let t = l.trim();
+                    t.starts_with("- ") || t.starts_with("+ ") || t.starts_with("! ")
+                });
+                let with_legend = if self.config.legend && has_lists {
+                    format!("[mdmin: -=list +=done !=todo]\n{restructured}")
+                } else {
+                    restructured
+                };
+                if with_legend.len() < pre_restructure.len() {
+                    with_legend
+                } else {
+                    pre_restructure
+                }
+            }
             _ => output,
-        };
-
-        // Prepend legend for L3/L4 if enabled
-        let output = if self.config.legend && (self.config.level == Level::Structured || self.config.level == Level::Ultra) {
-            format!("[mdmin: -=list +=done !=todo]\n{output}")
-        } else {
-            output
         };
         let output_tokens = estimate_tokens(&output);
 
