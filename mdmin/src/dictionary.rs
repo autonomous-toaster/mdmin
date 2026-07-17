@@ -32,7 +32,7 @@ pub fn compress(text: &str) -> String {
     let mut entries: Vec<String> = Vec::new();
 
     for (i, candidate) in candidates.iter().enumerate() {
-        let key = format!("@mdmin_{}", i + 1);
+        let key = format!("@m{}", i + 1);
         dict.insert(candidate.string, key.clone());
         entries.push(format!("  {key}: {}", candidate.string));
     }
@@ -239,8 +239,8 @@ mod tests {
         let text = "use /very/long/path/to/some/file.rs and also /very/long/path/to/some/file.rs";
         let result = compress(text);
         assert!(result.starts_with("@dict:"), "should start with dictionary header");
-        assert!(result.contains("@mdmin_1"), "should have reference @mdmin_1");
-        assert!(result.matches("@mdmin_1").count() >= 2, "@mdmin_1 should appear in header and content");
+        assert!(result.contains("@m1"), "should have reference @m1");
+        assert!(result.matches("@m1").count() >= 2, "@m1 should appear in header and content");
     }
 
     #[test]
