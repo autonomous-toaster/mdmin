@@ -24,7 +24,7 @@ T1.1 SHALL replace `HashSet` word lists with a `HashMap<&str, f64>` frequency ta
 
 ### Requirement: Frequency table excludes prepositions and temporal words
 
-T1.1 SHALL NOT include prepositions (at, in, from, for, with, by, on, etc.) or temporal words (before, after, during, until, etc.) in the frequency table. T1.1 SHALL complete BEFORE T1.4 SHALL run.
+T1.1 SHALL NOT include prepositions (at, in, from, for, with, by, on, etc.) or temporal words (earlier, later, during, until, etc.) in the frequency table. T1.1 SHALL complete. T1.4 SHALL run AFTER T1.1 SHALL complete.
 
 #### Scenario: Preposition is not in frequency table
 - **WHEN** T1.1 checks "before" against the frequency table
