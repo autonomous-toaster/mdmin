@@ -527,7 +527,7 @@ fn run_benchmark() -> BenchmarkReport {
                     let expanded_clean = strip_dict_header(&expanded);
                     // Compare against L2 output (pre-dictionary)
                     if let Some(ref l2) = l2_output {
-                        if expanded_clean == l2.trim().to_string() {
+                        if expanded_clean.trim() == l2.trim() {
                             report.dictionary_reversibility.fully_reversible += 1;
                         } else {
                             report

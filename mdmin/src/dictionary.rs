@@ -32,7 +32,7 @@ pub fn compress(text: &str) -> String {
     let mut entries: Vec<String> = Vec::new();
 
     for (i, candidate) in candidates.iter().enumerate() {
-        let key = format!("@{}", i + 1);
+        let key = format!("@mdmin_{}", i + 1);
         dict.insert(candidate.string, key.clone());
         entries.push(format!("  {key}: {}", candidate.string));
     }
@@ -170,8 +170,10 @@ fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
             continue;
         }
 
-        // Skip candidates containing newlines or markdown link syntax
-        if matched.contains('\n') || matched.contains("](") || matched.contains("](https") {
+        // Skip candidates containing newlines, markdown link syntax, HTML tags, or code boundaries
+        if matched.contains('\n') || matched.contains("](") || matched.contains("](https")
+            || matched.contains('<') || matched.contains('>') || matched.contains('`')
+        {
             continue;
         }
 
@@ -237,8 +239,8 @@ mod tests {
         let text = "use /very/long/path/to/some/file.rs and also /very/long/path/to/some/file.rs";
         let result = compress(text);
         assert!(result.starts_with("@dict:"), "should start with dictionary header");
-        assert!(result.contains("@1"), "should have reference @1");
-        assert!(result.matches("@1").count() >= 2, "@1 should appear in header and content");
+        assert!(result.contains("@mdmin_1"), "should have reference @mdmin_1");
+        assert!(result.matches("@mdmin_1").count() >= 2, "@mdmin_1 should appear in header and content");
     }
 
     #[test]
