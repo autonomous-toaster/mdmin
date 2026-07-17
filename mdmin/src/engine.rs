@@ -448,8 +448,9 @@ fn handle_code_block(
             let children: Vec<Node> = node.children(&mut node.walk()).collect();
             if let Some(content) = children.iter().find(|c| c.kind() == "code_fence_content") {
                 let text = &source[content.start_byte()..content.end_byte()];
-                // Collapse runs of 2+ newlines to a single newline
-                let collapsed = collapse_blank_lines(text);
+                // Strip leading/trailing blank lines, then collapse internal runs
+                let stripped = strip_leading_trailing_blank_lines(text);
+                let collapsed = collapse_blank_lines(&stripped);
                 if collapsed != text {
                     edits.push(Edit {
                         start: content.start_byte(),
@@ -495,6 +496,30 @@ fn handle_task_list_item(
     }
 
     Ok(())
+}
+
+/// Strip leading and trailing blank lines from text.
+fn strip_leading_trailing_blank_lines(s: &str) -> String {
+    let lines: Vec<&str> = s.lines().collect();
+    if lines.is_empty() {
+        return s.to_string();
+    }
+
+    let mut start = 0;
+    while start < lines.len() && lines[start].trim().is_empty() {
+        start += 1;
+    }
+
+    let mut end = lines.len();
+    while end > start && lines[end - 1].trim().is_empty() {
+        end -= 1;
+    }
+
+    if start >= end {
+        return String::new();
+    }
+
+    lines[start..end].join("\n")
 }
 
 /// Collapse runs of 2+ consecutive newlines to a single newline.
