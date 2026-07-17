@@ -66,18 +66,44 @@ Adds 5-10pp additional token savings on real-world files.
 
 ## Local Dictionary (`-d`)
 
-Orthogonal config option, works at any level. Finds repeated substrings of 15+ chars using LZ77-style search and replaces them with short `@N` references. Dictionary header emitted at top of output.
+Orthogonal config option, works at any level. Finds repeated substrings of 15+ chars using LZ77-style search and replaces them with short `@mN` references. Dictionary header emitted at top of output.
 
 ```
 @dict:
-  @1: /managed-agents
-  @2: budget_tokens
-  @3: messages.create
+  @m1: /managed-agents
+  @m2: budget_tokens
+  @m3: messages.create
 
-Use @1 API with @2 and @3.
+Use @m1 API with @m2 and @m3.
 ```
 
 Adds 1-3pp additional savings on files with repeated paths, URLs, or identifiers.
+
+## Benchmark Results
+
+Measured on a corpus of 222 real-world Markdown files (skills, docs, specs) using len/4 token estimation.
+
+| Config | Savings | Config | Savings | Config | Savings |
+|--------|---------|--------|---------|--------|---------|
+| L0 | 0.0% | | | | |
+| L1 | 1.0% | | | | |
+| L2 | 3.7% | L2_g | 10.1% | L2_d | 8.6% |
+| L2_gd | **15.0%** | | | | |
+| L3 | 4.2% | L3_g | 10.6% | L3_d | 9.1% |
+| L3_gd | **15.4%** | | | | |
+| L4 | 7.7% | L4_g | 11.3% | L4_d | 13.0% |
+| L4_gd | **16.5%** | | | | |
+
+**Monotonicity**: L0 < L1 < L2 < L3 < L4 on all 222 files ✅
+**Dictionary reversibility**: 201/201 files fully reversible ✅
+**Grammar coverage**: 9,304/9,581 words in frequency table (97.1%)
+
+Run the benchmark yourself:
+```bash
+cargo run --bin mdmin-bench
+# Set corpus path:
+MDMIN_BENCH_CORPUS="/path/to/skills" cargo run --bin mdmin-bench
+```
 
 ## CLI
 

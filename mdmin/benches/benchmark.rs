@@ -16,14 +16,17 @@ use mdmin::{Config, GrammarLevel, Level, Minifier};
 // ─── Corpus ─────────────────────────────────────────────────────────────────
 
 fn discover_corpus() -> Vec<PathBuf> {
-    let dirs = vec![
-        PathBuf::from(
-            "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/",
-        ),
-        PathBuf::from(
-            "/Users/jean-christophe.saad-dupuy2/src/github.com/anthropic/skills/skills/",
-        ),
-    ];
+    // Use MDMIN_BENCH_CORPUS env var (comma-separated paths) or fall back
+    // to relative paths from the crate root.
+    let dirs: Vec<PathBuf> = if let Ok(corpus) = std::env::var("MDMIN_BENCH_CORPUS") {
+        corpus.split(',').map(|s| PathBuf::from(s.trim())).collect()
+    } else {
+        let root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+        vec![
+            root.join("../skills"),
+            root.join("../../anthropic/skills/skills"),
+        ]
+    };
 
     let mut files = Vec::new();
     for dir in &dirs {
