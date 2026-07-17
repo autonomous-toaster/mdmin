@@ -79,20 +79,28 @@ Use @m1 API with @m2 and @m3.
 
 Adds 1-3pp additional savings on files with repeated paths, URLs, or identifiers.
 
+## Code Block Compression (`-c`)
+
+Orthogonal config option, works at any level. Controls how fenced code blocks are handled:
+
+- `preserve` (default) — leave code blocks entirely unchanged
+- `compress` — strip leading/trailing blank lines, collapse consecutive blank lines
+
+```bash
+mdmin -l 2 -c compress doc.md
+```
+
+Adds 0.2pp savings on typical files, more on files with heavy code block content.
+
 ## Benchmark Results
 
-Measured on a corpus of 222 real-world Markdown files (skills, docs, specs) using len/4 token estimation.
+Measured on a corpus of 184 real-world Markdown files (skills, docs, specs) using len/4 token estimation.
 
-| Config | Savings | Config | Savings | Config | Savings |
-|--------|---------|--------|---------|--------|---------|
-| L0 | 0.0% | | | | |
-| L1 | 1.0% | | | | |
-| L2 | 3.7% | L2_g | 10.1% | L2_d | 8.6% |
-| L2_gd | **15.0%** | | | | |
-| L3 | 4.2% | L3_g | 10.6% | L3_d | 9.1% |
-| L3_gd | **15.4%** | | | | |
-| L4 | 7.7% | L4_g | 11.3% | L4_d | 13.0% |
-| L4_gd | **16.5%** | | | | |
+| Config | Preserve | Compress | Config | Preserve | Compress |
+|--------|----------|----------|--------|----------|----------|
+| L2 | 3.0% | 3.2% | L2_g | 8.2% | 8.4% |
+| L2_gd | 13.8% | 14.0% | L3 | 3.6% | 3.6% |
+| L4 | 7.4% | 7.4% | | | |
 
 **Monotonicity**: L0 < L1 < L2 < L3 < L4 on all 222 files ✅
 **Dictionary reversibility**: 201/201 files fully reversible ✅
@@ -117,6 +125,7 @@ OPTIONS:
                             0 | 1 | 2 | 3 | 4
   -c, --code-blocks <MODE> Code block handling [default: preserve] [env: MDMIN_CODE_BLOCKS]
                             preserve | compress
+                            compress strips leading/trailing blank lines
   -g, --grammar-strip [<LEVEL>]  Strip filler words, articles, aux verbs, hedging
                                  [levels: light, medium (default), aggressive]
   -d, --dictionary         Compress repeated long strings with local dictionary
