@@ -126,39 +126,38 @@ impl Minifier {
         // Apply Level 3 or 4 structural passes on the already-minified text
         // Size guard: if restructuring + legend doesn't reduce size, keep original
         let pre_restructure = output.clone();
+
+        // Always compute L3 as baseline (L4 must beat it)
+        let l3_restructured = passes::apply_level_3(&output);
+        let has_lists = l3_restructured.lines().any(|l| {
+            let t = l.trim();
+            t.starts_with("- ") || t.starts_with("+ ") || t.starts_with("! ")
+        });
+        let l3_with_legend = if self.config.legend && has_lists {
+            format!("[mdmin: -=list +=done !=todo]\n{l3_restructured}")
+        } else {
+            l3_restructured
+        };
+        let l3_best = if l3_with_legend.len() < pre_restructure.len() {
+            l3_with_legend
+        } else {
+            pre_restructure.clone()
+        };
+
         let output = match self.config.level {
-            Level::Structured => {
-                let restructured = passes::apply_level_3(&output);
-                let has_lists = restructured.lines().any(|l| {
-                    let t = l.trim();
-                    t.starts_with("- ") || t.starts_with("+ ") || t.starts_with("! ")
-                });
-                let with_legend = if self.config.legend && has_lists {
-                    format!("[mdmin: -=list +=done !=todo]\n{restructured}")
-                } else {
-                    restructured
-                };
-                if with_legend.len() < pre_restructure.len() {
-                    with_legend
-                } else {
-                    pre_restructure
-                }
-            }
+            Level::Structured => l3_best,
             Level::Ultra => {
-                let restructured = passes::apply_level_4(&output);
-                let has_lists = restructured.lines().any(|l| {
-                    let t = l.trim();
-                    t.starts_with("- ") || t.starts_with("+ ") || t.starts_with("! ")
-                });
-                let with_legend = if self.config.legend && has_lists {
-                    format!("[mdmin: -=list +=done !=todo]\n{restructured}")
+                let l4_restructured = passes::apply_level_4(&output);
+                let l4_with_legend = if self.config.legend && has_lists {
+                    format!("[mdmin: -=list +=done !=todo]\n{l4_restructured}")
                 } else {
-                    restructured
+                    l4_restructured
                 };
-                if with_legend.len() < pre_restructure.len() {
-                    with_legend
+                // L4 must beat or tie L3 (which already beat pre_restructure or fell back)
+                if l4_with_legend.len() <= l3_best.len() {
+                    l4_with_legend
                 } else {
-                    pre_restructure
+                    l3_best
                 }
             }
             _ => output,
