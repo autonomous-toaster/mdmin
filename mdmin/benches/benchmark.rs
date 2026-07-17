@@ -197,17 +197,42 @@ fn extract_dict(text: &str) -> HashMap<String, String> {
 }
 
 fn expand_dict(text: &str, dict: &HashMap<String, String>) -> String {
-    let mut result = text.to_string();
+    // Split into header and body to avoid expanding @N in the @dict header
+    let mut header = Vec::new();
+    let mut body = Vec::new();
+    let mut in_dict = false;
+
+    for line in text.lines() {
+        if line.starts_with("@dict:") {
+            in_dict = true;
+            header.push(line);
+        } else if in_dict && line.starts_with("  @") {
+            header.push(line);
+        } else {
+            if in_dict {
+                in_dict = false;
+            }
+            body.push(line);
+        }
+    }
+
+    // Expand only the body
+    let mut body_text = body.join("\n");
     let mut keys: Vec<&String> = dict.keys().collect();
     keys.sort_by(|a, b| b.len().cmp(&a.len()));
 
     for key in keys {
         if let Some(value) = dict.get(key) {
-            result = result.replace(key.as_str(), value);
+            body_text = body_text.replace(key.as_str(), value);
         }
     }
 
-    result
+    // Rejoin header and expanded body
+    if header.is_empty() {
+        body_text
+    } else {
+        format!("{}\n{}\n", header.join("\n"), body_text)
+    }
 }
 
 /// Remove @dict header from text for comparison.
@@ -287,25 +312,26 @@ fn run_benchmark() -> BenchmarkReport {
         })
         .collect();
 
-    // Feature configs for token savings breakdown (skip L2 — already in level_configs)
-    let feature_configs: Vec<(&str, Config)> = vec![
-        ("L2_g", {
-            let mut c = Config::new(Level::Medium);
+    // Feature configs for token savings breakdown (skip bare levels — already in level_configs)
+    let feature_configs: Vec<(String, Config)> = {
+        let mut cfgs = Vec::new();
+        for (level, level_name) in &[(Level::Medium, "L2"), (Level::Structured, "L3"), (Level::Ultra, "L4")] {
+            // Grammar only
+            let mut c = Config::new(*level);
             c.grammar_strip = Some(GrammarLevel::Medium);
-            c
-        }),
-        ("L2_d", {
-            let mut c = Config::new(Level::Medium);
+            cfgs.push((format!("{}_g", level_name), c));
+            // Dictionary only
+            let mut c = Config::new(*level);
             c.dictionary = true;
-            c
-        }),
-        ("L2_gd", {
-            let mut c = Config::new(Level::Medium);
+            cfgs.push((format!("{}_d", level_name), c));
+            // Both
+            let mut c = Config::new(*level);
             c.grammar_strip = Some(GrammarLevel::Medium);
             c.dictionary = true;
-            c
-        }),
-    ];
+            cfgs.push((format!("{}_gd", level_name), c));
+        }
+        cfgs
+    };
 
     for file in &files {
         let content = match std::fs::read_to_string(file) {
@@ -321,6 +347,7 @@ fn run_benchmark() -> BenchmarkReport {
 
         // ── Level configs (monotonicity + structure) ──
         let mut level_sizes: Vec<(u8, usize)> = Vec::new();
+        let mut l2_output: Option<String> = None;
 
         for (name, config) in &level_configs {
             let mut minifier = match Minifier::new(config) {
@@ -350,6 +377,11 @@ fn run_benchmark() -> BenchmarkReport {
             // Track for monotonicity
             let level_num = name[1..].parse::<u8>().unwrap_or(0);
             level_sizes.push((level_num, bytes));
+
+            // Save L2 output for dictionary reversibility comparison
+            if name == "L2" {
+                l2_output = Some(result.output.clone());
+            }
 
             // Structure preservation
             if level_num >= 1 {
@@ -417,8 +449,9 @@ fn run_benchmark() -> BenchmarkReport {
             let tokens = count_tokens(&result.output);
             let bytes = result.output.len();
 
-            // Token savings (skip L2 — already counted in level_configs)
-            if *name != "L2" {
+            // Token savings (skip bare levels — already counted in level_configs)
+            let is_bare = name == "L2" || name == "L3" || name == "L4";
+            if !is_bare {
                 let entry = report
                     .token_savings
                     .entry(name.to_string())
@@ -431,8 +464,8 @@ fn run_benchmark() -> BenchmarkReport {
                 entry.bytes += bytes;
             }
 
-            // Grammar strip coverage
-            if name.contains("_g") {
+            // Grammar strip coverage (only once per file, on L2_g)
+            if name == "L2_g" {
                 let no_g_config = Config::new(Level::Medium);
                 let mut no_g_minifier = Minifier::new(&no_g_config).unwrap();
                 let no_g_result = no_g_minifier.minify(&content).unwrap();
@@ -485,21 +518,23 @@ fn run_benchmark() -> BenchmarkReport {
                 }
             }
 
-            // Dictionary reversibility
-            if name.contains("_d") {
+            // Dictionary reversibility (only once per file, on L2_d)
+            if name == "L2_d" {
                 let dict = extract_dict(&result.output);
                 if !dict.is_empty() {
                     report.dictionary_reversibility.files_with_dict += 1;
                     let expanded = expand_dict(&result.output, &dict);
-                    let body = strip_dict_header(&result.output);
-                    let expanded_body = strip_dict_header(&expanded);
-                    if body == expanded_body {
-                        report.dictionary_reversibility.fully_reversible += 1;
-                    } else {
-                        report
-                            .dictionary_reversibility
-                            .irreversibility_issues
-                            .push(format!("{}: expansion mismatch", file.display()));
+                    let expanded_clean = strip_dict_header(&expanded);
+                    // Compare against L2 output (pre-dictionary)
+                    if let Some(ref l2) = l2_output {
+                        if expanded_clean == l2.trim().to_string() {
+                            report.dictionary_reversibility.fully_reversible += 1;
+                        } else {
+                            report
+                                .dictionary_reversibility
+                                .irreversibility_issues
+                                .push(format!("{}: expansion mismatch", file.display()));
+                        }
                     }
                 }
             }
