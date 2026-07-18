@@ -104,7 +104,8 @@ impl Minifier {
         // Apply L2 text-level passes: nested list flattening, inline tiny sections
         let output = if self.config.level as u8 >= 2 {
             let output = flatten_nested_lists(&output);
-            inline_tiny_sections(&output)
+            let output = inline_tiny_sections(&output);
+            strip_url_protocol(&output)
         } else {
             output
         };
@@ -623,6 +624,13 @@ fn inline_tiny_sections(text: &str) -> String {
     }
 
     result
+}
+
+/// Strip protocol from URLs: https://example.com/path → example.com/path
+/// Safe because LLMs can infer the protocol from context.
+fn strip_url_protocol(text: &str) -> String {
+    text.replace("https://", "")
+        .replace("http://", "")
 }
 
 /// Apply a sorted list of edits to the source text.

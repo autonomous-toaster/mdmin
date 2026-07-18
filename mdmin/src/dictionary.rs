@@ -14,14 +14,24 @@
 use std::collections::HashMap;
 
 /// Minimum substring length for dictionary consideration.
-const MIN_LEN: usize = 15;
+const MIN_LEN: usize = 6;
 
 /// Minimum occurrences for compression to be worthwhile.
-const MIN_OCCURRENCES: usize = 2;
+const MIN_OCCURRENCES: usize = 4;
 
 /// Apply general n-gram dictionary compression to text.
 #[must_use]
+/// Minimum file size for dictionary compression (small files: overhead > savings).
+#[cfg(not(test))]
+const MIN_FILE_SIZE: usize = 0;
+#[cfg(test)]
+const MIN_FILE_SIZE: usize = 0;
+
 pub fn compress(text: &str) -> String {
+    // Skip dictionary for small files (overhead > savings)
+    if text.len() < MIN_FILE_SIZE {
+        return text.to_string();
+    }
     let candidates = find_repeated(text);
     if candidates.is_empty() {
         return text.to_string();
@@ -196,9 +206,9 @@ fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
             continue;
         }
 
-        // Calculate net savings
+        // Calculate net savings (@mN references are 3 chars)
         let gross = matched.len() * count;
-        let overhead = matched.len() + 2 * count;
+        let overhead = matched.len() + 3 * count;
         let net = gross.saturating_sub(overhead);
         if net <= 0 {
             continue;
@@ -208,10 +218,10 @@ fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
         seen_regions.push((match_start, match_end));
     }
 
-    // Sort by net savings
+    // Sort by net savings (@mN references are 3 chars)
     candidates.sort_by(|a, b| {
-        let a_save = a.string.len() * a.count - (a.string.len() + 2 * a.count);
-        let b_save = b.string.len() * b.count - (b.string.len() + 2 * b.count);
+        let a_save = a.string.len() * a.count - (a.string.len() + 3 * a.count);
+        let b_save = b.string.len() * b.count - (b.string.len() + 3 * b.count);
         b_save.cmp(&a_save)
     });
 
@@ -226,7 +236,7 @@ fn find_repeated(text: &str) -> Vec<Candidate<'_>> {
         }
     });
 
-    candidates.truncate(20);
+    candidates.truncate(30);
     candidates
 }
 
@@ -236,11 +246,11 @@ mod tests {
 
     #[test]
     fn test_path_compression() {
-        let text = "use /very/long/path/to/some/file.rs and also /very/long/path/to/some/file.rs";
+        let text = "use /very/long/path/to/some/file.rs and also /very/long/path/to/some/file.rs and again /very/long/path/to/some/file.rs and once more /very/long/path/to/some/file.rs";
         let result = compress(text);
         assert!(result.starts_with("@dict:"), "should start with dictionary header");
         assert!(result.contains("@m1"), "should have reference @m1");
-        assert!(result.matches("@m1").count() >= 2, "@m1 should appear in header and content");
+        assert!(result.matches("@m1").count() >= 4, "@m1 should appear in header and content");
     }
 
     #[test]
@@ -264,7 +274,7 @@ mod tests {
 
     #[test]
     fn test_repeated_phrase() {
-        let text = "the quick brown fox jumps over the lazy dog. the quick brown fox jumps again.";
+        let text = "the quick brown fox jumps over the lazy dog. the quick brown fox jumps again. the quick brown fox leaps high. the quick brown fox runs fast.";
         let result = compress(text);
         assert!(result.contains("@dict:"), "should have dictionary for repeated phrase");
         // Should have at most a few entries (not 12+ overlapping ones)
