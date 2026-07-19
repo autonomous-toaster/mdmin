@@ -17,7 +17,7 @@ use std::collections::HashMap;
 const MIN_LEN: usize = 10;
 
 /// Minimum occurrences for compression to be worthwhile.
-const MIN_OCCURRENCES: usize = 3;
+const MIN_OCCURRENCES: usize = 4;
 
 /// Apply general n-gram dictionary compression to text.
 #[must_use]
