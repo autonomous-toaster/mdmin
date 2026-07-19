@@ -96,22 +96,29 @@ def extract_headings(text: str) -> list[str]:
 def find_heading_content(original_headings: list[str], compressed: str) -> dict:
     """Check if heading content from original survives in compressed output.
     Uses word overlap to account for abbreviations and grammar stripping."""
+    def clean_word(w: str) -> str:
+        """Remove non-alphanumeric chars except hyphens and dots."""
+        return re.sub(r'[^a-zA-Z0-9.\-]', '', w).lower()
+    
     def word_in_compressed(w: str) -> bool:
-        if w in compressed.lower():
+        cw = clean_word(w)
+        if not cw:
+            return True  # empty after cleaning = filler word, skip
+        if cw in compressed.lower():
             return True
         # Check if any word in compressed starts with same prefix (handles abbreviations)
-        # Use first 4 chars as prefix (or full word if shorter)
-        prefix_len = min(4, len(w))
+        prefix_len = min(4, len(cw))
         if prefix_len >= 3:
-            prefix = w[:prefix_len]
-            for cw in compressed.lower().split():
-                if cw.startswith(prefix):
+            prefix = cw[:prefix_len]
+            for comp_word in compressed.lower().split():
+                comp_clean = clean_word(comp_word)
+                if comp_clean.startswith(prefix):
                     return True
         return False
     
     found = 0
     for h in original_headings:
-        words = set(h.split())
+        words = [w for w in h.split() if clean_word(w)]
         if len(words) < 2:
             if word_in_compressed(h):
                 found += 1
@@ -170,8 +177,11 @@ def extract_list_items(text: str) -> list[str]:
 
 
 def extract_inline_code(text: str) -> list[str]:
-    """Extract inline code spans (backtick-delimited, single line)."""
-    return re.findall(r'`([^`]+)`', text)
+    """Extract inline code spans (backtick-delimited, single line).
+    Filters out table cell artifacts (whitespace + |)."""
+    codes = re.findall(r'`([^`]+)`', text)
+    # Filter out items that are just whitespace and | (table artifacts)
+    return [c for c in codes if c.strip(' |')]
 
 
 def extract_blockquotes(text: str) -> list[str]:
