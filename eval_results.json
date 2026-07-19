@@ -15,8 +15,8 @@
   "summary": {
     "files": 1,
     "total_original": 2755,
-    "total_compressed": 2243,
-    "savings_pct": 18.6,
+    "total_compressed": 2249,
+    "savings_pct": 18.4,
     "deterministic_pass": "1/1",
     "avg_heading_f1": 1.0,
     "avg_code_lang_recall": 1.0,
@@ -24,9 +24,9 @@
   },
   "results": [
     {
-      "savings_pct": 18.6,
+      "savings_pct": 18.4,
       "original_bytes": 2755,
-      "compressed_bytes": 2243,
+      "compressed_bytes": 2249,
       "headings": {
         "recall": 1.0,
         "orig": 7,
