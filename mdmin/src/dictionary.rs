@@ -14,7 +14,7 @@
 use std::collections::HashMap;
 
 /// Minimum substring length for dictionary consideration.
-const MIN_LEN: usize = 10;
+const MIN_LEN: usize = 11;
 
 /// Minimum occurrences for compression to be worthwhile.
 const MIN_OCCURRENCES: usize = 4;
