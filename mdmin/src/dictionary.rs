@@ -49,11 +49,20 @@ pub fn compress(text: &str) -> String {
 
     let header = format!("@dict:\n{}\n", entries.join("\n"));
 
+    // Size guard: skip if dictionary overhead exceeds estimated savings
+    let mut estimated_savings: usize = 0;
+    for candidate in &candidates {
+        let key = format!("@m{}", dict.get(candidate.string).unwrap_or(&String::new()));
+        let replacement_cost = key.len();  // bytes for @mN reference
+        let saved_per_occurrence = candidate.string.len().saturating_sub(replacement_cost);
+        estimated_savings += saved_per_occurrence * candidate.count;
+    }
+    if header.len() > estimated_savings {
+        return text.to_string();
+    }
+
     // Replace occurrences (longest first), skipping fenced code blocks
-    let mut result = String::with_capacity(text.len());
     let mut sorted: Vec<&str> = candidates.iter().map(|c| c.string).collect();
-    sorted.sort_by(|a, b| b.len().cmp(&a.len()));
-    
     sorted.sort_by(|a, b| b.len().cmp(&a.len()));
     
     let mut result = String::with_capacity(text.len());
@@ -108,7 +117,14 @@ pub fn compress(text: &str) -> String {
         }
     }
 
-    format!("{header}{result}")
+    let compressed = format!("{header}{result}");
+    
+    // Post-compression size guard: if compressed is larger, skip dictionary
+    if compressed.len() > text.len() {
+        return text.to_string();
+    }
+    
+    compressed
 }
 
 struct Candidate<'a> {
