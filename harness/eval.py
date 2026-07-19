@@ -114,11 +114,21 @@ def find_heading_content(original_headings: list[str], compressed: str) -> dict:
                 comp_clean = clean_word(comp_word)
                 if comp_clean.startswith(prefix):
                     return True
-        # Also check if compressed word is a prefix of original (handles very short abbrevs like ex→example)
+        # Also check if compressed word shares first 2 chars with original (handles very short abbrevs like ex→example, exs→examples)
         for comp_word in compressed.lower().split():
             comp_clean = clean_word(comp_word)
-            if comp_clean and cw.startswith(comp_clean):
-                return True
+            if comp_clean and len(comp_clean) >= 2 and len(cw) >= 2:
+                if comp_clean[:2] == cw[:2]:
+                    return True
+        # Check specific abbreviations that don't share a 2-char prefix
+        ABBREV_MAP = {
+            "service": ["svc"],
+            "services": ["svcs"],
+        }
+        if cw in ABBREV_MAP:
+            for abbr in ABBREV_MAP[cw]:
+                if abbr in compressed.lower():
+                    return True
         return False
     
     found = 0
@@ -206,7 +216,7 @@ def strip_markdown(s: str) -> str:
     s = re.sub(r'\*\*(.+?)\*\*', r'\1', s)
     s = re.sub(r'__(.+?)__', r'\1', s)
     s = re.sub(r'(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)', r'\1', s)
-    s = re.sub(r'(?<!_)_(?!_)(.+?)(?<!_)_(?!_)', r'\1', s)
+    s = re.sub(r'(?<![\w`])(?<!_)_(?!_)(.+?)(?<!_)_(?!_)(?![\w`])', r'\1', s)
     # Remove strikethrough
     s = re.sub(r'~~(.+?)~~', r'\1', s)
     # Remove inline code (backticks)
@@ -265,11 +275,29 @@ def content_recall(original_items: list[str], compressed: str) -> dict:
                             break
                     if matched:
                         break
-                # Also check if compressed word is a prefix of original (handles very short abbrevs)
+                # Also check if compressed word shares first 2 chars with original
                 for cw in compressed.lower().split():
-                    if cw and check.lower().startswith(cw):
+                    if len(cw) >= 2 and len(check) >= 2 and cw[:2] == check.lower()[:2]:
                         matched = True
                         break
+                if matched:
+                    break
+                # Check specific abbreviations that don't share a 2-char prefix
+                ABBREV_MAP = {
+                    "service": ["svc"],
+                    "services": ["svcs"],
+                }
+                # Apply to each word in the check item (strip non-alphanumeric)
+                check_lower = check.lower()
+                for raw_word in check_lower.replace('_', ' ').replace('-', ' ').split():
+                    word = re.sub(r'[^a-zA-Z0-9]', '', raw_word)
+                    if word in ABBREV_MAP:
+                        for abbr in ABBREV_MAP[word]:
+                            if abbr in compressed.lower():
+                                matched = True
+                                break
+                        if matched:
+                            break
                 if matched:
                     break
             else:

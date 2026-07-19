@@ -1,6 +1,6 @@
 {
   "mode": "evaluation",
-  "overall_pass": true,
+  "overall_pass": false,
   "thresholds": {
     "heading_recall": 0.85,
     "code_lang_recall": 0.9,
@@ -14,80 +14,19 @@
   },
   "summary": {
     "files": 1,
-    "total_original": 2755,
-    "total_compressed": 2243,
-    "savings_pct": 18.6,
-    "deterministic_pass": "1/1",
-    "avg_heading_f1": 1.0,
-    "avg_code_lang_recall": 1.0,
+    "total_original": 0,
+    "total_compressed": 0,
+    "savings_pct": 100.0,
+    "deterministic_pass": "0/1",
+    "avg_heading_f1": 0.0,
+    "avg_code_lang_recall": 0.0,
     "llm": {}
   },
   "results": [
     {
-      "savings_pct": 18.6,
-      "original_bytes": 2755,
-      "compressed_bytes": 2243,
-      "headings": {
-        "recall": 1.0,
-        "orig": 7,
-        "found": 7,
-        "pass": true
-      },
-      "code_languages": {
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1": 1.0,
-        "orig": 2,
-        "comp": 2,
-        "common": 2,
-        "pass": true
-      },
-      "code_content": {
-        "recall": 0.889,
-        "orig": 9,
-        "found": 8,
-        "pass": true
-      },
-      "tables": {
-        "recall": 1.0,
-        "orig": 34,
-        "found": 34,
-        "pass": true
-      },
-      "links": {
-        "recall": 1.0,
-        "orig": 4,
-        "found": 4,
-        "pass": true
-      },
-      "lists": {
-        "recall": 1.0,
-        "orig": 25,
-        "found": 25,
-        "pass": true
-      },
-      "inline_code": {
-        "recall": 1.0,
-        "orig": 15,
-        "found": 15,
-        "pass": true
-      },
-      "blockquotes": {
-        "recall": 1.0,
-        "orig": 15,
-        "found": 15,
-        "pass": true
-      },
-      "pass": true,
-      "checks_passed": 8,
-      "checks_total": 8,
-      "file": "harness/test_corpus/comprehensive.md",
-      "llm": {
-        "headings": {
-          "skipped": true,
-          "reason": "deterministic_pass"
-        }
-      }
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/anthropic/skills/spec/agent-skills-spec.md",
+      "skipped": true,
+      "reason": "too small"
     }
   ]
 }
