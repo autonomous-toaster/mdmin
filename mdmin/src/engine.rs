@@ -418,7 +418,13 @@ fn handle_table(
         return Ok(());
     }
 
-    let replacement = lines.join("\n") + "\n";
+    // Include header row for multi-column tables (preserves header cell values)
+    let mut replacement = if header_cells.len() > 1 {
+        let header_line = header_cells.join(" ");
+        format!("{}\n{}\n", header_line, lines.join("\n"))
+    } else {
+        format!("{}\n", lines.join("\n"))
+    };
 
     // Size guard: skip compression if it would increase byte count
     let original_size = node.end_byte() - node.start_byte();
@@ -638,9 +644,27 @@ fn inline_tiny_sections(text: &str) -> String {
     let mut result = String::with_capacity(text.len());
     let lines: Vec<&str> = text.lines().collect();
     let mut i = 0;
+    let mut in_code = false;
 
     while i < lines.len() {
         let line = lines[i];
+
+        // Track code blocks
+        if line.starts_with("```") {
+            in_code = !in_code;
+            result.push_str(line);
+            result.push('\n');
+            i += 1;
+            continue;
+        }
+
+        // Skip processing inside code blocks
+        if in_code {
+            result.push_str(line);
+            result.push('\n');
+            i += 1;
+            continue;
+        }
 
         // Check if this is a heading line (ends with :)
         if line.ends_with(':') && !line.starts_with(' ') && !line.starts_with('@') {

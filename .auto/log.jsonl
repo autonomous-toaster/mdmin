@@ -1,0 +1,1 @@
+{"type":"config","name":"Optimize mdmin for max deterministic pass rate on badrobots skills corpus","metricName":"pass_rate","metricUnit":"","bestDirection":"higher"}

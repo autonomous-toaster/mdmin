@@ -49,14 +49,62 @@ pub fn compress(text: &str) -> String {
 
     let header = format!("@dict:\n{}\n", entries.join("\n"));
 
-    // Replace occurrences (longest first)
-    let mut result = text.to_string();
+    // Replace occurrences (longest first), skipping fenced code blocks
+    let mut result = String::with_capacity(text.len());
     let mut sorted: Vec<&str> = candidates.iter().map(|c| c.string).collect();
     sorted.sort_by(|a, b| b.len().cmp(&a.len()));
-
-    for s in &sorted {
-        if let Some(replacement) = dict.get(*s) {
-            result = result.replace(s, replacement);
+    
+    sorted.sort_by(|a, b| b.len().cmp(&a.len()));
+    
+    let mut result = String::with_capacity(text.len());
+    let mut in_code = false;
+    let mut chars = text.chars().peekable();
+    
+    while let Some(ch) = chars.next() {
+        if ch == '`' && chars.peek() == Some(&'`') && chars.clone().nth(1) == Some('`') {
+            in_code = !in_code;
+            result.push_str("```");
+            chars.next(); // skip second `
+            chars.next(); // skip third `
+            continue;
+        }
+        
+        if in_code {
+            result.push(ch);
+            continue;
+        }
+        
+        // Try to apply dictionary replacement
+        let mut applied = false;
+        for s in &sorted {
+            if let Some(replacement) = dict.get(*s) {
+                if s.starts_with(ch) {
+                    let mut s_chars = s.chars();
+                    s_chars.next(); // skip first char
+                    let mut rest_chars = chars.clone();
+                    let mut matches = true;
+                    for sc in s_chars {
+                        match rest_chars.next() {
+                            Some(c) if c == sc => {}
+                            _ => {
+                                matches = false;
+                                break;
+                            }
+                        }
+                    }
+                    if matches {
+                        result.push_str(replacement);
+                        for _ in 1..s.chars().count() {
+                            chars.next();
+                        }
+                        applied = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if !applied {
+            result.push(ch);
         }
     }
 

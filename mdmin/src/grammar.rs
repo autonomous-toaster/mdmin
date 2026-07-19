@@ -295,10 +295,59 @@ pub fn strip_with_level(text: &str, level: Level) -> String {
     // Build protection set
     let protected_set: HashMap<&str, bool> = PROTECTED.iter().map(|w| (*w, true)).collect();
 
-    // First pass: apply replacements
-    let mut result = text.to_string();
-    for (pattern, replacement) in REPLACEMENTS {
-        result = result.replace(pattern, replacement);
+    // First pass: apply replacements (skip fenced code blocks)
+    let mut result = String::with_capacity(text.len());
+    let mut in_code = false;
+    let mut chars = text.chars().peekable();
+    
+    while let Some(ch) = chars.next() {
+        // Check for code fence
+        if ch == '`' && chars.peek() == Some(&'`') && chars.clone().nth(1) == Some('`') {
+            in_code = !in_code;
+            result.push_str("```");
+            chars.next(); // skip second `
+            chars.next(); // skip third `
+            continue;
+        }
+        
+        if in_code {
+            // Emit verbatim inside code blocks
+            result.push(ch);
+            continue;
+        }
+        
+        // Apply replacements outside code blocks
+        let mut applied = false;
+        for (pattern, replacement) in REPLACEMENTS {
+            if pattern.starts_with(ch) {
+                // Check if the rest of the pattern matches
+                let mut pattern_chars = pattern.chars();
+                pattern_chars.next(); // skip first char (already matched)
+                let mut rest_chars = chars.clone();
+                let mut matches = true;
+                for pc in pattern_chars {
+                    match rest_chars.next() {
+                        Some(c) if c == pc => {}
+                        _ => {
+                            matches = false;
+                            break;
+                        }
+                    }
+                }
+                if matches {
+                    result.push_str(replacement);
+                    // Advance past the matched pattern
+                    for _ in 1..pattern.chars().count() {
+                        chars.next();
+                    }
+                    applied = true;
+                    break;
+                }
+            }
+        }
+        if !applied {
+            result.push(ch);
+        }
     }
 
     // Second pass: word-level removal with entropy scoring, negation, and code safety
