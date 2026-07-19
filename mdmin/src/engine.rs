@@ -743,6 +743,8 @@ fn compress_code_blocks(text: &str, mode: CodeBlockMode) -> String {
 fn strip_url_protocol(text: &str) -> String {
     text.replace("https://", "")
         .replace("http://", "")
+        .replace("file://", "")
+        .replace("ftp://", "")
 }
 
 /// Merge consecutive short list items into comma-separated lines.
