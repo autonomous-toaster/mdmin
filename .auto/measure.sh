@@ -28,7 +28,7 @@ m = re.search(r'Duration: (\d+)', output)
 duration = int(m.group(1)) if m else 60000
 
 # Monotonicity
-mono = 1 if 'No violations' in output else 0
+mono = 0 if 'No violations' in output else 1
 
 # Dictionary reversibility
 m = re.search(r'Files with dict:\s+(\d+)', output)
