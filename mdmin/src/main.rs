@@ -78,9 +78,9 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
     // Resolve code block mode
     let code_blocks = match args.code_blocks.as_deref() {
         Some(s) => CodeBlockMode::from_str(s).ok_or_else(|| {
-            format!("invalid code block mode '{}': use preserve or compress", s)
+            format!("invalid code block mode '{}': use preserve, compress-whitespace, or compress", s)
         })?,
-        None => CodeBlockMode::Preserve,
+        None => CodeBlockMode::Compress,
     };
 
     // Resolve grammar strip level
