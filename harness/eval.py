@@ -257,6 +257,12 @@ def content_recall(original_items: list[str], compressed: str) -> dict:
                     domain = without_protocol.split('/')[0]
                     check_items.append(domain)
         
+        # For paths with /, also check individual components
+        if '/' in item and not item.startswith('http'):
+            for part in item.split('/'):
+                if part:
+                    check_items.append(part)
+        
         matched = False
         for check in check_items:
             words = set(check.lower().split())
