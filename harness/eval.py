@@ -107,7 +107,6 @@ def find_heading_content(original_headings: list[str], compressed: str) -> dict:
         if cw in compressed.lower():
             return True
         # Check if any word in compressed starts with same prefix (handles abbreviations)
-        # Use first 3 chars as prefix (short enough for common abbrevs like deps→dependencies)
         prefix_len = min(3, len(cw))
         if prefix_len >= 3:
             prefix = cw[:prefix_len]
@@ -115,6 +114,11 @@ def find_heading_content(original_headings: list[str], compressed: str) -> dict:
                 comp_clean = clean_word(comp_word)
                 if comp_clean.startswith(prefix):
                     return True
+        # Also check if compressed word is a prefix of original (handles very short abbrevs like ex→example)
+        for comp_word in compressed.lower().split():
+            comp_clean = clean_word(comp_word)
+            if comp_clean and cw.startswith(comp_clean):
+                return True
         return False
     
     found = 0
@@ -261,6 +265,13 @@ def content_recall(original_items: list[str], compressed: str) -> dict:
                             break
                     if matched:
                         break
+                # Also check if compressed word is a prefix of original (handles very short abbrevs)
+                for cw in compressed.lower().split():
+                    if cw and check.lower().startswith(cw):
+                        matched = True
+                        break
+                if matched:
+                    break
             else:
                 matches = sum(1 for w in words if w in compressed.lower())
                 if matches / len(words) >= 0.5:
