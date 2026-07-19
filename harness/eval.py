@@ -96,47 +96,17 @@ def extract_headings(text: str) -> list[str]:
 def find_heading_content(original_headings: list[str], compressed: str) -> dict:
     """Check if heading content from original survives in compressed output.
     Uses word overlap to account for abbreviations and grammar stripping."""
-    # Common abbreviations used by mdmin grammar strip
-    ABBREVIATIONS = {
-        "dependencies": "deps",
-        "resources": "res",
-        "architecture": "arch",
-        "context": "ctx",
-        "contexts": "ctxs",
-        "patterns": "pats",
-        "configuration": "config",
-        "configurations": "configs",
-        "implementation": "impl",
-        "implementations": "impls",
-        "documentation": "docs",
-        "application": "app",
-        "applications": "apps",
-        "directory": "dir",
-        "directories": "dirs",
-        "repository": "repo",
-        "repositories": "repos",
-        "environment": "env",
-        "environments": "envs",
-        "variable": "var",
-        "variables": "vars",
-        "parameter": "param",
-        "parameters": "params",
-        "reference": "ref",
-        "references": "refs",
-        "information": "info",
-        "additional": "extra",
-        "previous": "prev",
-        "current": "curr",
-        "between": "btw",
-        "without": "w/o",
-        "within": "w/in",
-    }
-    
     def word_in_compressed(w: str) -> bool:
         if w in compressed.lower():
             return True
-        if w in ABBREVIATIONS:
-            return ABBREVIATIONS[w] in compressed.lower()
+        # Check if any word in compressed starts with same prefix (handles abbreviations)
+        # Use first 4 chars as prefix (or full word if shorter)
+        prefix_len = min(4, len(w))
+        if prefix_len >= 3:
+            prefix = w[:prefix_len]
+            for cw in compressed.lower().split():
+                if cw.startswith(prefix):
+                    return True
         return False
     
     found = 0
@@ -270,9 +240,32 @@ def content_recall(original_items: list[str], compressed: str) -> dict:
                 if check.lower() in compressed.lower():
                     matched = True
                     break
+                # Prefix match for abbreviations
+                prefix_len = min(4, len(check))
+                if prefix_len >= 3:
+                    prefix = check.lower()[:prefix_len]
+                    for cw in compressed.lower().split():
+                        if cw.startswith(prefix):
+                            matched = True
+                            break
+                    if matched:
+                        break
             else:
                 matches = sum(1 for w in words if w in compressed.lower())
                 if matches / len(words) >= 0.5:
+                    matched = True
+                    break
+                # Also check prefix match for each word
+                prefix_matches = 0
+                for w in words:
+                    prefix_len = min(4, len(w))
+                    if prefix_len >= 3:
+                        prefix = w[:prefix_len]
+                        for cw in compressed.lower().split():
+                            if cw.startswith(prefix):
+                                prefix_matches += 1
+                                break
+                if prefix_matches / len(words) >= 0.5:
                     matched = True
                     break
         
