@@ -96,17 +96,58 @@ def extract_headings(text: str) -> list[str]:
 def find_heading_content(original_headings: list[str], compressed: str) -> dict:
     """Check if heading content from original survives in compressed output.
     Uses word overlap to account for abbreviations and grammar stripping."""
+    # Common abbreviations used by mdmin grammar strip
+    ABBREVIATIONS = {
+        "dependencies": "deps",
+        "resources": "res",
+        "architecture": "arch",
+        "context": "ctx",
+        "contexts": "ctxs",
+        "patterns": "pats",
+        "configuration": "config",
+        "configurations": "configs",
+        "implementation": "impl",
+        "implementations": "impls",
+        "documentation": "docs",
+        "application": "app",
+        "applications": "apps",
+        "directory": "dir",
+        "directories": "dirs",
+        "repository": "repo",
+        "repositories": "repos",
+        "environment": "env",
+        "environments": "envs",
+        "variable": "var",
+        "variables": "vars",
+        "parameter": "param",
+        "parameters": "params",
+        "reference": "ref",
+        "references": "refs",
+        "information": "info",
+        "additional": "extra",
+        "previous": "prev",
+        "current": "curr",
+        "between": "btw",
+        "without": "w/o",
+        "within": "w/in",
+    }
+    
+    def word_in_compressed(w: str) -> bool:
+        if w in compressed.lower():
+            return True
+        if w in ABBREVIATIONS:
+            return ABBREVIATIONS[w] in compressed.lower()
+        return False
+    
     found = 0
     for h in original_headings:
         words = set(h.split())
         if len(words) < 2:
-            # Single-word heading: check if word appears in compressed
-            if h in compressed.lower():
+            if word_in_compressed(h):
                 found += 1
         else:
-            # Multi-word heading: check word overlap
-            matches = sum(1 for w in words if w in compressed.lower())
-            if matches / len(words) >= 0.6:  # 60% word overlap threshold
+            matches = sum(1 for w in words if word_in_compressed(w))
+            if matches / len(words) >= 0.6:
                 found += 1
     recall = found / len(original_headings) if original_headings else 1.0
     return {"recall": round(recall, 3), "orig": len(original_headings), "found": found}

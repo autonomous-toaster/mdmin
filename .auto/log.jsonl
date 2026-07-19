@@ -1,1 +1,2 @@
 {"type":"config","name":"Optimize mdmin for max deterministic pass rate on badrobots skills corpus","metricName":"pass_rate","metricUnit":"","bestDirection":"higher"}
+{"run":28,"commit":"5ca9bf9","metric":0.708,"metrics":{},"status":"keep","description":"Baseline: L2_gd on badrobots (81/115) + anthropic (79/111) = 160/226 = 70.8% pass rate","timestamp":1784500311743,"segment":2,"confidence":null,"asi":{"anthropic":"79/111","badrobots":"81/115","hypothesis":"Establish baseline pass rate for L2_gd on both corpora","links_anthropic":"check","links_badrobots":0.63}}
