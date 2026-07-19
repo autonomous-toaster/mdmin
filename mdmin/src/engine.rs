@@ -106,7 +106,8 @@ impl Minifier {
             let output = flatten_nested_lists(&output);
             let output = inline_tiny_sections(&output);
             let output = strip_url_protocol(&output);
-            compress_list_items(&output)
+            let output = compress_list_items(&output);
+            compress_code_blocks(&output, self.config.code_blocks)
         } else {
             output
         };
@@ -462,6 +463,9 @@ fn handle_code_block(
                 }
             }
         }
+        CodeBlockMode::Compress => {
+            // Leave entirely unchanged — compression is done as a text-level pass at L2+
+        }
     }
     Ok(())
 }
@@ -541,6 +545,46 @@ fn collapse_blank_lines(s: &str) -> String {
         result.push(ch);
     }
 
+    result
+}
+
+/// Aggressively compress code block content:
+/// 1. Strip leading/trailing blank lines
+/// 2. Collapse internal blank line runs to single newlines
+/// 3. Strip trailing whitespace on each line
+/// 4. Reduce indentation to minimum (find common indent, remove it)
+fn compress_code_content(s: &str) -> String {
+    // Strip leading/trailing blank lines
+    let s = strip_leading_trailing_blank_lines(s);
+    // Collapse internal blank line runs
+    let s = collapse_blank_lines(&s);
+    
+    let mut result = String::with_capacity(s.len());
+    let mut lines: Vec<&str> = s.lines().collect();
+    
+    // Find minimum indentation across non-blank lines
+    let min_indent = lines
+        .iter()
+        .filter(|l| !l.trim().is_empty())
+        .map(|l| l.len() - l.trim_start().len())
+        .min()
+        .unwrap_or(0);
+    
+    for line in &lines {
+        if line.trim().is_empty() {
+            result.push('\n');
+        } else {
+            // Strip common indentation and trailing whitespace
+            let content = if line.len() > min_indent {
+                &line[min_indent..]
+            } else {
+                line
+            };
+            result.push_str(content.trim_end());
+            result.push('\n');
+        }
+    }
+    
     result
 }
 
@@ -624,6 +668,49 @@ fn inline_tiny_sections(text: &str) -> String {
         i += 1;
     }
 
+    result
+}
+
+/// Compress fenced code blocks in text: strip indentation, trailing whitespace, blank lines.
+fn compress_code_blocks(text: &str, mode: CodeBlockMode) -> String {
+    if mode != CodeBlockMode::Compress {
+        return text.to_string();
+    }
+    
+    let mut result = String::with_capacity(text.len());
+    let mut in_block = false;
+    let mut block_content = String::new();
+    
+    for line in text.lines() {
+        if line.starts_with("```") {
+            if in_block {
+                // End of code block — compress and emit
+                let compressed = compress_code_content(&block_content);
+                result.push_str(&compressed);
+                result.push_str(line);
+                result.push('\n');
+                in_block = false;
+                block_content.clear();
+            } else {
+                // Start of code block — emit fence line
+                result.push_str(line);
+                result.push('\n');
+                in_block = true;
+            }
+        } else if in_block {
+            block_content.push_str(line);
+            block_content.push('\n');
+        } else {
+            result.push_str(line);
+            result.push('\n');
+        }
+    }
+    
+    // If block wasn't closed, emit remaining content
+    if in_block {
+        result.push_str(&block_content);
+    }
+    
     result
 }
 

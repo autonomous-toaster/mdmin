@@ -51,10 +51,12 @@ impl Level {
 /// How to handle fenced code blocks.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum CodeBlockMode {
-    /// Leave code blocks entirely unchanged (default).
+    /// Leave code blocks entirely unchanged.
     Preserve,
     /// Collapse runs of blank lines within code blocks to a single newline.
     CompressWhitespace,
+    /// Strip indentation, trailing whitespace, and collapse blank lines.
+    Compress,
 }
 
 impl CodeBlockMode {
@@ -63,7 +65,8 @@ impl CodeBlockMode {
     pub fn from_str(s: &str) -> Option<Self> {
         match s {
             "preserve" => Some(Self::Preserve),
-            "compress" => Some(Self::CompressWhitespace),
+            "compress-whitespace" => Some(Self::CompressWhitespace),
+            "compress" => Some(Self::Compress),
             _ => None,
         }
     }
@@ -90,7 +93,7 @@ impl Config {
     pub fn new(level: Level) -> Self {
         Self {
             level,
-            code_blocks: CodeBlockMode::Preserve,
+            code_blocks: CodeBlockMode::Compress,
             legend: true,
             grammar_strip: None,
             dictionary: false,
