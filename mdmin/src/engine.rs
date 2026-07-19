@@ -605,30 +605,12 @@ fn flatten_nested_lists(text: &str) -> String {
 
         // Check if this is a parent list item with children on next lines
         if (line.starts_with("- ") || line.starts_with("* ")) && !line.starts_with("  ") {
-            // Look ahead for indented children
-            let parent_text = line.trim_start_matches("- ").trim_start_matches("* ");
-            let mut children: Vec<&str> = Vec::new();
-            let mut j = i + 1;
-
-            while j < lines.len() {
-                let next = lines[j];
-                if next.starts_with("  - ") || next.starts_with("  * ") {
-                    let child_text = next.trim().trim_start_matches("- ").trim_start_matches("* ");
-                    children.push(child_text);
-                    j += 1;
-                } else if next.trim().is_empty() {
-                    j += 1;
-                } else {
-                    break;
-                }
-            }
-
-            if !children.is_empty() {
-                // Flatten: Parent: Child1, Child2
-                result.push_str(&format!("{}: {}\n", parent_text, children.join(", ")));
-                i = j;
-                continue;
-            }
+            // Recursively flatten this list item and its children
+            let (flattened, next_i) = flatten_list_item(&lines, i, 0);
+            result.push_str(&flattened);
+            result.push('\n');
+            i = next_i;
+            continue;
         }
 
         result.push_str(line);
@@ -637,6 +619,41 @@ fn flatten_nested_lists(text: &str) -> String {
     }
 
     result
+}
+
+/// Recursively flatten a list item and its children into "item: child1, child2" format.
+/// Returns (flattened_text, next_line_index).
+fn flatten_list_item(lines: &[&str], start: usize, depth: usize) -> (String, usize) {
+    let line = lines[start];
+    let indent = "  ".repeat(depth);
+    let item_text = line.trim().trim_start_matches("- ").trim_start_matches("* ");
+    
+    let mut children: Vec<String> = Vec::new();
+    let mut j = start + 1;
+    let child_indent = format!("{}  ", indent);
+    
+    while j < lines.len() {
+        let next = lines[j];
+        let expected_prefix = format!("{}  - ", indent);
+        let expected_prefix2 = format!("{}  * ", indent);
+        
+        if next.starts_with(&expected_prefix) || next.starts_with(&expected_prefix2) {
+            // Recursively flatten this child
+            let (child_text, next_j) = flatten_list_item(lines, j, depth + 1);
+            children.push(child_text);
+            j = next_j;
+        } else if next.trim().is_empty() {
+            j += 1;
+        } else {
+            break;
+        }
+    }
+    
+    if children.is_empty() {
+        (format!("{}{}", indent, item_text), j)
+    } else {
+        (format!("{}{}: {}", indent, item_text, children.join(", ")), j)
+    }
 }
 
 /// Inline tiny sections: `title:\nshort text` → `title: short text`.
