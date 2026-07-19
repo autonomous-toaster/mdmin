@@ -6,6 +6,7 @@
 - Add abbreviation map auto-generation from grammar.rs patterns
 
 ## mdmin engine improvements
-- Investigate if `specification` → `specation` is a bug (should be `spec` not `specation`)
 - Consider adding a `--check` mode that runs the harness internally
 - Profile L2 compression to find bottlenecks
+- Investigate if grammar strip can use word-boundary matching instead of substring matching
+- Add more technical abbreviations to grammar.rs (e.g., "specification" was missing)

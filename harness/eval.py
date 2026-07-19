@@ -495,7 +495,7 @@ def evaluate_file(filepath: str, provider: str, model: str,
     with open(filepath) as f:
         original = f.read()
 
-    if len(original) < 100:
+    if len(original) < 50:
         return {"file": filepath, "skipped": True, "reason": "too small"}
 
     if len(original) > 50000:
