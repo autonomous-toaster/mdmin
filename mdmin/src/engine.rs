@@ -105,7 +105,8 @@ impl Minifier {
         let output = if self.config.level as u8 >= 2 {
             let output = flatten_nested_lists(&output);
             let output = inline_tiny_sections(&output);
-            strip_url_protocol(&output)
+            let output = strip_url_protocol(&output);
+            compress_list_items(&output)
         } else {
             output
         };
@@ -631,6 +632,56 @@ fn inline_tiny_sections(text: &str) -> String {
 fn strip_url_protocol(text: &str) -> String {
     text.replace("https://", "")
         .replace("http://", "")
+}
+
+/// Merge consecutive short list items into comma-separated lines.
+/// E.g.: "- foo\n- bar\n- baz" → "- foo, bar, baz"
+/// Saves newline + indent per merged item.
+fn compress_list_items(text: &str) -> String {
+    let mut result = String::with_capacity(text.len());
+    let mut lines = text.lines().peekable();
+    
+    while let Some(line) = lines.next() {
+        // Check if this is a short list item
+        let trimmed = line.trim();
+        if let Some(content) = trimmed.strip_prefix("- ").or_else(|| trimmed.strip_prefix("* ")) {
+            if content.len() <= 50 && !content.contains(',') {
+                // Look ahead for consecutive short items with same indent
+                let indent = &line[..line.len() - trimmed.len()];
+                let mut merged = vec![content.to_string()];
+                
+                while let Some(next) = lines.peek() {
+                    let next_trimmed = next.trim();
+                    if let Some(next_content) = next_trimmed.strip_prefix("- ").or_else(|| next_trimmed.strip_prefix("* ")) {
+                        let next_indent = &next[..next.len() - next_trimmed.len()];
+                        if next_indent == indent && next_content.len() <= 50 && !next_content.contains(',') {
+                            merged.push(next_content.to_string());
+                            lines.next();
+                        } else {
+                            break;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+                
+                if merged.len() >= 2 {
+                    result.push_str(&format!("{}- {}\n", indent, merged.join(", ")));
+                } else {
+                    result.push_str(line);
+                    result.push('\n');
+                }
+            } else {
+                result.push_str(line);
+                result.push('\n');
+            }
+        } else {
+            result.push_str(line);
+            result.push('\n');
+        }
+    }
+    
+    result
 }
 
 /// Apply a sorted list of edits to the source text.
