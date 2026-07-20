@@ -265,6 +265,106 @@ const REPLACEMENTS: &[(&str, &str)] = &[
     ("preceding", "prior"),
     ("facilitate", "help"),
     ("endeavor", "try"),
+    // Common programming/technical abbreviations
+    ("include", "incl"),
+    ("includes", "incl"),
+    ("including", "incl"),
+    ("required", "req"),
+    ("requires", "req"),
+    ("language", "lang"),
+    ("languages", "langs"),
+    ("document", "doc"),
+    ("documents", "docs"),
+    ("through", "thru"),
+    ("complete", "compl"),
+    ("package", "pkg"),
+    ("packages", "pkgs"),
+    ("source", "src"),
+    ("sources", "srcs"),
+    ("execute", "exec"),
+    ("executes", "exec"),
+    ("executed", "exec"),
+    ("generate", "gen"),
+    ("generates", "gen"),
+    ("generated", "gen"),
+    ("select", "sel"),
+    ("selects", "sel"),
+    ("selected", "sel"),
+    ("connect", "conn"),
+    ("connects", "conn"),
+    ("connected", "conn"),
+    ("support", "supp"),
+    ("supports", "supp"),
+    ("supported", "supp"),
+    ("provide", "prov"),
+    ("provides", "prov"),
+    ("provided", "prov"),
+    ("remove", "rm"),
+    ("removes", "rm"),
+    ("removed", "rm"),
+    ("update", "upd"),
+    ("updates", "upd"),
+    ("updated", "upd"),
+    ("manage", "mgr"),
+    ("manages", "mgr"),
+    ("managed", "mgr"),
+    ("format", "fmt"),
+    ("formats", "fmts"),
+    ("string", "str"),
+    ("strings", "strs"),
+    ("number", "num"),
+    ("numbers", "nums"),
+    ("object", "obj"),
+    ("objects", "objs"),
+    ("client", "clt"),
+    ("clients", "clts"),
+    ("server", "srv"),
+    ("servers", "srvs"),
+    ("request", "req"),
+    ("requests", "reqs"),
+    ("content", "ctnt"),
+    ("contents", "ctnts"),
+    ("section", "sect"),
+    ("sections", "sects"),
+    ("setting", "set"),
+    ("settings", "sets"),
+    ("custom", "cust"),
+    ("system", "sys"),
+    ("systems", "syss"),
+    ("module", "mod"),
+    ("modules", "mods"),
+    ("method", "meth"),
+    ("methods", "meths"),
+    ("access", "acc"),
+    ("accesses", "accs"),
+    ("action", "act"),
+    ("actions", "acts"),
+    ("result", "res"),
+    ("results", "ress"),
+    ("status", "stat"),
+    ("target", "tgt"),
+    ("targets", "tgts"),
+    ("memory", "mem"),
+    ("buffer", "buf"),
+    ("buffers", "bufs"),
+    ("length", "len"),
+    ("column", "col"),
+    ("columns", "cols"),
+    ("record", "rec"),
+    ("records", "recs"),
+    ("header", "hdr"),
+    ("headers", "hdrs"),
+    ("button", "btn"),
+    ("buttons", "btns"),
+    ("window", "win"),
+    ("windows", "wins"),
+    ("create", "crt"),
+    ("creates", "crt"),
+    ("created", "crt"),
+    ("output", "out"),
+    ("outputs", "outs"),
+    ("input", "inp"),
+    ("inputs", "inps"),
 ];
 
 /// Apply grammar stripping with default (Medium) level.
@@ -297,13 +397,14 @@ pub fn strip_with_level(text: &str, level: Level) -> String {
     // Build protection set
     let protected_set: HashMap<&str, bool> = PROTECTED.iter().map(|w| (*w, true)).collect();
 
-    // First pass: apply replacements (skip fenced code blocks)
+    // First pass: apply replacements (skip fenced code blocks and inline backticks)
     let mut result = String::with_capacity(text.len());
     let mut in_code = false;
+    let mut in_backtick = false;
     let mut chars = text.chars().peekable();
     
     while let Some(ch) = chars.next() {
-        // Check for code fence
+        // Check for code fence (```)
         if ch == '`' && chars.peek() == Some(&'`') && chars.clone().nth(1) == Some('`') {
             in_code = !in_code;
             result.push_str("```");
@@ -312,8 +413,15 @@ pub fn strip_with_level(text: &str, level: Level) -> String {
             continue;
         }
         
-        if in_code {
-            // Emit verbatim inside code blocks
+        // Check for inline backtick (single `)
+        if ch == '`' && !in_code {
+            in_backtick = !in_backtick;
+            result.push(ch);
+            continue;
+        }
+        
+        if in_code || in_backtick {
+            // Emit verbatim inside code blocks or inline backticks
             result.push(ch);
             continue;
         }
@@ -536,7 +644,7 @@ mod tests {
     fn test_remove_articles() {
         let result = strip("the system shall support the API");
         assert!(!result.contains("the "), "articles should be removed");
-        assert!(result.contains("system"), "content preserved");
+        assert!(result.contains("sys"), "content preserved");
         assert!(result.contains("API"), "nouns preserved");
     }
 
