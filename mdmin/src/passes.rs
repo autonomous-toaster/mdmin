@@ -138,7 +138,12 @@ fn parse_heading(line: &str) -> Option<String> {
         if !heading.is_empty()
             && heading
                 .chars()
-                .all(|c| c.is_alphanumeric() || c == '-' || c == '_' || c == ' ')
+                .all(|c| c.is_alphanumeric() || c == '-' || c == '_' || c == ' '
+                    || c == '&' || c == ',' || c == '.' || c == '/'
+                    || c == '(' || c == ')' || c == ':' || c == ';'
+                    || c == '!' || c == '?' || c == '\'' || c == '"'
+                    || c == '@' || c == '#' || c == '$' || c == '%'
+                    || c == '+' || c == '=' || c == '~' || c == '`')
         {
             return Some(heading.to_string());
         }
@@ -148,7 +153,12 @@ fn parse_heading(line: &str) -> Option<String> {
         if !stripped.is_empty()
             && stripped
                 .chars()
-                .all(|c| c.is_alphanumeric() || c == '-' || c == '_' || c == ' ')
+                .all(|c| c.is_alphanumeric() || c == '-' || c == '_' || c == ' '
+                    || c == '&' || c == ',' || c == '.' || c == '/'
+                    || c == '(' || c == ')' || c == ':' || c == ';'
+                    || c == '!' || c == '?' || c == '\'' || c == '"'
+                    || c == '@' || c == '#' || c == '$' || c == '%'
+                    || c == '+' || c == '=' || c == '~' || c == '`')
         {
             return Some(stripped.to_string());
         }
