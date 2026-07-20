@@ -20,7 +20,13 @@ pub fn apply_level_3(input: &str) -> String {
         let line = lines[i];
 
         if let Some(heading) = parse_heading(line) {
-            output.push_str(&format!("{}:\n", &heading));
+            // Check if there's inline content after the heading (e.g., "section: text")
+            let inline_content = line.find(": ").map(|pos| line[pos + 2..].trim()).filter(|s| !s.is_empty());
+            if let Some(content) = inline_content {
+                output.push_str(&format!("{}: {}\n", heading, content));
+            } else {
+                output.push_str(&format!("{}:\n", &heading));
+            }
         } else if let Some(task) = parse_checklist(line) {
             let (checked, text) = task;
             let marker = if checked { "+" } else { "!" };
@@ -62,8 +68,15 @@ pub fn apply_level_4(input: &str) -> String {
         let line = lines[i];
 
         if let Some(heading) = parse_heading(line) {
-            // Collect content until next heading or end
+            // Extract inline content from the heading line (e.g., "section: text")
             let mut content: Vec<&str> = Vec::new();
+            if let Some(colon_pos) = line.find(": ") {
+                let after_colon = line[colon_pos + 2..].trim();
+                if !after_colon.is_empty() {
+                    content.push(after_colon);
+                }
+            }
+            // Collect content from subsequent lines until next heading or end
             i += 1;
             while i < lines.len() {
                 let next = lines[i];
@@ -116,8 +129,21 @@ pub fn apply_level_4(input: &str) -> String {
 }
 
 /// Parse a heading line like `title:` or `section:`.
+/// Also handles merged format like `title: short text` (from L2 inline_tiny_sections).
 fn parse_heading(line: &str) -> Option<String> {
     let trimmed = line.trim();
+    // Try to find the first ": " which separates heading from content
+    if let Some(colon_pos) = trimmed.find(": ") {
+        let heading = &trimmed[..colon_pos];
+        if !heading.is_empty()
+            && heading
+                .chars()
+                .all(|c| c.is_alphanumeric() || c == '-' || c == '_' || c == ' ')
+        {
+            return Some(heading.to_string());
+        }
+    }
+    // Also handle plain "title:" format
     if let Some(stripped) = trimmed.strip_suffix(':') {
         if !stripped.is_empty()
             && stripped
