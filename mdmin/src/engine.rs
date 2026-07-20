@@ -103,6 +103,8 @@ impl Minifier {
 
         // Apply L2 text-level passes: nested list flattening, inline tiny sections
         let output = if self.config.level as u8 >= 2 {
+            let output = strip_yaml_frontmatter(&output);
+            let output = strip_html_comments(&output);
             let output = flatten_nested_lists(&output);
             let output = inline_tiny_sections(&output);
             let output = strip_url_protocol(&output);
@@ -762,6 +764,43 @@ fn strip_url_protocol(text: &str) -> String {
         .replace("http://", "")
         .replace("file://", "")
         .replace("ftp://", "")
+}
+
+/// Strip YAML frontmatter (---...---) from the beginning of the text.
+fn strip_yaml_frontmatter(text: &str) -> String {
+    if let Some(rest) = text.strip_prefix("---\n") {
+        if let Some(end) = rest.find("\n---\n") {
+            return rest[end + 5..].to_string();
+        }
+    }
+    text.to_string()
+}
+
+/// Strip HTML comments (<!--...-->).
+fn strip_html_comments(text: &str) -> String {
+    let mut result = String::with_capacity(text.len());
+    let mut chars = text.chars().peekable();
+    
+    while let Some(ch) = chars.next() {
+        if ch == '<' && chars.peek() == Some(&'!') {
+            // Check for <!--
+            let mut peek = chars.clone();
+            if peek.next() == Some('-') && peek.next() == Some('-') {
+                // Skip until -->
+                while let Some(c) = chars.next() {
+                    if c == '-' && chars.peek() == Some(&'-') && chars.clone().nth(1) == Some('>') {
+                        chars.next(); // skip second -
+                        chars.next(); // skip >
+                        break;
+                    }
+                }
+                continue;
+            }
+        }
+        result.push(ch);
+    }
+    
+    result
 }
 
 /// Merge consecutive short list items into comma-separated lines.
