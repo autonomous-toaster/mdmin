@@ -2,11 +2,12 @@
 
 ## Harness improvements (eval.py)
 - Handle bare URLs `<url>` in extract_links (currently only handles `[text](url)`)
-- Lower min file size from 100 to 50 bytes (or handle empty files gracefully)
-- Add abbreviation map auto-generation from grammar.rs patterns
+- Add abbreviation map auto-generation from grammar.rs patterns (DONE)
 
 ## mdmin engine improvements
 - Consider adding a `--check` mode that runs the harness internally
 - Profile L2 compression to find bottlenecks
-- Investigate if grammar strip can use word-boundary matching instead of substring matching
-- Add more technical abbreviations to grammar.rs (e.g., "specification" was missing)
+- **Word-boundary matching in grammar** — prevent "specific" matching inside "specification" when "specification" isn't in the replacement list. Currently handled by sorting patterns by length, but word-boundary matching would be more robust.
+- **Semantic deduplication** — detect repeated phrases across a document and replace 2nd+ occurrences with `[see §X]` references. Distinct from dictionary (which needs 15+ char, 4+ occurrences).
+- **Token-aware optimization** — optimize for specific tokenizers (cl100k_base). Some byte-level optimizations don't translate to token savings.
+- **Multi-file dictionary** — share dictionary across files in a corpus for better compression of repeated patterns.
