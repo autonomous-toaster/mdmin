@@ -562,8 +562,13 @@ fn collapse_blank_lines(s: &str) -> String {
 /// 3. Strip trailing whitespace on each line
 /// 4. Reduce indentation to minimum (find common indent, remove it)
 fn compress_code_content(s: &str, lang: &str) -> String {
+    // Strip short comment-only lines (< 20 chars) from code blocks
+    // These are typically decorative comments (# ---, // TODO, etc.)
+    // Long comments (> 20 chars) are preserved as they contain valuable explanations
+    let s = strip_short_comments(s);
+    
     // Compress using tree-sitter AST (for supported languages)
-    let s = crate::code_compress::compress(s, lang);
+    let s = crate::code_compress::compress(&s, lang);
     
     // Strip leading/trailing blank lines
     let s = strip_leading_trailing_blank_lines(&s);
@@ -596,6 +601,24 @@ fn compress_code_content(s: &str, lang: &str) -> String {
         }
     }
     
+    result
+}
+
+/// Strip short comment-only lines (< 20 chars) from code blocks.
+/// Preserves longer comments as they contain valuable explanations.
+fn strip_short_comments(s: &str) -> String {
+    let mut result = String::with_capacity(s.len());
+    for line in s.lines() {
+        let trimmed = line.trim();
+        let is_comment = trimmed.starts_with('#') || trimmed.starts_with("//") 
+            || trimmed.starts_with("--") || trimmed.starts_with('%') 
+            || trimmed.starts_with(';');
+        if is_comment && trimmed.len() < 20 {
+            continue;
+        }
+        result.push_str(line);
+        result.push('\n');
+    }
     result
 }
 
