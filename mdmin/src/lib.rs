@@ -8,6 +8,7 @@
 #![deny(missing_docs)]
 #![forbid(unsafe_code)]
 
+mod code_compress;
 mod dictionary;
 mod engine;
 mod grammar;

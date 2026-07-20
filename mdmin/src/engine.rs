@@ -561,9 +561,12 @@ fn collapse_blank_lines(s: &str) -> String {
 /// 2. Collapse internal blank line runs to single newlines
 /// 3. Strip trailing whitespace on each line
 /// 4. Reduce indentation to minimum (find common indent, remove it)
-fn compress_code_content(s: &str) -> String {
+fn compress_code_content(s: &str, lang: &str) -> String {
+    // Compress using tree-sitter AST (for supported languages)
+    let s = crate::code_compress::compress(s, lang);
+    
     // Strip leading/trailing blank lines
-    let s = strip_leading_trailing_blank_lines(s);
+    let s = strip_leading_trailing_blank_lines(&s);
     // Collapse internal blank line runs
     let s = collapse_blank_lines(&s);
     
@@ -723,19 +726,22 @@ fn compress_code_blocks(text: &str, mode: CodeBlockMode) -> String {
     let mut result = String::with_capacity(text.len());
     let mut in_block = false;
     let mut block_content = String::new();
+    let mut block_lang = String::new();
     
     for line in text.lines() {
         if line.starts_with("```") {
             if in_block {
                 // End of code block — compress and emit
-                let compressed = compress_code_content(&block_content);
+                let compressed = compress_code_content(&block_content, &block_lang);
                 result.push_str(&compressed);
                 result.push_str(line);
                 result.push('\n');
                 in_block = false;
                 block_content.clear();
+                block_lang.clear();
             } else {
-                // Start of code block — emit fence line
+                // Start of code block — extract language and emit fence line
+                block_lang = line.trim_start_matches('`').trim().to_string();
                 result.push_str(line);
                 result.push('\n');
                 in_block = true;
