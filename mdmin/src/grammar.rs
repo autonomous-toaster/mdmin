@@ -560,6 +560,13 @@ pub fn strip_with_level(text: &str, level: Level) -> String {
         let mut applied = false;
         for (pattern, replacement) in REPLACEMENTS {
             if pattern.starts_with(ch) {
+                // Word-boundary check: don't match if preceded by a word character
+                // (prevents "config" matching inside "configuration")
+                if let Some(prev) = result.chars().last() {
+                    if prev.is_alphanumeric() || prev == '_' {
+                        continue;
+                    }
+                }
                 // Check if the rest of the pattern matches
                 let mut pattern_chars = pattern.chars();
                 pattern_chars.next(); // skip first char (already matched)
