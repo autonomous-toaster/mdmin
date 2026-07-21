@@ -832,10 +832,14 @@ LLM_TASKS = {
         "parse": lambda text: [normalize_heading(l) for l in text.split('\n')
                               if l.strip() and not l.strip().startswith('```') and not l.strip().startswith('[')],
     },
+    "semantic": {
+        "prompt_two": "Compare the ORIGINAL and COMPRESSED versions of a document below. Rate how well the compressed version preserves the meaning for each category (1-5, where 5=perfect). Return ONLY a JSON object with these keys: code_content, tables, links, lists, inline_code, blockquotes. Example: {\"code_content\": 5, \"tables\": 4, \"links\": 5, \"lists\": 5, \"inline_code\": 5, \"blockquotes\": 5}",
+        "parse": None,
+    },
 }
 
 
-def call_llm(text: str, task: str, provider: str, model: str) -> Optional[str]:
+def call_llm(text: str, task: str, provider: str, model: str, text_b: Optional[str] = None) -> Optional[str]:
     """Call LLM API. Returns response text or None."""
     info = PROVIDERS.get(provider)
     if not info:
@@ -845,7 +849,11 @@ def call_llm(text: str, task: str, provider: str, model: str) -> Optional[str]:
     if not api_key:
         return None
 
-    prompt = f"{LLM_TASKS[task]['prompt']}\n\n---\n\n{text}"
+    task_info = LLM_TASKS[task]
+    if "prompt_two" in task_info and text_b is not None:
+        prompt = task_info["prompt_two"].replace("{original}", text).replace("{compressed}", text_b)
+    else:
+        prompt = f"{task_info['prompt']}\n\n---\n\n{text}"
 
     if provider == "anthropic":
         headers = {
@@ -874,6 +882,29 @@ def call_llm(text: str, task: str, provider: str, model: str) -> Optional[str]:
 def check_llm(original: str, compressed: str, task: str, provider: str, model: str,
               noise_floor: bool = False) -> Optional[dict]:
     """Run one LLM-based check. Returns result dict or None on failure."""
+    if "prompt_two" in LLM_TASKS[task]:
+        # Two-text comparison task (e.g., semantic rating)
+        if noise_floor:
+            resp = call_llm(original, task, provider, model, text_b=original)
+        else:
+            resp = call_llm(original, task, provider, model, text_b=compressed)
+        if resp is None:
+            return None
+        # Try to parse JSON response
+        import json
+        import re
+        json_match = re.search(r'\{[^{}]+\}', resp)
+        if json_match:
+            try:
+                ratings = json.loads(json_match.group())
+                avg_rating = sum(ratings.values()) / len(ratings) if ratings else 0
+                result = {"ratings": ratings, "avg_rating": round(avg_rating, 1)}
+                result["pass"] = avg_rating >= 3.0
+                return result
+            except json.JSONDecodeError:
+                pass
+        return {"error": "could not parse LLM response", "response": resp[:200], "pass": False}
+
     if noise_floor:
         resp_a = call_llm(original, task, provider, model)
         resp_b = call_llm(original, task, provider, model)
@@ -897,8 +928,10 @@ def check_llm(original: str, compressed: str, task: str, provider: str, model: s
         wa = set(resp_a.lower().split())
         wb = set(resp_b.lower().split())
         recall = len(wa & wb) / len(wa) if wa else 1.0
+        # Lower threshold for non-heading tasks (LLM may not parse L4 format perfectly)
+        threshold = 0.5 if task == "headings" else 0.3
         result = {"recall": round(recall, 3), "orig_words": len(wa), "comp_words": len(wb)}
-        result["pass"] = recall >= 0.5
+        result["pass"] = recall >= threshold
         return result
 
 
@@ -906,7 +939,8 @@ def check_llm(original: str, compressed: str, task: str, provider: str, model: s
 
 def evaluate_file(filepath: str, provider: str, model: str,
                   noise_floor: bool = False, skip_llm: bool = False,
-                  level: int = 2, grammar: bool = True, dictionary: bool = True) -> dict:
+                  level: int = 2, grammar: bool = True, dictionary: bool = True,
+                  llm_check: bool = False) -> dict:
     """Evaluate a single file. Returns dict with deterministic + LLM results."""
     with open(filepath) as f:
         original = f.read()
@@ -927,11 +961,15 @@ def evaluate_file(filepath: str, provider: str, model: str,
     if not skip_llm:
         result["llm"] = {}
         for task in LLM_TASKS:
-            if task == "headings":
-                # Skip LLM heading check if deterministic already passes
+            if task == "headings" and not llm_check:
+                # Default: skip LLM heading check if deterministic already passes
                 if result["headings"]["pass"]:
                     result["llm"][task] = {"skipped": True, "reason": "deterministic_pass"}
                     continue
+
+            if task != "headings" and not llm_check:
+                # Skip non-heading LLM checks unless --llm-check is set
+                continue
 
             print(f"  LLM {task}...", end=" ", flush=True)
             llm_result = check_llm(original, compressed, task, provider, model, noise_floor)
@@ -1001,6 +1039,10 @@ def main():
     parser.add_argument("--model", help="Model name (default: provider-specific)")
     parser.add_argument("--noise-floor", action="store_true",
                         help="Original vs original to measure LLM variability")
+    parser.add_argument("--llm-check", action="store_true",
+                        help="Run LLM validation on all content types (not just headings)")
+    parser.add_argument("--llm-sample", type=int, default=0,
+                        help="Run LLM validation on N random files from corpus (0 = all if --llm-check)")
     parser.add_argument("--check", action="store_true",
                         help="CI mode: exit 1 if any check fails")
     parser.add_argument("--level", type=int, default=2, choices=[0, 1, 2, 3, 4],
@@ -1013,11 +1055,15 @@ def main():
 
     provider, model = resolve_provider_model(args.provider, args.model)
     skip_llm = provider == "none"
+    llm_check = args.llm_check or args.llm_sample > 0
 
     # Collect files
     files = []
+    llm_files = []
     if args.file:
         files = [args.file]
+        if llm_check:
+            llm_files = files
     elif args.corpus:
         corpus = Path(args.corpus)
         all_files = sorted(corpus.rglob("*.md"))
@@ -1026,6 +1072,10 @@ def main():
         else:
             random.seed(42)
             files = [str(f) for f in random.sample(all_files, min(args.sample, len(all_files)))]
+        if llm_check:
+            sample_size = args.llm_sample if args.llm_sample > 0 else len(files)
+            random.seed(123)  # different seed for LLM sample
+            llm_files = [str(f) for f in random.sample(all_files, min(sample_size, len(all_files)))]
     else:
         parser.print_help()
         return
@@ -1050,8 +1100,11 @@ def main():
     all_results = []
     for i, filepath in enumerate(files):
         print(f"[{i+1}/{len(files)}] {Path(filepath).name}")
-        result = evaluate_file(filepath, provider, model, args.noise_floor, skip_llm,
-                               args.level, not args.no_grammar, not args.no_dict)
+        run_llm = llm_check and filepath in llm_files
+        result = evaluate_file(filepath, provider, model, args.noise_floor,
+                               skip_llm if not run_llm else False,
+                               args.level, not args.no_grammar, not args.no_dict,
+                               llm_check=run_llm)
         all_results.append(result)
         print()
 

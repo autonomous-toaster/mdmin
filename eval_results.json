@@ -15,18 +15,29 @@
   "summary": {
     "files": 1,
     "total_original": 2755,
-    "total_compressed": 2066,
-    "savings_pct": 25.0,
+    "total_compressed": 2088,
+    "savings_pct": 24.2,
     "deterministic_pass": "1/1",
     "avg_heading_f1": 1.0,
     "avg_code_lang_recall": 1.0,
-    "llm": {}
+    "llm": {
+      "headings": {
+        "pass": "1/1",
+        "avg_f1": 1.0,
+        "avg_recall": 1.0
+      },
+      "semantic": {
+        "pass": "1/1",
+        "avg_f1": null,
+        "avg_recall": null
+      }
+    }
   },
   "results": [
     {
-      "savings_pct": 25.0,
+      "savings_pct": 24.2,
       "original_bytes": 2755,
-      "compressed_bytes": 2066,
+      "compressed_bytes": 2088,
       "headings": {
         "recall": 1.0,
         "orig": 7,
@@ -84,8 +95,25 @@
       "file": "harness/test_corpus/comprehensive.md",
       "llm": {
         "headings": {
-          "skipped": true,
-          "reason": "deterministic_pass"
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "orig": 0,
+          "comp": 0,
+          "common": 0,
+          "pass": true
+        },
+        "semantic": {
+          "ratings": {
+            "code_content": 5,
+            "tables": 5,
+            "links": 5,
+            "lists": 5,
+            "inline_code": 5,
+            "blockquotes": 5
+          },
+          "avg_rating": 5.0,
+          "pass": true
         }
       }
     }
