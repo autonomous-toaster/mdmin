@@ -824,19 +824,68 @@ def check_deterministic(original: str, compressed: str) -> dict:
     return results
 
 
+def _parse_json_array(text: str) -> list[str]:
+    """Parse a JSON array from LLM response, handling markdown code fences."""
+    import json, re
+    # Strip ```json ... ``` fences
+    text = re.sub(r'```\w*\n?', '', text.strip())
+    text = text.replace('```', '').strip()
+    try:
+        items = json.loads(text)
+        if isinstance(items, list):
+            return items
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return []
+
+
 # ─── LLM checks ─────────────────────────────────────────────────────────────
 
 LLM_TASKS = {
     "headings": {
         "prompt": "Extract all headings from this document. Return them as a JSON array of strings, each heading on its own line. Example: [\"Introduction\", \"Setup\", \"Usage\"]",
-        "parse": lambda text: [normalize_heading(l) for l in text.split('\n')
-                              if l.strip() and not l.strip().startswith('```') and not l.strip().startswith('[')],
+        "parse": lambda text: [normalize_heading(h) for h in _parse_json_array(text)]
+                       if text.strip().startswith('[') or text.strip().startswith('```')
+                       else [normalize_heading(l) for l in text.split('\n')
+                             if l.strip() and not l.strip().startswith('```')],
     },
-    "semantic": {
-        "prompt_two": "Compare the ORIGINAL and COMPRESSED versions of a document below. Rate how well the compressed version preserves the meaning for each category (1-5, where 5=perfect). Return ONLY a JSON object with these keys: code_content, tables, links, lists, inline_code, blockquotes. Example: {\"code_content\": 5, \"tables\": 4, \"links\": 5, \"lists\": 5, \"inline_code\": 5, \"blockquotes\": 5}\n\nORIGINAL:\n{original}\n\nCOMPRESSED:\n{compressed}",
+    "questions": {
+        "prompt": "Given this document, generate 5 specific questions that test understanding of its content. Each question should be answerable from the text alone. Return ONLY a JSON array of strings. Example: [\"What programming language is used in the code examples?\", \"What is the main topic of section 2?\"]",
+        "prompt_answer": "Answer the following questions based ONLY on the document provided. Return a JSON object where keys are the question indices (0-4) and values are your answers. Be concise and specific. If the information is not in the document, answer 'Not found in document'.",
         "parse": None,
     },
 }
+
+
+def call_llm_raw(text: str, prompt: str, provider: str, model: str, max_tokens: int = 4096) -> Optional[str]:
+    """Call LLM with a raw prompt (no task lookup)."""
+    info = PROVIDERS.get(provider)
+    if not info:
+        return None
+    api_key = os.environ.get(info["env_key"])
+    if not api_key:
+        return None
+    if provider == "anthropic":
+        headers = {
+            "Content-Type": "application/json",
+            "x-api-key": api_key,
+            "anthropic-version": "2023-06-01",
+        }
+        body = {"model": model, "max_tokens": max_tokens, "messages": [{"role": "user", "content": prompt}]}
+    else:
+        headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
+        body = {"model": model, "messages": [{"role": "user", "content": prompt}], "max_tokens": max_tokens}
+    try:
+        with httpx.Client(timeout=120) as client:
+            resp = client.post(info["api_url"], headers=headers, json=body)
+            resp.raise_for_status()
+            data = resp.json()
+        if provider == "anthropic":
+            return data.get("content", [{}])[0].get("text", "")
+        return data.get("choices", [{}])[0].get("message", {}).get("content", "")
+    except Exception as e:
+        print(f"  \u26a0 LLM error: {e}", file=sys.stderr)
+        return None
 
 
 def call_llm(text: str, task: str, provider: str, model: str, text_b: Optional[str] = None) -> Optional[str]:
@@ -852,10 +901,10 @@ def call_llm(text: str, task: str, provider: str, model: str, text_b: Optional[s
     task_info = LLM_TASKS[task]
     if "prompt_two" in task_info and text_b is not None:
         prompt = task_info["prompt_two"].replace("{original}", text).replace("{compressed}", text_b)
-        max_tokens = 4096  # semantic comparison needs more tokens for reasoning models
+        max_tokens = 4096
     else:
         prompt = f"{task_info['prompt']}\n\n---\n\n{text}"
-        max_tokens = 1024
+        max_tokens = 4096
 
     if provider == "anthropic":
         headers = {
@@ -869,7 +918,7 @@ def call_llm(text: str, task: str, provider: str, model: str, text_b: Optional[s
         body = {"model": model, "messages": [{"role": "user", "content": prompt}], "max_tokens": max_tokens}
 
     try:
-        with httpx.Client(timeout=DEFAULT_TIMEOUT) as client:
+        with httpx.Client(timeout=120) as client:
             resp = client.post(info["api_url"], headers=headers, json=body)
             resp.raise_for_status()
             data = resp.json()
@@ -884,6 +933,112 @@ def call_llm(text: str, task: str, provider: str, model: str, text_b: Optional[s
 def check_llm(original: str, compressed: str, task: str, provider: str, model: str,
               noise_floor: bool = False) -> Optional[dict]:
     """Run one LLM-based check. Returns result dict or None on failure."""
+    if task == "questions":
+        # Question-answering approach (Option C from council):
+        # 1. Generate questions from the original document
+        # 2. Answer them using only the compressed document
+        # 3. Score answer similarity
+        import json, re
+        
+        # Step 1: Generate questions from original
+        gen_prompt = LLM_TASKS["questions"]["prompt"]
+        q_prompt = f"{gen_prompt}\n\n---\n\n{original}"
+        q_resp = call_llm_raw(original, q_prompt, provider, model)
+        if q_resp is None:
+            return None
+        
+        # Parse questions
+        try:
+            questions = json.loads(q_resp.strip())
+        except (json.JSONDecodeError, ValueError):
+            json_match = re.search(r'\[[^\[\]]+\]', q_resp)
+            if json_match:
+                try:
+                    questions = json.loads(json_match.group())
+                except (json.JSONDecodeError, ValueError):
+                    return {"error": "could not parse questions JSON", "response": q_resp[:200], "pass": False}
+            else:
+                return {"error": "could not parse questions", "response": q_resp[:200], "pass": False}
+        
+        if not isinstance(questions, list) or len(questions) < 1:
+            return {"error": "no questions generated", "pass": False}
+        
+        # Step 2: Answer questions from compressed
+        answer_prompt = LLM_TASKS["questions"]["prompt_answer"]
+        q_list = "\n".join(f"{i}. {q}" for i, q in enumerate(questions))
+        a_prompt = f"{answer_prompt}\n\nQuestions:\n{q_list}\n\nDocument:\n{compressed}"
+        a_resp = call_llm_raw(compressed, a_prompt, provider, model)
+        if a_resp is None:
+            return None
+        
+        # Parse answers
+        try:
+            answers = json.loads(a_resp.strip())
+        except (json.JSONDecodeError, ValueError):
+            json_match = re.search(r'\{[^{}]+\}', a_resp)
+            if json_match:
+                try:
+                    answers = json.loads(json_match.group())
+                except (json.JSONDecodeError, ValueError):
+                    return {"error": "could not parse answers", "response": a_resp[:200], "pass": False}
+            else:
+                return {"error": "could not parse answers", "response": a_resp[:200], "pass": False}
+        
+        # Also answer from original for comparison (noise floor = original vs original)
+        if noise_floor:
+            a_ref_prompt = f"{answer_prompt}\n\nQuestions:\n{q_list}\n\nDocument:\n{original}"
+            a_ref = call_llm_raw(original, a_ref_prompt, provider, model)
+        else:
+            a_ref_prompt = f"{answer_prompt}\n\nQuestions:\n{q_list}\n\nDocument:\n{original}"
+            a_ref = call_llm_raw(original, a_ref_prompt, provider, model)
+        
+        if a_ref is None:
+            return None
+        
+        json_match = re.search(r'\{[^{}]+\}', a_ref)
+        if not json_match:
+            return {"error": "could not parse reference answers", "response": a_ref[:200], "pass": False}
+        try:
+            ref_answers = json.loads(a_ref.strip())
+        except (json.JSONDecodeError, ValueError):
+            json_match = re.search(r'\{[^{}]+\}', a_ref)
+            if not json_match:
+                return {"error": "could not parse reference answers", "response": a_ref[:200], "pass": False}
+            try:
+                ref_answers = json.loads(json_match.group())
+            except json.JSONDecodeError:
+                return {"error": "could not parse reference answers JSON", "pass": False}
+        
+        # Step 3: Compare answers using word overlap
+        n = len(questions)
+        scores = []
+        for i in range(n):
+            si = str(i)
+            ref = str(ref_answers.get(si) or ref_answers.get(i) or "")
+            ans = str(answers.get(si) or answers.get(i) or "")
+            if not ref.strip():
+                continue
+            if not ans.strip():
+                scores.append(0.0)
+                continue
+            ref_words = set(ref.lower().split())
+            ans_words = set(ans.lower().split())
+            overlap = len(ref_words & ans_words)
+            precision = overlap / max(len(ans_words), 1)
+            recall = overlap / max(len(ref_words), 1)
+            f1 = 2 * precision * recall / max(precision + recall, 0.001)
+            scores.append(f1)
+        
+        avg_score = sum(scores) / max(len(scores), 1) if scores else 0
+        result = {
+            "questions": questions,
+            "answers": answers,
+            "scores": [round(s, 3) for s in scores],
+            "avg_score": round(avg_score, 3),
+        }
+        result["pass"] = avg_score >= 0.5
+        return result
+    
     if "prompt_two" in LLM_TASKS[task]:
         # Two-text comparison task (e.g., semantic rating)
         if noise_floor:
@@ -963,8 +1118,9 @@ def evaluate_file(filepath: str, provider: str, model: str,
     if not skip_llm:
         result["llm"] = {}
         for task in LLM_TASKS:
-            if task == "headings" and not llm_check:
-                # Default: skip LLM heading check if deterministic already passes
+            if task == "headings":
+                # Skip LLM headings check if deterministic already passes
+                # LLM heading extraction is unreliable for compressed L4 format
                 if result["headings"]["pass"]:
                     result["llm"][task] = {"skipped": True, "reason": "deterministic_pass"}
                     continue

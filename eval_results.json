@@ -1,6 +1,6 @@
 {
   "mode": "evaluation",
-  "overall_pass": true,
+  "overall_pass": false,
   "thresholds": {
     "heading_recall": 0.85,
     "code_lang_recall": 0.9,
@@ -22,11 +22,11 @@
     "avg_code_lang_recall": 1.0,
     "llm": {
       "headings": {
-        "pass": "1/1",
-        "avg_f1": 1.0,
-        "avg_recall": 1.0
+        "pass": "0/1",
+        "avg_f1": 0.0,
+        "avg_recall": 0.0
       },
-      "semantic": {
+      "questions": {
         "pass": "1/1",
         "avg_f1": null,
         "avg_recall": null
@@ -95,24 +95,37 @@
       "file": "harness/test_corpus/comprehensive.md",
       "llm": {
         "headings": {
-          "precision": 1.0,
-          "recall": 1.0,
-          "f1": 1.0,
-          "orig": 0,
-          "comp": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "orig": 8,
+          "comp": 19,
           "common": 0,
-          "pass": true
+          "pass": false
         },
-        "semantic": {
-          "ratings": {
-            "code_content": 5,
-            "tables": 3,
-            "links": 5,
-            "lists": 5,
-            "inline_code": 5,
-            "blockquotes": 5
+        "questions": {
+          "questions": [
+            "What Python function is defined in the first code block?",
+            "What is the occupation of the person named Bob in the table?",
+            "What is the URL for GitHub as listed in the links section?",
+            "What items are listed under 'Tropical' in the nested list?",
+            "What is the single character shown in the edge cases section?"
+          ],
+          "answers": {
+            "0": "hello",
+            "1": "Designer",
+            "2": "github.com",
+            "3": "Mango, Papaya",
+            "4": "a"
           },
-          "avg_rating": 4.7,
+          "scores": [
+            0.5,
+            1.0,
+            0.0,
+            1.0,
+            1.0
+          ],
+          "avg_score": 0.7,
           "pass": true
         }
       }
