@@ -20,7 +20,18 @@
     "deterministic_pass": "1/1",
     "avg_heading_f1": 1.0,
     "avg_code_lang_recall": 1.0,
-    "llm": {}
+    "llm": {
+      "headings": {
+        "pass": "1/1",
+        "avg_f1": 1.0,
+        "avg_recall": 1.0
+      },
+      "semantic": {
+        "pass": "1/1",
+        "avg_f1": null,
+        "avg_recall": null
+      }
+    }
   },
   "results": [
     {
@@ -84,8 +95,25 @@
       "file": "harness/test_corpus/comprehensive.md",
       "llm": {
         "headings": {
-          "skipped": true,
-          "reason": "deterministic_pass"
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "orig": 0,
+          "comp": 0,
+          "common": 0,
+          "pass": true
+        },
+        "semantic": {
+          "ratings": {
+            "code_content": 5,
+            "tables": 3,
+            "links": 5,
+            "lists": 5,
+            "inline_code": 5,
+            "blockquotes": 5
+          },
+          "avg_rating": 4.7,
+          "pass": true
         }
       }
     }

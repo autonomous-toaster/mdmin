@@ -833,7 +833,7 @@ LLM_TASKS = {
                               if l.strip() and not l.strip().startswith('```') and not l.strip().startswith('[')],
     },
     "semantic": {
-        "prompt_two": "Compare the ORIGINAL and COMPRESSED versions of a document below. Rate how well the compressed version preserves the meaning for each category (1-5, where 5=perfect). Return ONLY a JSON object with these keys: code_content, tables, links, lists, inline_code, blockquotes. Example: {\"code_content\": 5, \"tables\": 4, \"links\": 5, \"lists\": 5, \"inline_code\": 5, \"blockquotes\": 5}",
+        "prompt_two": "Compare the ORIGINAL and COMPRESSED versions of a document below. Rate how well the compressed version preserves the meaning for each category (1-5, where 5=perfect). Return ONLY a JSON object with these keys: code_content, tables, links, lists, inline_code, blockquotes. Example: {\"code_content\": 5, \"tables\": 4, \"links\": 5, \"lists\": 5, \"inline_code\": 5, \"blockquotes\": 5}\n\nORIGINAL:\n{original}\n\nCOMPRESSED:\n{compressed}",
         "parse": None,
     },
 }
@@ -852,8 +852,10 @@ def call_llm(text: str, task: str, provider: str, model: str, text_b: Optional[s
     task_info = LLM_TASKS[task]
     if "prompt_two" in task_info and text_b is not None:
         prompt = task_info["prompt_two"].replace("{original}", text).replace("{compressed}", text_b)
+        max_tokens = 4096  # semantic comparison needs more tokens for reasoning models
     else:
         prompt = f"{task_info['prompt']}\n\n---\n\n{text}"
+        max_tokens = 1024
 
     if provider == "anthropic":
         headers = {
@@ -861,10 +863,10 @@ def call_llm(text: str, task: str, provider: str, model: str, text_b: Optional[s
             "x-api-key": api_key,
             "anthropic-version": "2023-06-01",
         }
-        body = {"model": model, "max_tokens": 1024, "messages": [{"role": "user", "content": prompt}]}
+        body = {"model": model, "max_tokens": max_tokens, "messages": [{"role": "user", "content": prompt}]}
     else:
         headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
-        body = {"model": model, "messages": [{"role": "user", "content": prompt}], "max_tokens": 1024}
+        body = {"model": model, "messages": [{"role": "user", "content": prompt}], "max_tokens": max_tokens}
 
     try:
         with httpx.Client(timeout=DEFAULT_TIMEOUT) as client:
