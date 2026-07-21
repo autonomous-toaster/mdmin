@@ -601,6 +601,54 @@ fn compress_code_content(s: &str, lang: &str) -> String {
         }
     }
     
+    // Minify code content by removing unnecessary whitespace
+    minify_code_content(&result)
+}
+
+/// Minify code block content by removing unnecessary whitespace.
+/// Removes spaces before/after parentheses, braces, semicolons, and commas.
+/// This is safe for code because it doesn't change the meaning.
+fn minify_code_content(s: &str) -> String {
+    let mut result = String::with_capacity(s.len());
+    let mut chars: Vec<char> = s.chars().collect();
+    let mut i = 0;
+    
+    while i < chars.len() {
+        let ch = chars[i];
+        
+        // Skip spaces before closing paren/brace/semicolon
+        if ch == ' '
+            && i + 1 < chars.len()
+            && (chars[i + 1] == ')' || chars[i + 1] == ']' || chars[i + 1] == ';')
+        {
+            i += 1;
+            continue;
+        }
+        
+        // Skip spaces after opening paren/brace
+        if (ch == '(' || ch == '[') && i + 1 < chars.len() && chars[i + 1] == ' ' {
+            result.push(ch);
+            i += 2; // skip the space
+            continue;
+        }
+        
+        // Skip spaces before closing brace (but not in string literals)
+        if ch == ' ' && i + 1 < chars.len() && chars[i + 1] == '}' {
+            i += 1;
+            continue;
+        }
+        
+        // Skip spaces after comma
+        if ch == ',' && i + 1 < chars.len() && chars[i + 1] == ' ' {
+            result.push(ch);
+            i += 2; // skip the space
+            continue;
+        }
+        
+        result.push(ch);
+        i += 1;
+    }
+    
     result
 }
 
