@@ -121,7 +121,10 @@ impl Minifier {
             output
         };
 
-        // Apply local dictionary compression if enabled (after grammar strip, before L3/L4)
+        // Apply semantic deduplication (after grammar strip, before dictionary)
+        let output = deduplicate(&output);
+
+        // Apply local dictionary compression if enabled (after dedup, before L3/L4)
         let output = if self.config.dictionary {
             dictionary::compress(&output)
         } else {
@@ -803,6 +806,104 @@ fn inline_tiny_sections(text: &str) -> String {
     }
 
     result
+}
+
+/// Deduplicate repeated blocks in markdown content.
+/// Finds repeated multi-line blocks (3+ lines, 30+ chars) and replaces
+/// 2nd+ occurrences with `[see §N]` cross-references.
+fn deduplicate(text: &str) -> String {
+    let lines: Vec<&str> = text.lines().collect();
+    if lines.len() < 6 {
+        return text.to_string();
+    }
+    
+    // Find repeated blocks (3-15 consecutive lines)
+    use std::collections::HashMap;
+    let mut block_map: HashMap<String, Vec<(usize, usize)>> = HashMap::new();
+    
+    for start in 0..lines.len() {
+        for end in (start + 3..=std::cmp::min(start + 15, lines.len())).rev() {
+            let block = lines[start..end].join("\n");
+            if block.len() < 30 || block.trim().is_empty() {
+                continue;
+            }
+            // Skip blocks that contain only code fences or headings
+            let trimmed = block.trim();
+            if trimmed.starts_with("```") && trimmed.ends_with("```") && trimmed.matches("```").count() == 2 {
+                continue;
+            }
+            block_map.entry(block).or_default().push((start, end));
+        }
+    }
+    
+    // Find blocks that appear 2+ times (non-overlapping)
+    let mut replacements: Vec<(usize, usize, String)> = Vec::new();
+    let mut used: Vec<bool> = vec![false; lines.len()];
+    
+    for (block, positions) in &block_map {
+        if positions.len() < 2 {
+            continue;
+        }
+        // Sort by position
+        let mut positions = positions.clone();
+        positions.sort();
+        // Filter to non-overlapping occurrences
+        let mut valid: Vec<(usize, usize)> = Vec::new();
+        for &(s, e) in &positions {
+            if s < lines.len() && e <= lines.len() && !used[s..e].iter().any(|&x| x) {
+                valid.push((s, e));
+                for i in s..e {
+                    used[i] = true;
+                }
+            }
+        }
+        if valid.len() < 2 {
+            continue;
+        }
+        // Keep first occurrence, replace rest with references
+        let first = &valid[0];
+        for &(s, e) in &valid[1..] {
+            // Find section number for reference
+            let section = find_section_number(&lines, first.0);
+            replacements.push((s, e, format!("[see §{}]", section)));
+        }
+    }
+    
+    if replacements.is_empty() {
+        return text.to_string();
+    }
+    
+    // Apply replacements (from end to start to preserve positions)
+    replacements.sort_by(|a, b| b.0.cmp(&a.0));
+    let mut result_lines: Vec<&str> = lines.clone();
+    let mut result = String::with_capacity(text.len());
+    let mut i = 0;
+    while i < result_lines.len() {
+        if let Some((_, end, replacement)) = replacements.iter().find(|(s, _, _)| *s == i) {
+            result.push_str(replacement);
+            result.push('\n');
+            i = *end;
+        } else {
+            result.push_str(result_lines[i]);
+            result.push('\n');
+            i += 1;
+        }
+    }
+    
+    result
+}
+
+/// Find the section number for a given line position.
+fn find_section_number(lines: &[&str], pos: usize) -> usize {
+    let mut section = 0;
+    for i in 0..=std::cmp::min(pos, lines.len().saturating_sub(1)) {
+        let line = lines[i].trim();
+        if line.starts_with('#') {
+            section += 1;
+        }
+    }
+    if section == 0 { section = 1; }
+    section
 }
 
 /// Compress fenced code blocks in text: strip indentation, trailing whitespace, blank lines.

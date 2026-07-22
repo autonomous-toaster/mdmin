@@ -14,9 +14,9 @@
   },
   "summary": {
     "files": 1,
-    "total_original": 2755,
-    "total_compressed": 2086,
-    "savings_pct": 24.3,
+    "total_original": 1659,
+    "total_compressed": 1148,
+    "savings_pct": 30.8,
     "deterministic_pass": "1/1",
     "avg_heading_f1": 1.0,
     "avg_code_lang_recall": 1.0,
@@ -24,13 +24,13 @@
   },
   "results": [
     {
-      "savings_pct": 24.3,
-      "original_bytes": 2755,
-      "compressed_bytes": 2086,
+      "savings_pct": 30.8,
+      "original_bytes": 1659,
+      "compressed_bytes": 1148,
       "headings": {
         "recall": 1.0,
-        "orig": 7,
-        "found": 7,
+        "orig": 6,
+        "found": 6,
         "pass": true
       },
       "code_languages": {
@@ -44,44 +44,36 @@
       },
       "code_content": {
         "recall": 1.0,
-        "orig": 9,
-        "found": 9,
+        "orig": 21,
+        "found": 21,
         "pass": true
       },
       "tables": {
-        "recall": 1.0,
-        "orig": 34,
-        "found": 34,
-        "pass": true
+        "skipped": true,
+        "reason": "no items"
       },
       "links": {
-        "recall": 1.0,
-        "orig": 4,
-        "found": 4,
-        "pass": true
+        "skipped": true,
+        "reason": "no items"
       },
       "lists": {
-        "recall": 1.0,
-        "orig": 25,
-        "found": 25,
-        "pass": true
+        "skipped": true,
+        "reason": "no items"
       },
       "inline_code": {
         "recall": 1.0,
-        "orig": 15,
-        "found": 15,
+        "orig": 11,
+        "found": 11,
         "pass": true
       },
       "blockquotes": {
-        "recall": 1.0,
-        "orig": 15,
-        "found": 15,
-        "pass": true
+        "skipped": true,
+        "reason": "no items"
       },
       "pass": true,
-      "checks_passed": 8,
-      "checks_total": 8,
-      "file": "harness/test_corpus/comprehensive.md",
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "harness/test_corpus/dedup.md",
       "llm": {
         "headings": {
           "skipped": true,
