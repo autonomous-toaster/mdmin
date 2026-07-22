@@ -125,6 +125,21 @@ pub fn apply_level_4(input: &str) -> String {
         }
     }
 
+    // Shorten common language specifiers in code block fences
+    // Only use widely recognized abbreviations (council-approved)
+    // Handle both 6-backtick (standalone) and 4-backtick (inline) formats
+    let output = output
+        .replace("{``````python ", "{``````py ")
+        .replace("{````python ", "{````py ")
+        .replace("{``````bash ", "{``````sh ")
+        .replace("{````bash ", "{````sh ")
+        .replace("{``````javascript ", "{``````js ")
+        .replace("{````javascript ", "{````js ")
+        .replace("{``````typescript ", "{``````ts ")
+        .replace("{````typescript ", "{````ts ")
+        .replace("{``````markdown ", "{``````md ")
+        .replace("{````markdown ", "{````md ");
+
     output
 }
 

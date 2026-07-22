@@ -115,11 +115,16 @@ def find_heading_content(original_headings: list[str], compressed: str) -> dict:
                 if comp_clean.startswith(prefix):
                     return True
         # Also check if compressed word shares first 2 chars with original (handles very short abbrevs like ex→example, exs→examples)
+        # Also split on non-alphanumeric to handle L4 format where words may be concatenated
         for comp_word in compressed.lower().split():
             comp_clean = clean_word(comp_word)
             if comp_clean and len(comp_clean) >= 2 and len(cw) >= 2:
                 if comp_clean[:2] == cw[:2]:
                     return True
+                # Also check sub-words split on non-alphanumeric boundaries
+                for sub in re.split(r'[^a-zA-Z0-9]+', comp_word):
+                    if len(sub) >= 2 and sub[:2] == cw[:2]:
+                        return True
         # Check specific abbreviations that don't share a 2-char prefix
         ABBREV_MAP = {
             "access": ["acc"],
@@ -354,7 +359,16 @@ def find_heading_content(original_headings: list[str], compressed: str) -> dict:
 
 
 def extract_code_langs(text: str) -> list[str]:
-    return re.findall(r'```(\w+)', text)
+    """Extract code block language specifiers, normalizing abbreviations."""
+    LANG_ABBREV = {
+        "py": "python", "sh": "bash", "js": "javascript", "ts": "typescript",
+        "md": "markdown",
+    }
+    langs = re.findall(r'```(\w+)', text)
+    # Also check L4 format: {````py
+    langs += re.findall(r'\{````(\w+)', text)
+    # Normalize abbreviations
+    return [LANG_ABBREV.get(lang, lang) for lang in langs]
 
 
 def extract_code_blocks(text: str) -> list[str]:
