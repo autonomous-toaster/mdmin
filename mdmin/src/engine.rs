@@ -909,6 +909,54 @@ fn deduplicate(text: &str) -> String {
         }
     }
     
+    // Third pass: find similar blocks (share common prefix of 20+ chars)
+    // This catches repeated patterns with minor variations (e.g., different variable names)
+    {
+        use std::collections::HashMap as SimMap;
+        let mut sim_map: SimMap<String, Vec<(usize, usize)>> = SimMap::new();
+        
+        for start in 0..lines.len() {
+            for end in (start + 3..=std::cmp::min(start + 10, lines.len())).rev() {
+                if used[start..end].iter().any(|&x| x) {
+                    continue;
+                }
+                let block = lines[start..end].join("\n");
+                if block.len() < 30 || block.trim().is_empty() {
+                    continue;
+                }
+                // Use first 20 chars as key for similarity matching
+                let prefix: String = block.chars().take(20).collect();
+                if prefix.len() < 15 {
+                    continue;
+                }
+                sim_map.entry(prefix).or_default().push((start, end));
+            }
+        }
+        
+        for (_prefix, positions) in &sim_map {
+            if positions.len() < 2 {
+                continue;
+            }
+            let mut valid: Vec<(usize, usize)> = Vec::new();
+            for &(s, e) in positions {
+                if !used[s..e].iter().any(|&x| x) {
+                    valid.push((s, e));
+                    for i in s..e {
+                        used[i] = true;
+                    }
+                }
+            }
+            if valid.len() < 2 {
+                continue;
+            }
+            let first = valid[0];
+            for &(s, e) in &valid[1..] {
+                let section = find_section_number(&lines, first.0);
+                replacements.push((s, e, format!("[see §{}]", section)));
+            }
+        }
+    }
+    
     if replacements.is_empty() {
         return text.to_string();
     }
