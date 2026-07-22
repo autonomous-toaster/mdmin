@@ -869,6 +869,46 @@ fn deduplicate(text: &str) -> String {
         }
     }
     
+    
+    // Second pass: find single-line repeats (lines that appear 2+ times)
+    // Skip empty lines, headings, code fences, and lines already used in multi-line replacements
+    {
+        use std::collections::HashMap as LineMap;
+        let mut line_map: LineMap<String, Vec<usize>> = LineMap::new();
+        for (i, line) in lines.iter().enumerate() {
+            let trimmed = line.trim();
+            if trimmed.is_empty() || trimmed.starts_with('#') || trimmed.starts_with('`') || used[i] {
+                continue;
+            }
+            if trimmed.len() < 20 {
+                continue;
+            }
+            line_map.entry(trimmed.to_string()).or_default().push(i);
+        }
+        
+        for (line, positions) in &line_map {
+            if positions.len() < 2 {
+                continue;
+            }
+            // Filter to non-overlapping (not already used)
+            let mut valid: Vec<usize> = Vec::new();
+            for &pos in positions {
+                if !used[pos] {
+                    valid.push(pos);
+                    used[pos] = true;
+                }
+            }
+            if valid.len() < 2 {
+                continue;
+            }
+            let first = valid[0];
+            for &pos in &valid[1..] {
+                let section = find_section_number(&lines, first);
+                replacements.push((pos, pos + 1, format!("[see §{}]", section)));
+            }
+        }
+    }
+    
     if replacements.is_empty() {
         return text.to_string();
     }
