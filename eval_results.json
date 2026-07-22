@@ -14,66 +14,74 @@
   },
   "summary": {
     "files": 1,
-    "total_original": 1434,
-    "total_compressed": 922,
-    "savings_pct": 35.7,
+    "total_original": 2755,
+    "total_compressed": 2086,
+    "savings_pct": 24.3,
     "deterministic_pass": "1/1",
-    "avg_heading_f1": 0.909,
+    "avg_heading_f1": 1.0,
     "avg_code_lang_recall": 1.0,
     "llm": {}
   },
   "results": [
     {
-      "savings_pct": 35.7,
-      "original_bytes": 1434,
-      "compressed_bytes": 922,
+      "savings_pct": 24.3,
+      "original_bytes": 2755,
+      "compressed_bytes": 2086,
       "headings": {
-        "recall": 0.909,
-        "orig": 11,
-        "found": 10,
+        "recall": 1.0,
+        "orig": 7,
+        "found": 7,
         "pass": true
       },
       "code_languages": {
         "precision": 1.0,
         "recall": 1.0,
         "f1": 1.0,
-        "orig": 1,
-        "comp": 1,
-        "common": 1,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
         "pass": true
       },
       "code_content": {
-        "recall": 0.833,
-        "orig": 24,
-        "found": 20,
+        "recall": 1.0,
+        "orig": 9,
+        "found": 9,
         "pass": true
       },
       "tables": {
-        "skipped": true,
-        "reason": "no items"
+        "recall": 1.0,
+        "orig": 34,
+        "found": 34,
+        "pass": true
       },
       "links": {
-        "skipped": true,
-        "reason": "no items"
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
       },
       "lists": {
-        "skipped": true,
-        "reason": "no items"
+        "recall": 1.0,
+        "orig": 25,
+        "found": 25,
+        "pass": true
       },
       "inline_code": {
         "recall": 1.0,
-        "orig": 6,
-        "found": 6,
+        "orig": 15,
+        "found": 15,
         "pass": true
       },
       "blockquotes": {
-        "skipped": true,
-        "reason": "no items"
+        "recall": 1.0,
+        "orig": 15,
+        "found": 15,
+        "pass": true
       },
       "pass": true,
-      "checks_passed": 4,
-      "checks_total": 4,
-      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/secrets.md",
+      "checks_passed": 8,
+      "checks_total": 8,
+      "file": "harness/test_corpus/comprehensive.md",
       "llm": {
         "headings": {
           "skipped": true,

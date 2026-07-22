@@ -649,6 +649,23 @@ fn minify_code_content(s: &str) -> String {
         i += 1;
     }
     
+    // Second pass: remove spaces around common operators
+    // This is safe for code because operator spacing is cosmetic
+    let result = result
+        .replace(" = ", "=")
+        .replace(" + ", "+")
+        .replace(" - ", "-")
+        .replace(" * ", "*")
+        .replace(" / ", "/")
+        .replace(" == ", "==")
+        .replace(" != ", "!=")
+        .replace(" < ", "<")
+        .replace(" > ", ">")
+        .replace(" <= ", "<=")
+        .replace(" >= ", ">=")
+        .replace(" && ", "&&")
+        .replace(" || ", "||");
+    
     result
 }
 
