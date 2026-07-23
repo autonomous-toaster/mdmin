@@ -101,12 +101,8 @@ const FREQUENCY_TABLE: &[(&str, f64)] = &[
     // Additional common filler words
     ("also", 0.65),
     ("so", 0.62),
-    ("then", 0.60),
     ("here", 0.60),
     ("there", 0.62),
-    ("still", 0.60),
-    ("always", 0.60),
-    ("now", 0.62),
     ("too", 0.60),
     ("such", 0.60),
     // Common filler adverbs (continued)
