@@ -13,20 +13,1992 @@
     "llm_heading_f1": 0.6
   },
   "summary": {
-    "files": 1,
-    "total_original": 1659,
-    "total_compressed": 1093,
-    "savings_pct": 34.1,
-    "deterministic_pass": "1/1",
-    "avg_heading_f1": 1.0,
+    "files": 115,
+    "total_original": 885136,
+    "total_compressed": 691859,
+    "savings_pct": 21.8,
+    "deterministic_pass": "115/115",
+    "avg_heading_f1": 0.992,
     "avg_code_lang_recall": 1.0,
     "llm": {}
   },
   "results": [
     {
-      "savings_pct": 34.1,
-      "original_bytes": 1659,
-      "compressed_bytes": 1093,
+      "savings_pct": 17.6,
+      "original_bytes": 2124,
+      "compressed_bytes": 1751,
+      "headings": {
+        "recall": 0.867,
+        "orig": 15,
+        "found": 13,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 15,
+        "found": 15,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/arxiv/README.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 15.4,
+      "original_bytes": 8510,
+      "compressed_bytes": 7203,
+      "headings": {
+        "recall": 1.0,
+        "orig": 73,
+        "found": 73,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 141,
+        "found": 141,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 42,
+        "found": 42,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/arxiv/REFERENCE.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 21.4,
+      "original_bytes": 7256,
+      "compressed_bytes": 5701,
+      "headings": {
+        "recall": 1.0,
+        "orig": 50,
+        "found": 50,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.989,
+        "orig": 92,
+        "found": 91,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 29,
+        "found": 29,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.977,
+        "orig": 43,
+        "found": 42,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/arxiv/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 20.6,
+      "original_bytes": 5333,
+      "compressed_bytes": 4236,
+      "headings": {
+        "recall": 1.0,
+        "orig": 42,
+        "found": 42,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 50,
+        "found": 50,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 12,
+        "found": 12,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 13,
+        "found": 13,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 35,
+        "found": 35,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/arxiv/SUMMARY.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 15.6,
+      "original_bytes": 5560,
+      "compressed_bytes": 4690,
+      "headings": {
+        "recall": 1.0,
+        "orig": 31,
+        "found": 31,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 48,
+        "found": 48,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 7,
+        "found": 7,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 46,
+        "found": 46,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 19,
+        "found": 19,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/cloud-diagrams/README.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 24.6,
+      "original_bytes": 5220,
+      "compressed_bytes": 3938,
+      "headings": {
+        "recall": 0.923,
+        "orig": 26,
+        "found": 24,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.957,
+        "orig": 92,
+        "found": 88,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 37,
+        "found": 37,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 2,
+        "found": 2,
+        "pass": true
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 0.972,
+        "orig": 36,
+        "found": 35,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/cloud-diagrams/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 13.9,
+      "original_bytes": 9006,
+      "compressed_bytes": 7753,
+      "headings": {
+        "recall": 1.0,
+        "orig": 69,
+        "found": 69,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 107,
+        "found": 107,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 69,
+        "found": 69,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 49,
+        "found": 49,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/cloud-diagrams/examples/README.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 35.2,
+      "original_bytes": 18304,
+      "compressed_bytes": 11854,
+      "headings": {
+        "recall": 1.0,
+        "orig": 92,
+        "found": 92,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.995,
+        "orig": 419,
+        "found": 417,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 38,
+        "found": 38,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 17,
+        "found": 17,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 79,
+        "found": 79,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/cloud-diagrams/references/advanced.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 34.5,
+      "original_bytes": 16159,
+      "compressed_bytes": 10585,
+      "headings": {
+        "recall": 1.0,
+        "orig": 73,
+        "found": 73,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.991,
+        "orig": 347,
+        "found": 344,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 8,
+        "found": 8,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 103,
+        "found": 103,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/cloud-diagrams/references/providers.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 10.3,
+      "original_bytes": 9558,
+      "compressed_bytes": 8577,
+      "headings": {
+        "recall": 1.0,
+        "orig": 84,
+        "found": 84,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 119,
+        "found": 119,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 47,
+        "found": 47,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 0.978,
+        "orig": 45,
+        "found": 44,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 91,
+        "found": 91,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/commit/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 16.8,
+      "original_bytes": 11468,
+      "compressed_bytes": 9544,
+      "headings": {
+        "recall": 1.0,
+        "orig": 52,
+        "found": 52,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 161,
+        "found": 161,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 28,
+        "found": 28,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 47,
+        "found": 47,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 68,
+        "found": 68,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/context7/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 14.4,
+      "original_bytes": 11858,
+      "compressed_bytes": 10156,
+      "headings": {
+        "recall": 1.0,
+        "orig": 24,
+        "found": 24,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.989,
+        "orig": 88,
+        "found": 87,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 36,
+        "found": 36,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 47,
+        "found": 47,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 19,
+        "found": 19,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/deepsearch/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 18.5,
+      "original_bytes": 5904,
+      "compressed_bytes": 4814,
+      "headings": {
+        "recall": 1.0,
+        "orig": 37,
+        "found": 37,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 59,
+        "found": 59,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 32,
+        "found": 32,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/deepwiki/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 13.4,
+      "original_bytes": 19101,
+      "compressed_bytes": 16538,
+      "headings": {
+        "recall": 1.0,
+        "orig": 172,
+        "found": 172,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 517,
+        "found": 517,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 28,
+        "found": 28,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 7,
+        "found": 7,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 40,
+        "found": 40,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 85,
+        "found": 85,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/docker/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 12.4,
+      "original_bytes": 2988,
+      "compressed_bytes": 2617,
+      "headings": {
+        "recall": 1.0,
+        "orig": 20,
+        "found": 20,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 32,
+        "found": 32,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 22,
+        "found": 22,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 33,
+        "found": 33,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/docker/references/core-rules.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 9.7,
+      "original_bytes": 2466,
+      "compressed_bytes": 2226,
+      "headings": {
+        "recall": 1.0,
+        "orig": 11,
+        "found": 11,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 36,
+        "found": 36,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 15,
+        "found": 15,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 15,
+        "found": 15,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/duckdb/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 14.5,
+      "original_bytes": 12344,
+      "compressed_bytes": 10553,
+      "headings": {
+        "recall": 1.0,
+        "orig": 72,
+        "found": 72,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.991,
+        "orig": 216,
+        "found": 214,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 53,
+        "found": 53,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 13,
+        "found": 13,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 58,
+        "found": 58,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 49,
+        "found": 49,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/general/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 13.1,
+      "original_bytes": 1386,
+      "compressed_bytes": 1204,
+      "headings": {
+        "recall": 1.0,
+        "orig": 7,
+        "found": 7,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/git-worktree/README.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 16.4,
+      "original_bytes": 19804,
+      "compressed_bytes": 16561,
+      "headings": {
+        "recall": 1.0,
+        "orig": 160,
+        "found": 160,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.995,
+        "orig": 377,
+        "found": 375,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 53,
+        "found": 53,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 109,
+        "found": 109,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/git-worktree/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 33.2,
+      "original_bytes": 3547,
+      "compressed_bytes": 2371,
+      "headings": {
+        "recall": 1.0,
+        "orig": 24,
+        "found": 24,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 13,
+        "found": 13,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.963,
+        "orig": 27,
+        "found": 26,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/gitignore/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 18.1,
+      "original_bytes": 3058,
+      "compressed_bytes": 2503,
+      "headings": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 11,
+        "found": 11,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 7,
+        "found": 7,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 25,
+        "found": 25,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 8,
+        "found": 8,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/gitlab-ci/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 23.7,
+      "original_bytes": 2869,
+      "compressed_bytes": 2189,
+      "headings": {
+        "recall": 1.0,
+        "orig": 19,
+        "found": 19,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 73,
+        "found": 73,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 39,
+        "found": 39,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 2,
+        "found": 2,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/gitlab-ci/references/core-rules.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 19.2,
+      "original_bytes": 15480,
+      "compressed_bytes": 12510,
+      "headings": {
+        "recall": 1.0,
+        "orig": 64,
+        "found": 64,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1": 0.857,
+        "orig": 3,
+        "comp": 4,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.978,
+        "orig": 137,
+        "found": 134,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 63,
+        "found": 63,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.986,
+        "orig": 74,
+        "found": 73,
+        "pass": true
+      },
+      "blockquotes": {
+        "recall": 1.0,
+        "orig": 19,
+        "found": 19,
+        "pass": true
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/gitlab-project-management/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 23.3,
+      "original_bytes": 7917,
+      "compressed_bytes": 6076,
+      "headings": {
+        "recall": 1.0,
+        "orig": 34,
+        "found": 34,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.99,
+        "orig": 101,
+        "found": 100,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.98,
+        "orig": 49,
+        "found": 48,
+        "pass": true
+      },
+      "blockquotes": {
+        "recall": 1.0,
+        "orig": 13,
+        "found": 13,
+        "pass": true
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/glab/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 23.1,
+      "original_bytes": 23697,
+      "compressed_bytes": 18217,
+      "headings": {
+        "recall": 1.0,
+        "orig": 74,
+        "found": 74,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.998,
+        "orig": 453,
+        "found": 452,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 55,
+        "found": 55,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 158,
+        "found": 158,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/gondolin/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 19.1,
+      "original_bytes": 8474,
+      "compressed_bytes": 6854,
+      "headings": {
+        "recall": 1.0,
+        "orig": 36,
+        "found": 36,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 4,
+        "comp": 4,
+        "common": 4,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 137,
+        "found": 137,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 45,
+        "found": 45,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 98,
+        "found": 98,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/gondolin/references/api.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 26.3,
+      "original_bytes": 12384,
+      "compressed_bytes": 9133,
+      "headings": {
+        "recall": 1.0,
+        "orig": 28,
+        "found": 28,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.993,
+        "orig": 413,
+        "found": 410,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 52,
+        "found": 52,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/gondolin/references/patterns.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 21.0,
+      "original_bytes": 8988,
+      "compressed_bytes": 7100,
+      "headings": {
+        "recall": 1.0,
+        "orig": 23,
+        "found": 23,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 49,
+        "found": 49,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 1,
+        "found": 1,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 22,
+        "found": 22,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 137,
+        "found": 137,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/herdr/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 26.6,
+      "original_bytes": 10521,
+      "compressed_bytes": 7726,
+      "headings": {
+        "recall": 1.0,
+        "orig": 41,
+        "found": 41,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 118,
+        "found": 118,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 42,
+        "found": 42,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 9,
+        "found": 9,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 2,
+        "found": 2,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 55,
+        "found": 55,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/itineraries/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 12.2,
+      "original_bytes": 4932,
+      "compressed_bytes": 4328,
+      "headings": {
+        "recall": 1.0,
+        "orig": 22,
+        "found": 22,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 52,
+        "found": 52,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 13,
+        "found": 13,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 9,
+        "found": 9,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 17,
+        "found": 17,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/langgraph/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 24.5,
+      "original_bytes": 5627,
+      "compressed_bytes": 4248,
+      "headings": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 90,
+        "found": 90,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 8,
+        "found": 8,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 28,
+        "found": 28,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/langgraph/references/chat-interface.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 13.1,
+      "original_bytes": 3187,
+      "compressed_bytes": 2770,
+      "headings": {
+        "recall": 1.0,
+        "orig": 9,
+        "found": 9,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 41,
+        "found": 41,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 17,
+        "found": 17,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 26,
+        "found": 26,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/langgraph/references/core-rules.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 10.1,
+      "original_bytes": 1481,
+      "compressed_bytes": 1331,
       "headings": {
         "recall": 1.0,
         "orig": 6,
@@ -44,8 +2016,3716 @@
       },
       "code_content": {
         "recall": 1.0,
+        "orig": 31,
+        "found": 31,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 8,
+        "found": 8,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/langgraph/references/docker.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 36.8,
+      "original_bytes": 10934,
+      "compressed_bytes": 6912,
+      "headings": {
+        "recall": 1.0,
+        "orig": 16,
+        "found": 16,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.924,
+        "orig": 277,
+        "found": 256,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 0.967,
+        "orig": 30,
+        "found": 29,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 13,
+        "found": 13,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/litellm-provider-extension/REFERENCE.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 13.8,
+      "original_bytes": 17397,
+      "compressed_bytes": 15004,
+      "headings": {
+        "recall": 1.0,
+        "orig": 32,
+        "found": 32,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 186,
+        "found": 186,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 24,
+        "found": 24,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 79,
+        "found": 79,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 118,
+        "found": 118,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/litellm-provider-extension/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 19.1,
+      "original_bytes": 1564,
+      "compressed_bytes": 1266,
+      "headings": {
+        "recall": 1.0,
+        "orig": 1,
+        "found": 1,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 16,
+        "found": 16,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 19,
+        "found": 19,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/mcporter/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 43.5,
+      "original_bytes": 10518,
+      "compressed_bytes": 5942,
+      "headings": {
+        "recall": 0.929,
+        "orig": 56,
+        "found": 52,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.977,
+        "orig": 88,
+        "found": 86,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 259,
+        "found": 259,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 0.981,
+        "orig": 106,
+        "found": 104,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/mealie/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 14.5,
+      "original_bytes": 16063,
+      "compressed_bytes": 13730,
+      "headings": {
+        "recall": 1.0,
+        "orig": 113,
+        "found": 113,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 200,
+        "found": 200,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 36,
+        "found": 36,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 31,
+        "found": 31,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 55,
+        "found": 55,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 88,
+        "found": 88,
+        "pass": true
+      },
+      "blockquotes": {
+        "recall": 1.0,
+        "orig": 2,
+        "found": 2,
+        "pass": true
+      },
+      "pass": true,
+      "checks_passed": 8,
+      "checks_total": 8,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/mermaid/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 22.4,
+      "original_bytes": 8046,
+      "compressed_bytes": 6247,
+      "headings": {
+        "recall": 1.0,
+        "orig": 46,
+        "found": 46,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 236,
+        "found": 236,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 39,
+        "found": 39,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 12,
+        "found": 12,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 106,
+        "found": 106,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/mermaid/references/class-diagram.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 23.8,
+      "original_bytes": 7475,
+      "compressed_bytes": 5696,
+      "headings": {
+        "recall": 1.0,
+        "orig": 36,
+        "found": 36,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 224,
+        "found": 224,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 37,
+        "found": 37,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.955,
+        "orig": 66,
+        "found": 63,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/mermaid/references/er-diagram.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 21.6,
+      "original_bytes": 7955,
+      "compressed_bytes": 6234,
+      "headings": {
+        "recall": 1.0,
+        "orig": 41,
+        "found": 41,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 164,
+        "found": 164,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 40,
+        "found": 40,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 100,
+        "found": 100,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/mermaid/references/gantt.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 27.5,
+      "original_bytes": 10724,
+      "compressed_bytes": 7778,
+      "headings": {
+        "recall": 1.0,
+        "orig": 56,
+        "found": 56,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 345,
+        "found": 345,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 12,
+        "found": 12,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 26,
+        "found": 26,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.99,
+        "orig": 101,
+        "found": 100,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/mermaid/references/gitgraph.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 17.8,
+      "original_bytes": 9107,
+      "compressed_bytes": 7486,
+      "headings": {
+        "recall": 1.0,
+        "orig": 44,
+        "found": 44,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 178,
+        "found": 178,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 22,
+        "found": 22,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 27,
+        "found": 27,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.989,
+        "orig": 92,
+        "found": 91,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/mermaid/references/sequence-diagram.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 20.9,
+      "original_bytes": 6834,
+      "compressed_bytes": 5407,
+      "headings": {
+        "recall": 1.0,
+        "orig": 38,
+        "found": 38,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 192,
+        "found": 192,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 9,
+        "found": 9,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 61,
+        "found": 61,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/mermaid/references/state-diagram.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 32.3,
+      "original_bytes": 4953,
+      "compressed_bytes": 3354,
+      "headings": {
+        "recall": 0.958,
+        "orig": 48,
+        "found": 46,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.838,
+        "orig": 80,
+        "found": 67,
+        "pass": true
+      },
+      "tables": {
+        "recall": 0.886,
+        "orig": 44,
+        "found": 39,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 5,
+        "found": 5,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.987,
+        "orig": 77,
+        "found": 76,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/mq/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 19.1,
+      "original_bytes": 3416,
+      "compressed_bytes": 2763,
+      "headings": {
+        "recall": 1.0,
+        "orig": 8,
+        "found": 8,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 13,
+        "found": 13,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 19,
+        "found": 19,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 34,
+        "found": 34,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/obsidian/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 17.3,
+      "original_bytes": 2568,
+      "compressed_bytes": 2125,
+      "headings": {
+        "recall": 1.0,
+        "orig": 14,
+        "found": 14,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 17,
+        "found": 17,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 8,
+        "found": 8,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 11,
+        "found": 11,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 11,
+        "found": 11,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/openai/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 14.9,
+      "original_bytes": 801,
+      "compressed_bytes": 682,
+      "headings": {
+        "recall": 1.0,
+        "orig": 5,
+        "found": 5,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 11,
+        "found": 11,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/openai/references/core-rules.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 34.3,
+      "original_bytes": 15386,
+      "compressed_bytes": 10114,
+      "headings": {
+        "recall": 0.992,
+        "orig": 122,
+        "found": 121,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.966,
+        "orig": 234,
+        "found": 226,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 27,
+        "found": 27,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 53,
+        "found": 53,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 5,
+        "found": 5,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.987,
+        "orig": 78,
+        "found": 77,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/osm-geography/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 25.6,
+      "original_bytes": 6223,
+      "compressed_bytes": 4628,
+      "headings": {
+        "recall": 0.9,
+        "orig": 30,
+        "found": 27,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.955,
+        "orig": 66,
+        "found": 63,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
         "orig": 21,
         "found": 21,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 0.971,
+        "orig": 34,
+        "found": 33,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/osm-routing/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 12.8,
+      "original_bytes": 7668,
+      "compressed_bytes": 6684,
+      "headings": {
+        "recall": 1.0,
+        "orig": 57,
+        "found": 57,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 152,
+        "found": 152,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 27,
+        "found": 27,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 39,
+        "found": 39,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pdf/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 20.2,
+      "original_bytes": 11854,
+      "compressed_bytes": 9461,
+      "headings": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 97,
+        "found": 97,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 33,
+        "found": 33,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 46,
+        "found": 46,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pdf/forms.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 15.6,
+      "original_bytes": 16692,
+      "compressed_bytes": 14083,
+      "headings": {
+        "recall": 1.0,
+        "orig": 90,
+        "found": 90,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 361,
+        "found": 361,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 59,
+        "found": 59,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pdf/reference.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 26.1,
+      "original_bytes": 21184,
+      "compressed_bytes": 15648,
+      "headings": {
+        "recall": 1.0,
+        "orig": 119,
+        "found": 119,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 527,
+        "found": 527,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 16,
+        "found": 16,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 79,
+        "found": 79,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pi-spawn/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 18.4,
+      "original_bytes": 10551,
+      "compressed_bytes": 8605,
+      "headings": {
+        "recall": 1.0,
+        "orig": 22,
+        "found": 22,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 106,
+        "found": 106,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 51,
+        "found": 51,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pi-tool-routing/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 31.8,
+      "original_bytes": 9182,
+      "compressed_bytes": 6260,
+      "headings": {
+        "recall": 1.0,
+        "orig": 24,
+        "found": 24,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 208,
+        "found": 208,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 21,
+        "found": 21,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 59,
+        "found": 59,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pi-tool-routing/references/custom-operations.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 13.2,
+      "original_bytes": 9781,
+      "compressed_bytes": 8489,
+      "headings": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 194,
+        "found": 194,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 13,
+        "found": 13,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 52,
+        "found": 52,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pi-tool-routing/references/path-mapping.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 33.4,
+      "original_bytes": 8640,
+      "compressed_bytes": 5758,
+      "headings": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.991,
+        "orig": 212,
+        "found": 210,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 34,
+        "found": 34,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pi-tool-routing/references/state-persistence.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 28.9,
+      "original_bytes": 9456,
+      "compressed_bytes": 6722,
+      "headings": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 221,
+        "found": 221,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 47,
+        "found": 47,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pi-tool-routing/references/tool-wrapping.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 16.3,
+      "original_bytes": 13742,
+      "compressed_bytes": 11505,
+      "headings": {
+        "recall": 1.0,
+        "orig": 117,
+        "found": 117,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 223,
+        "found": 223,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 77,
+        "found": 77,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 55,
+        "found": 55,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pipeline-fix/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 13.4,
+      "original_bytes": 8499,
+      "compressed_bytes": 7356,
+      "headings": {
+        "recall": 0.952,
+        "orig": 21,
+        "found": 20,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.967,
+        "orig": 30,
+        "found": 29,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 80,
+        "found": 80,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 5,
+        "found": 5,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 43,
+        "found": 43,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 52,
+        "found": 52,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pptx/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 15.1,
+      "original_bytes": 6841,
+      "compressed_bytes": 5810,
+      "headings": {
+        "recall": 0.938,
+        "orig": 16,
+        "found": 15,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 25,
+        "found": 25,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 32,
+        "found": 32,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 29,
+        "found": 29,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.937,
+        "orig": 63,
+        "found": 59,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pptx/editing.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 20.2,
+      "original_bytes": 12774,
+      "compressed_bytes": 10188,
+      "headings": {
+        "recall": 0.957,
+        "orig": 23,
+        "found": 22,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.995,
+        "orig": 192,
+        "found": 191,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 26,
+        "found": 26,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 20,
+        "found": 20,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.947,
+        "orig": 75,
+        "found": 71,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/pptx/pptxgenjs.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 16.6,
+      "original_bytes": 18452,
+      "compressed_bytes": 15389,
+      "headings": {
+        "recall": 1.0,
+        "orig": 64,
+        "found": 64,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.998,
+        "orig": 411,
+        "found": 410,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 20,
+        "found": 20,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 21,
+        "found": 21,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 53,
+        "found": 53,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 13.7,
+      "original_bytes": 11865,
+      "compressed_bytes": 10240,
+      "headings": {
+        "recall": 1.0,
+        "orig": 62,
+        "found": 62,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 187,
+        "found": 187,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 104,
+        "found": 104,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 65,
+        "found": 65,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/code-review.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 16.1,
+      "original_bytes": 10364,
+      "compressed_bytes": 8692,
+      "headings": {
+        "recall": 1.0,
+        "orig": 77,
+        "found": 77,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 137,
+        "found": 137,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 30,
+        "found": 30,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 0.986,
+        "orig": 72,
+        "found": 71,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 100,
+        "found": 100,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/codestyle.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 20.2,
+      "original_bytes": 2051,
+      "compressed_bytes": 1636,
+      "headings": {
+        "recall": 1.0,
+        "orig": 11,
+        "found": 11,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 11,
+        "found": 11,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 28,
+        "found": 28,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 30,
+        "found": 30,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/core-rules.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 9.7,
+      "original_bytes": 1344,
+      "compressed_bytes": 1214,
+      "headings": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 29,
+        "found": 29,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 8,
+        "found": 8,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/docker.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 26.0,
+      "original_bytes": 2619,
+      "compressed_bytes": 1937,
+      "headings": {
+        "recall": 0.923,
+        "orig": 13,
+        "found": 12,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.918,
+        "orig": 61,
+        "found": 56,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 2,
+        "found": 2,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.941,
+        "orig": 17,
+        "found": 16,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/examples.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 12.7,
+      "original_bytes": 1258,
+      "compressed_bytes": 1098,
+      "headings": {
+        "recall": 1.0,
+        "orig": 5,
+        "found": 5,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 21,
+        "found": 21,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/httpx.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 22.7,
+      "original_bytes": 1669,
+      "compressed_bytes": 1290,
+      "headings": {
+        "recall": 1.0,
+        "orig": 7,
+        "found": 7,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 0.97,
+        "orig": 33,
+        "found": 32,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 17,
+        "found": 17,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/logging.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 14.4,
+      "original_bytes": 1016,
+      "compressed_bytes": 870,
+      "headings": {
+        "recall": 1.0,
+        "orig": 9,
+        "found": 9,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 12,
+        "found": 12,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 0.941,
+        "orig": 17,
+        "found": 16,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/project-config.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 35.0,
+      "original_bytes": 1434,
+      "compressed_bytes": 932,
+      "headings": {
+        "recall": 0.909,
+        "orig": 11,
+        "found": 10,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.833,
+        "orig": 24,
+        "found": 20,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/secrets.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 14.4,
+      "original_bytes": 2536,
+      "compressed_bytes": 2172,
+      "headings": {
+        "recall": 1.0,
+        "orig": 11,
+        "found": 11,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 14,
+        "found": 14,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 22,
+        "found": 22,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 34,
+        "found": 34,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/security.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 13.5,
+      "original_bytes": 3706,
+      "compressed_bytes": 3207,
+      "headings": {
+        "recall": 1.0,
+        "orig": 17,
+        "found": 17,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 35,
+        "found": 35,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 27,
+        "found": 27,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 37,
+        "found": 37,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python/references/testing.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 12.1,
+      "original_bytes": 7274,
+      "compressed_bytes": 6393,
+      "headings": {
+        "recall": 1.0,
+        "orig": 71,
+        "found": 71,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 136,
+        "found": 136,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 22,
+        "found": 22,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 27,
+        "found": 27,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 92,
+        "found": 92,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/python-uv/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 26.9,
+      "original_bytes": 6870,
+      "compressed_bytes": 5024,
+      "headings": {
+        "recall": 1.0,
+        "orig": 27,
+        "found": 27,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 65,
+        "found": 65,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 47,
+        "found": 47,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/readeck/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 14.2,
+      "original_bytes": 10659,
+      "compressed_bytes": 9149,
+      "headings": {
+        "recall": 1.0,
+        "orig": 29,
+        "found": 29,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 211,
+        "found": 211,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 9,
+        "found": 9,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 32,
+        "found": 32,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 44,
+        "found": 44,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/revealjs/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 28.6,
+      "original_bytes": 8198,
+      "compressed_bytes": 5854,
+      "headings": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.988,
+        "orig": 241,
+        "found": 238,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 0.97,
+        "orig": 33,
+        "found": 32,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/revealjs/references/api.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 37.8,
+      "original_bytes": 10935,
+      "compressed_bytes": 6806,
+      "headings": {
+        "recall": 1.0,
+        "orig": 28,
+        "found": 28,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.988,
+        "orig": 171,
+        "found": 169,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 57,
+        "found": 57,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 46,
+        "found": 46,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 50,
+        "found": 50,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/revealjs/references/architecture.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 12.8,
+      "original_bytes": 5694,
+      "compressed_bytes": 4966,
+      "headings": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 226,
+        "found": 226,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 17,
+        "found": 17,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/revealjs/references/custom-themes.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 22.4,
+      "original_bytes": 9649,
+      "compressed_bytes": 7486,
+      "headings": {
+        "recall": 1.0,
+        "orig": 21,
+        "found": 21,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 258,
+        "found": 258,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 5,
+        "found": 5,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.976,
+        "orig": 41,
+        "found": 40,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/revealjs/references/plugins.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 15.2,
+      "original_bytes": 3346,
+      "compressed_bytes": 2837,
+      "headings": {
+        "recall": 1.0,
+        "orig": 16,
+        "found": 16,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 26,
+        "found": 26,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 11,
+        "found": 11,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 34,
+        "found": 34,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/session-logs/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 17.8,
+      "original_bytes": 15452,
+      "compressed_bytes": 12699,
+      "headings": {
+        "recall": 1.0,
+        "orig": 31,
+        "found": 31,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 39,
+        "found": 39,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 37,
+        "found": 37,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 46,
+        "found": 46,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/skill-creator/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 16.7,
+      "original_bytes": 1813,
+      "compressed_bytes": 1510,
+      "headings": {
+        "recall": 1.0,
+        "orig": 14,
+        "found": 14,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.935,
+        "orig": 31,
+        "found": 29,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 9,
+        "found": 9,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/skill-creator/references/output-patterns.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 4.5,
+      "original_bytes": 814,
+      "compressed_bytes": 777,
+      "headings": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 11,
+        "found": 11,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/skill-creator/references/workflows.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 25.8,
+      "original_bytes": 13207,
+      "compressed_bytes": 9798,
+      "headings": {
+        "recall": 1.0,
+        "orig": 65,
+        "found": 65,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.97,
+        "orig": 166,
+        "found": 161,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 33,
+        "found": 33,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 144,
+        "found": 144,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 38,
+        "found": 38,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/strandagents/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 29.4,
+      "original_bytes": 4378,
+      "compressed_bytes": 3090,
+      "headings": {
+        "recall": 1.0,
+        "orig": 18,
+        "found": 18,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 70,
+        "found": 70,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 12,
+        "found": 12,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 27,
+        "found": 27,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/strandagents/references/agentcore.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 29.0,
+      "original_bytes": 7699,
+      "compressed_bytes": 5464,
+      "headings": {
+        "recall": 1.0,
+        "orig": 59,
+        "found": 59,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 4,
+        "comp": 4,
+        "common": 4,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.996,
+        "orig": 238,
+        "found": 237,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 32,
+        "found": 32,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.974,
+        "orig": 39,
+        "found": 38,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/strandagents/references/docker.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 30.6,
+      "original_bytes": 15234,
+      "compressed_bytes": 10573,
+      "headings": {
+        "recall": 1.0,
+        "orig": 74,
+        "found": 74,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.97,
+        "orig": 333,
+        "found": 323,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 8,
+        "found": 8,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.986,
+        "orig": 74,
+        "found": 73,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/strandagents/references/mcp.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 42.8,
+      "original_bytes": 10733,
+      "compressed_bytes": 6143,
+      "headings": {
+        "recall": 0.979,
+        "orig": 48,
+        "found": 47,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.973,
+        "orig": 262,
+        "found": 255,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 3,
+        "found": 3,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 23,
+        "found": 23,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/strandagents/references/multi-agent.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 32.6,
+      "original_bytes": 12302,
+      "compressed_bytes": 8292,
+      "headings": {
+        "recall": 0.979,
+        "orig": 47,
+        "found": 46,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.967,
+        "orig": 244,
+        "found": 236,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 31,
+        "found": 31,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/strandagents/references/observability.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 23.7,
+      "original_bytes": 5152,
+      "compressed_bytes": 3933,
+      "headings": {
+        "recall": 1.0,
+        "orig": 14,
+        "found": 14,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.99,
+        "orig": 97,
+        "found": 96,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 36,
+        "found": 36,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/strandagents/references/openai.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 25.3,
+      "original_bytes": 1784,
+      "compressed_bytes": 1333,
+      "headings": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.951,
+        "orig": 41,
+        "found": 39,
         "pass": true
       },
       "tables": {
@@ -73,7 +5753,1253 @@
       "pass": true,
       "checks_passed": 4,
       "checks_total": 4,
-      "file": "harness/test_corpus/dedup.md",
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/strandagents/references/quickstart.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 27.4,
+      "original_bytes": 8217,
+      "compressed_bytes": 5967,
+      "headings": {
+        "recall": 1.0,
+        "orig": 35,
+        "found": 35,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.948,
+        "orig": 153,
+        "found": 145,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 1,
+        "found": 1,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 30,
+        "found": 30,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/strandagents/references/security.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 35.2,
+      "original_bytes": 10079,
+      "compressed_bytes": 6529,
+      "headings": {
+        "recall": 0.968,
+        "orig": 63,
+        "found": 61,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 4,
+        "comp": 4,
+        "common": 4,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.947,
+        "orig": 281,
+        "found": 266,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 17,
+        "found": 17,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 0.956,
+        "orig": 45,
+        "found": 43,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/strandagents/references/testing.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 44.4,
+      "original_bytes": 4899,
+      "compressed_bytes": 2722,
+      "headings": {
+        "recall": 0.929,
+        "orig": 28,
+        "found": 26,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.881,
+        "orig": 109,
+        "found": 96,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 19,
+        "found": 19,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/strandagents/references/tools.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 17.0,
+      "original_bytes": 12872,
+      "compressed_bytes": 10687,
+      "headings": {
+        "recall": 1.0,
+        "orig": 38,
+        "found": 38,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 134,
+        "found": 134,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 10,
+        "found": 10,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 19,
+        "found": 19,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 77,
+        "found": 77,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/taskwarrior/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 19.0,
+      "original_bytes": 2939,
+      "compressed_bytes": 2380,
+      "headings": {
+        "recall": 1.0,
+        "orig": 7,
+        "found": 7,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/theme-factory/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 12.7,
+      "original_bytes": 544,
+      "compressed_bytes": 475,
+      "headings": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/theme-factory/themes/arctic-frost.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 9.8,
+      "original_bytes": 519,
+      "compressed_bytes": 468,
+      "headings": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/theme-factory/themes/botanical-garden.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 10.3,
+      "original_bytes": 496,
+      "compressed_bytes": 445,
+      "headings": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/theme-factory/themes/desert-rose.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 12.6,
+      "original_bytes": 506,
+      "compressed_bytes": 442,
+      "headings": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/theme-factory/themes/forest-canopy.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 12.9,
+      "original_bytes": 528,
+      "compressed_bytes": 460,
+      "headings": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/theme-factory/themes/golden-hour.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 11.7,
+      "original_bytes": 513,
+      "compressed_bytes": 453,
+      "headings": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/theme-factory/themes/midnight-galaxy.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 12.9,
+      "original_bytes": 549,
+      "compressed_bytes": 478,
+      "headings": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/theme-factory/themes/modern-minimalist.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 12.3,
+      "original_bytes": 555,
+      "compressed_bytes": 487,
+      "headings": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/theme-factory/themes/ocean-depths.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 11.5,
+      "original_bytes": 558,
+      "compressed_bytes": 494,
+      "headings": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/theme-factory/themes/sunset-boulevard.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 10.2,
+      "original_bytes": 547,
+      "compressed_bytes": 491,
+      "headings": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 0,
+        "comp": 0,
+        "common": 0,
+        "pass": true
+      },
+      "code_content": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 6,
+        "found": 6,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 4,
+      "checks_total": 4,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/theme-factory/themes/tech-innovation.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 24.9,
+      "original_bytes": 4337,
+      "compressed_bytes": 3257,
+      "headings": {
+        "recall": 1.0,
+        "orig": 8,
+        "found": 8,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.984,
+        "orig": 62,
+        "found": 61,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 9,
+        "found": 9,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 35,
+        "found": 35,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/timewarrior/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 17.3,
+      "original_bytes": 5412,
+      "compressed_bytes": 4477,
+      "headings": {
+        "recall": 1.0,
+        "orig": 12,
+        "found": 12,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 14,
+        "found": 14,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 30,
+        "found": 30,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 63,
+        "found": 63,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/tmux/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 7.5,
+      "original_bytes": 2691,
+      "compressed_bytes": 2488,
+      "headings": {
+        "recall": 1.0,
+        "orig": 14,
+        "found": 14,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 1,
+        "comp": 1,
+        "common": 1,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 29,
+        "found": 29,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 1,
+        "found": 1,
+        "pass": true
+      },
+      "lists": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "inline_code": {
+        "recall": 0.85,
+        "orig": 20,
+        "found": 17,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/weather/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 22.8,
+      "original_bytes": 12917,
+      "compressed_bytes": 9973,
+      "headings": {
+        "recall": 1.0,
+        "orig": 19,
+        "found": 19,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 205,
+        "found": 205,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 27,
+        "found": 27,
+        "pass": true
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 23,
+        "found": 23,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 80,
+        "found": 80,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 6,
+      "checks_total": 6,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/wikidata-sparql/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 14.5,
+      "original_bytes": 10589,
+      "compressed_bytes": 9057,
+      "headings": {
+        "recall": 1.0,
+        "orig": 56,
+        "found": 56,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 3,
+        "comp": 3,
+        "common": 3,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 1.0,
+        "orig": 74,
+        "found": 74,
+        "pass": true
+      },
+      "tables": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "links": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 71,
+        "found": 71,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 37,
+        "found": 37,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 5,
+      "checks_total": 5,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/xlsx/SKILL.md",
+      "llm": {
+        "headings": {
+          "skipped": true,
+          "reason": "deterministic_pass"
+        }
+      }
+    },
+    {
+      "savings_pct": 13.6,
+      "original_bytes": 22023,
+      "compressed_bytes": 19031,
+      "headings": {
+        "recall": 1.0,
+        "orig": 296,
+        "found": 296,
+        "pass": true
+      },
+      "code_languages": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "orig": 2,
+        "comp": 2,
+        "common": 2,
+        "pass": true
+      },
+      "code_content": {
+        "recall": 0.998,
+        "orig": 535,
+        "found": 534,
+        "pass": true
+      },
+      "tables": {
+        "recall": 1.0,
+        "orig": 21,
+        "found": 21,
+        "pass": true
+      },
+      "links": {
+        "recall": 1.0,
+        "orig": 4,
+        "found": 4,
+        "pass": true
+      },
+      "lists": {
+        "recall": 1.0,
+        "orig": 43,
+        "found": 43,
+        "pass": true
+      },
+      "inline_code": {
+        "recall": 1.0,
+        "orig": 125,
+        "found": 125,
+        "pass": true
+      },
+      "blockquotes": {
+        "skipped": true,
+        "reason": "no items"
+      },
+      "pass": true,
+      "checks_passed": 7,
+      "checks_total": 7,
+      "file": "/Users/jean-christophe.saad-dupuy2/src/github.com/jcsaaddupuy/badrobots/skills/yq/SKILL.md",
       "llm": {
         "headings": {
           "skipped": true,
