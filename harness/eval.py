@@ -149,7 +149,7 @@ def find_heading_content(original_headings: list[str], compressed: str) -> dict:
             "callback": ["cb"],
             "carousels": ["crls"],
             "checkboxes": ["cbxs"],
-            "code": ["cd"],
+            "code": ["cod"],
             "column": ["col"],
             "columns": ["cols"],
             "command": ["cmd"],
