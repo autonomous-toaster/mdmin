@@ -396,7 +396,7 @@ const REPLACEMENTS: &[(&str, &str)] = &[
     ("radio", "rd"),
     ("tools", "tls"),
     ("value", "val"),
-    ("code", "cd"),
+    ("code", "cod"),
     ("data", "dt"),
     ("file", "fl"),
     ("list", "lst"),
@@ -407,6 +407,51 @@ const REPLACEMENTS: &[(&str, &str)] = &[
     ("type", "typ"),
     ("user", "usr"),
 ];
+
+/// Check if the current position is the start of a URL.
+/// Detects both protocol-prefixed URLs (https://...) and protocol-stripped
+/// URLs (docs.example.com/path) by looking for domain-like patterns.
+fn is_url_start(ch: char, chars: &std::iter::Peekable<std::str::Chars>) -> bool {
+    if ch.is_alphabetic() {
+        let mut rest = chars.clone();
+        let mut seen_colon = false;
+        let mut seen_slash = false;
+        let mut seen_dot = false;
+        let mut count = 0;
+        while let Some(&c) = rest.peek() {
+            if count > 30 {
+                break;
+            }
+            // Check for protocol:// pattern
+            if c == ':' && !seen_colon {
+                seen_colon = true;
+            } else if c == '/' && seen_colon && !seen_slash {
+                seen_slash = true;
+            } else if c == '/' && seen_slash {
+                return true;  // protocol:// detected
+            } else if c == '.' && !seen_dot && count >= 1 {
+                seen_dot = true;
+            } else if c == '/' && seen_dot && !seen_colon {
+                return true;  // domain/path detected (protocol already stripped)
+            } else if !c.is_alphanumeric() && c != '+' && c != '-' && c != '.' && c != '/' && c != ':' && c != '~' && c != '_' {
+                break;
+            }
+            count += 1;
+            rest.next();
+        }
+        // Also detect bare domains at end of line: word.word (no trailing /)
+        if seen_dot && count >= 4 && count <= 30 {
+            if let Some(&c) = rest.peek() {
+                if c == ' ' || c == '"' || c == '\'' || c == ')' || c == ']' || c == '>' || c == '\n' || c == ',' || c == '.' {
+                    return true;
+                }
+            } else {
+                return true;  // end of string
+            }
+        }
+    }
+    false
+}
 
 /// Apply grammar stripping with default (Medium) level.
 ///
@@ -476,6 +521,20 @@ pub fn strip_with_level(text: &str, level: Level) -> String {
             continue;
         }
         
+        // Skip URLs entirely to prevent grammar abbreviations from mangling path components
+        if is_url_start(ch, &chars) {
+            result.push(ch);
+            // Emit the rest of the URL verbatim
+            while let Some(&c) = chars.peek() {
+                if c == ' ' || c == '"' || c == '\'' || c == ')' || c == ']' || c == '>' || c == '\n' {
+                    break;
+                }
+                result.push(c);
+                chars.next();
+            }
+            continue;
+        }
+
         // Apply replacements outside code blocks
         let mut applied = false;
         for (pattern, replacement) in REPLACEMENTS {

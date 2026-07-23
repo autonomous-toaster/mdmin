@@ -982,12 +982,24 @@ fn deduplicate(text: &str) -> String {
 }
 
 /// Find the section number for a given line position.
+/// Counts both `#`-prefixed headings (L1) and `title:`-suffixed headings (L2+).
 fn find_section_number(lines: &[&str], pos: usize) -> usize {
     let mut section = 0;
     for i in 0..=std::cmp::min(pos, lines.len().saturating_sub(1)) {
         let line = lines[i].trim();
         if line.starts_with('#') {
             section += 1;
+        } else if line.ends_with(':') && !line.starts_with('`') && !line.starts_with('[') {
+            // L2+ heading format: "title:" (no # prefix)
+            // Skip lines that are clearly not headings (inline code, references, URLs)
+            let content = line.trim_end_matches(':');
+            if !content.is_empty() && content.len() < 80 && !content.contains(' ') {
+                // Single-word heading like "section:"
+                section += 1;
+            } else if !content.is_empty() && content.len() < 80 && content.chars().all(|c| c.is_alphanumeric() || c == '-' || c == '_' || c == ' ') {
+                // Multi-word heading like "section title:"
+                section += 1;
+            }
         }
     }
     if section == 0 { section = 1; }

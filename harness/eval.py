@@ -528,7 +528,7 @@ def content_recall(original_items: list[str], compressed: str) -> dict:
                     "callback": ["cb"],
                     "carousels": ["crls"],
                     "checkboxes": ["cbxs"],
-                    "code": ["cd"],
+                    "code": ["cod"],
                     "column": ["col"],
                     "columns": ["cols"],
                     "command": ["cmd"],
