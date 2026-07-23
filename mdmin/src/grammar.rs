@@ -105,6 +105,8 @@ const FREQUENCY_TABLE: &[(&str, f64)] = &[
     ("there", 0.62),
     ("too", 0.60),
     ("such", 0.60),
+    // Low-frequency filler words
+    ("pretty", 0.60),
     // Common filler adverbs (continued)
     ("also", 0.70),
     ("even", 0.65),
