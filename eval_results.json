@@ -15,8 +15,8 @@
   "summary": {
     "files": 115,
     "total_original": 885136,
-    "total_compressed": 691352,
-    "savings_pct": 21.9,
+    "total_compressed": 682999,
+    "savings_pct": 22.8,
     "deterministic_pass": "115/115",
     "avg_heading_f1": 0.993,
     "avg_code_lang_recall": 1.0,
@@ -86,13 +86,13 @@
       }
     },
     {
-      "savings_pct": 15.2,
+      "savings_pct": 38.4,
       "original_bytes": 8510,
-      "compressed_bytes": 7214,
+      "compressed_bytes": 5241,
       "headings": {
-        "recall": 1.0,
+        "recall": 0.986,
         "orig": 73,
-        "found": 73,
+        "found": 72,
         "pass": true
       },
       "code_languages": {
@@ -125,9 +125,9 @@
         "pass": true
       },
       "inline_code": {
-        "recall": 1.0,
+        "recall": 0.952,
         "orig": 42,
-        "found": 42,
+        "found": 40,
         "pass": true
       },
       "blockquotes": {
@@ -146,9 +146,9 @@
       }
     },
     {
-      "savings_pct": 32.4,
+      "savings_pct": 15.2,
       "original_bytes": 7256,
-      "compressed_bytes": 4906,
+      "compressed_bytes": 6150,
       "headings": {
         "recall": 1.0,
         "orig": 50,
@@ -187,9 +187,9 @@
         "pass": true
       },
       "inline_code": {
-        "recall": 0.977,
+        "recall": 1.0,
         "orig": 43,
-        "found": 42,
+        "found": 43,
         "pass": true
       },
       "blockquotes": {
@@ -396,9 +396,9 @@
       }
     },
     {
-      "savings_pct": 13.9,
+      "savings_pct": 14.3,
       "original_bytes": 9006,
-      "compressed_bytes": 7753,
+      "compressed_bytes": 7717,
       "headings": {
         "recall": 1.0,
         "orig": 69,
@@ -456,9 +456,9 @@
       }
     },
     {
-      "savings_pct": 36.4,
+      "savings_pct": 37.7,
       "original_bytes": 18304,
-      "compressed_bytes": 11638,
+      "compressed_bytes": 11402,
       "headings": {
         "recall": 1.0,
         "orig": 92,
@@ -518,9 +518,9 @@
       }
     },
     {
-      "savings_pct": 36.7,
+      "savings_pct": 39.4,
       "original_bytes": 16159,
-      "compressed_bytes": 10221,
+      "compressed_bytes": 9794,
       "headings": {
         "recall": 1.0,
         "orig": 73,
@@ -537,9 +537,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.991,
+        "recall": 0.988,
         "orig": 347,
-        "found": 344,
+        "found": 343,
         "pass": true
       },
       "tables": {
@@ -704,9 +704,9 @@
       }
     },
     {
-      "savings_pct": 11.4,
+      "savings_pct": 10.3,
       "original_bytes": 11858,
-      "compressed_bytes": 10507,
+      "compressed_bytes": 10638,
       "headings": {
         "recall": 1.0,
         "orig": 24,
@@ -723,9 +723,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.989,
+        "recall": 1.0,
         "orig": 88,
-        "found": 87,
+        "found": 88,
         "pass": true
       },
       "tables": {
@@ -766,9 +766,9 @@
       }
     },
     {
-      "savings_pct": 18.5,
+      "savings_pct": 24.4,
       "original_bytes": 5904,
-      "compressed_bytes": 4814,
+      "compressed_bytes": 4462,
       "headings": {
         "recall": 1.0,
         "orig": 37,
@@ -826,9 +826,9 @@
       }
     },
     {
-      "savings_pct": 13.7,
+      "savings_pct": 16.2,
       "original_bytes": 19101,
-      "compressed_bytes": 16478,
+      "compressed_bytes": 15998,
       "headings": {
         "recall": 1.0,
         "orig": 172,
@@ -1132,9 +1132,9 @@
       }
     },
     {
-      "savings_pct": 20.6,
+      "savings_pct": 19.5,
       "original_bytes": 19804,
-      "compressed_bytes": 15721,
+      "compressed_bytes": 15951,
       "headings": {
         "recall": 1.0,
         "orig": 160,
@@ -1194,9 +1194,9 @@
       }
     },
     {
-      "savings_pct": 34.8,
+      "savings_pct": 27.7,
       "original_bytes": 3547,
-      "compressed_bytes": 2312,
+      "compressed_bytes": 2565,
       "headings": {
         "recall": 1.0,
         "orig": 24,
@@ -1316,9 +1316,9 @@
       }
     },
     {
-      "savings_pct": 24.0,
+      "savings_pct": 20.6,
       "original_bytes": 2869,
-      "compressed_bytes": 2181,
+      "compressed_bytes": 2277,
       "headings": {
         "recall": 1.0,
         "orig": 19,
@@ -1376,9 +1376,9 @@
       }
     },
     {
-      "savings_pct": 21.9,
+      "savings_pct": 23.8,
       "original_bytes": 15480,
-      "compressed_bytes": 12090,
+      "compressed_bytes": 11797,
       "headings": {
         "recall": 1.0,
         "orig": 64,
@@ -1395,9 +1395,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.971,
+        "recall": 0.978,
         "orig": 137,
-        "found": 133,
+        "found": 134,
         "pass": true
       },
       "tables": {
@@ -1440,9 +1440,9 @@
       }
     },
     {
-      "savings_pct": 29.3,
+      "savings_pct": 26.1,
       "original_bytes": 7917,
-      "compressed_bytes": 5594,
+      "compressed_bytes": 5852,
       "headings": {
         "recall": 1.0,
         "orig": 34,
@@ -1465,9 +1465,9 @@
         "pass": true
       },
       "tables": {
-        "recall": 1.0,
+        "recall": 0.9,
         "orig": 10,
-        "found": 10,
+        "found": 9,
         "pass": true
       },
       "links": {
@@ -1481,9 +1481,9 @@
         "pass": true
       },
       "inline_code": {
-        "recall": 0.98,
+        "recall": 0.959,
         "orig": 49,
-        "found": 48,
+        "found": 47,
         "pass": true
       },
       "blockquotes": {
@@ -1504,9 +1504,9 @@
       }
     },
     {
-      "savings_pct": 21.5,
+      "savings_pct": 23.6,
       "original_bytes": 23697,
-      "compressed_bytes": 18596,
+      "compressed_bytes": 18110,
       "headings": {
         "recall": 1.0,
         "orig": 74,
@@ -1566,9 +1566,9 @@
       }
     },
     {
-      "savings_pct": 16.9,
+      "savings_pct": 22.1,
       "original_bytes": 8474,
-      "compressed_bytes": 7042,
+      "compressed_bytes": 6600,
       "headings": {
         "recall": 1.0,
         "orig": 36,
@@ -1626,9 +1626,9 @@
       }
     },
     {
-      "savings_pct": 26.4,
+      "savings_pct": 26.1,
       "original_bytes": 12384,
-      "compressed_bytes": 9116,
+      "compressed_bytes": 9147,
       "headings": {
         "recall": 1.0,
         "orig": 28,
@@ -1686,9 +1686,9 @@
       }
     },
     {
-      "savings_pct": 19.1,
+      "savings_pct": 28.2,
       "original_bytes": 8988,
-      "compressed_bytes": 7268,
+      "compressed_bytes": 6452,
       "headings": {
         "recall": 1.0,
         "orig": 23,
@@ -1721,15 +1721,15 @@
         "pass": true
       },
       "lists": {
-        "recall": 1.0,
+        "recall": 0.955,
         "orig": 22,
-        "found": 22,
+        "found": 21,
         "pass": true
       },
       "inline_code": {
-        "recall": 1.0,
+        "recall": 0.993,
         "orig": 137,
-        "found": 137,
+        "found": 136,
         "pass": true
       },
       "blockquotes": {
@@ -1748,9 +1748,9 @@
       }
     },
     {
-      "savings_pct": 26.6,
+      "savings_pct": 27.9,
       "original_bytes": 10521,
-      "compressed_bytes": 7726,
+      "compressed_bytes": 7586,
       "headings": {
         "recall": 1.0,
         "orig": 41,
@@ -1874,9 +1874,9 @@
       }
     },
     {
-      "savings_pct": 24.5,
+      "savings_pct": 19.0,
       "original_bytes": 5627,
-      "compressed_bytes": 4247,
+      "compressed_bytes": 4557,
       "headings": {
         "recall": 1.0,
         "orig": 18,
@@ -2236,13 +2236,13 @@
       }
     },
     {
-      "savings_pct": 32.9,
+      "savings_pct": 38.8,
       "original_bytes": 10518,
-      "compressed_bytes": 7059,
+      "compressed_bytes": 6441,
       "headings": {
-        "recall": 0.964,
+        "recall": 0.946,
         "orig": 56,
-        "found": 54,
+        "found": 53,
         "pass": true
       },
       "code_languages": {
@@ -2261,9 +2261,9 @@
         "pass": true
       },
       "tables": {
-        "recall": 1.0,
+        "recall": 0.996,
         "orig": 259,
-        "found": 259,
+        "found": 258,
         "pass": true
       },
       "links": {
@@ -2296,9 +2296,9 @@
       }
     },
     {
-      "savings_pct": 15.6,
+      "savings_pct": 17.0,
       "original_bytes": 16063,
-      "compressed_bytes": 13557,
+      "compressed_bytes": 13331,
       "headings": {
         "recall": 1.0,
         "orig": 113,
@@ -2362,9 +2362,9 @@
       }
     },
     {
-      "savings_pct": 29.0,
+      "savings_pct": 21.7,
       "original_bytes": 8046,
-      "compressed_bytes": 5715,
+      "compressed_bytes": 6300,
       "headings": {
         "recall": 1.0,
         "orig": 46,
@@ -2381,9 +2381,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.996,
+        "recall": 1.0,
         "orig": 236,
-        "found": 235,
+        "found": 236,
         "pass": true
       },
       "tables": {
@@ -2424,9 +2424,9 @@
       }
     },
     {
-      "savings_pct": 24.8,
+      "savings_pct": 25.7,
       "original_bytes": 7475,
-      "compressed_bytes": 5618,
+      "compressed_bytes": 5554,
       "headings": {
         "recall": 1.0,
         "orig": 36,
@@ -2486,13 +2486,13 @@
       }
     },
     {
-      "savings_pct": 22.1,
+      "savings_pct": 20.8,
       "original_bytes": 7955,
-      "compressed_bytes": 6198,
+      "compressed_bytes": 6301,
       "headings": {
-        "recall": 0.976,
+        "recall": 1.0,
         "orig": 41,
-        "found": 40,
+        "found": 41,
         "pass": true
       },
       "code_languages": {
@@ -2527,9 +2527,9 @@
         "pass": true
       },
       "inline_code": {
-        "recall": 0.99,
+        "recall": 1.0,
         "orig": 100,
-        "found": 99,
+        "found": 100,
         "pass": true
       },
       "blockquotes": {
@@ -2548,13 +2548,13 @@
       }
     },
     {
-      "savings_pct": 34.7,
+      "savings_pct": 29.4,
       "original_bytes": 10724,
-      "compressed_bytes": 7008,
+      "compressed_bytes": 7569,
       "headings": {
-        "recall": 0.982,
+        "recall": 0.964,
         "orig": 56,
-        "found": 55,
+        "found": 54,
         "pass": true
       },
       "code_languages": {
@@ -2589,9 +2589,9 @@
         "pass": true
       },
       "inline_code": {
-        "recall": 0.96,
+        "recall": 0.98,
         "orig": 101,
-        "found": 97,
+        "found": 99,
         "pass": true
       },
       "blockquotes": {
@@ -2610,9 +2610,9 @@
       }
     },
     {
-      "savings_pct": 30.9,
+      "savings_pct": 19.8,
       "original_bytes": 9107,
-      "compressed_bytes": 6292,
+      "compressed_bytes": 7304,
       "headings": {
         "recall": 1.0,
         "orig": 44,
@@ -2629,9 +2629,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.989,
+        "recall": 1.0,
         "orig": 178,
-        "found": 176,
+        "found": 178,
         "pass": true
       },
       "tables": {
@@ -2651,9 +2651,9 @@
         "pass": true
       },
       "inline_code": {
-        "recall": 0.978,
+        "recall": 0.989,
         "orig": 92,
-        "found": 90,
+        "found": 91,
         "pass": true
       },
       "blockquotes": {
@@ -2672,9 +2672,9 @@
       }
     },
     {
-      "savings_pct": 18.8,
+      "savings_pct": 19.4,
       "original_bytes": 6834,
-      "compressed_bytes": 5548,
+      "compressed_bytes": 5511,
       "headings": {
         "recall": 1.0,
         "orig": 38,
@@ -2732,9 +2732,9 @@
       }
     },
     {
-      "savings_pct": 39.3,
+      "savings_pct": 34.8,
       "original_bytes": 4953,
-      "compressed_bytes": 3006,
+      "compressed_bytes": 3228,
       "headings": {
         "recall": 0.958,
         "orig": 48,
@@ -2757,9 +2757,9 @@
         "pass": true
       },
       "tables": {
-        "recall": 0.886,
+        "recall": 0.864,
         "orig": 44,
-        "found": 39,
+        "found": 38,
         "pass": true
       },
       "links": {
@@ -2976,9 +2976,9 @@
       }
     },
     {
-      "savings_pct": 27.5,
+      "savings_pct": 32.3,
       "original_bytes": 15386,
-      "compressed_bytes": 11159,
+      "compressed_bytes": 10420,
       "headings": {
         "recall": 0.992,
         "orig": 122,
@@ -2995,9 +2995,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.987,
+        "recall": 0.974,
         "orig": 234,
-        "found": 231,
+        "found": 228,
         "pass": true
       },
       "tables": {
@@ -3019,9 +3019,9 @@
         "pass": true
       },
       "inline_code": {
-        "recall": 1.0,
+        "recall": 0.987,
         "orig": 78,
-        "found": 78,
+        "found": 77,
         "pass": true
       },
       "blockquotes": {
@@ -3040,13 +3040,13 @@
       }
     },
     {
-      "savings_pct": 24.6,
+      "savings_pct": 38.0,
       "original_bytes": 6223,
-      "compressed_bytes": 4690,
+      "compressed_bytes": 3859,
       "headings": {
-        "recall": 0.933,
+        "recall": 0.9,
         "orig": 30,
-        "found": 28,
+        "found": 27,
         "pass": true
       },
       "code_languages": {
@@ -3059,9 +3059,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.955,
+        "recall": 0.939,
         "orig": 66,
-        "found": 63,
+        "found": 62,
         "pass": true
       },
       "tables": {
@@ -3081,9 +3081,9 @@
         "reason": "no items"
       },
       "inline_code": {
-        "recall": 0.971,
+        "recall": 0.941,
         "orig": 34,
-        "found": 33,
+        "found": 32,
         "pass": true
       },
       "blockquotes": {
@@ -3164,9 +3164,9 @@
       }
     },
     {
-      "savings_pct": 18.5,
+      "savings_pct": 21.3,
       "original_bytes": 11854,
-      "compressed_bytes": 9661,
+      "compressed_bytes": 9329,
       "headings": {
         "recall": 1.0,
         "orig": 18,
@@ -3183,9 +3183,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.99,
+        "recall": 1.0,
         "orig": 97,
-        "found": 96,
+        "found": 97,
         "pass": true
       },
       "tables": {
@@ -3224,9 +3224,9 @@
       }
     },
     {
-      "savings_pct": 19.4,
+      "savings_pct": 16.6,
       "original_bytes": 16692,
-      "compressed_bytes": 13459,
+      "compressed_bytes": 13922,
       "headings": {
         "recall": 1.0,
         "orig": 90,
@@ -3243,9 +3243,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.992,
+        "recall": 1.0,
         "orig": 361,
-        "found": 358,
+        "found": 361,
         "pass": true
       },
       "tables": {
@@ -3284,9 +3284,9 @@
       }
     },
     {
-      "savings_pct": 19.6,
+      "savings_pct": 30.4,
       "original_bytes": 21184,
-      "compressed_bytes": 17036,
+      "compressed_bytes": 14750,
       "headings": {
         "recall": 1.0,
         "orig": 119,
@@ -3346,9 +3346,9 @@
       }
     },
     {
-      "savings_pct": 18.5,
+      "savings_pct": 18.6,
       "original_bytes": 10551,
-      "compressed_bytes": 8602,
+      "compressed_bytes": 8593,
       "headings": {
         "recall": 1.0,
         "orig": 22,
@@ -3410,9 +3410,9 @@
       }
     },
     {
-      "savings_pct": 21.4,
+      "savings_pct": 30.5,
       "original_bytes": 9182,
-      "compressed_bytes": 7217,
+      "compressed_bytes": 6385,
       "headings": {
         "recall": 1.0,
         "orig": 24,
@@ -3530,9 +3530,9 @@
       }
     },
     {
-      "savings_pct": 33.6,
+      "savings_pct": 36.1,
       "original_bytes": 8640,
-      "compressed_bytes": 5736,
+      "compressed_bytes": 5524,
       "headings": {
         "recall": 1.0,
         "orig": 10,
@@ -3590,9 +3590,9 @@
       }
     },
     {
-      "savings_pct": 34.5,
+      "savings_pct": 37.3,
       "original_bytes": 9456,
-      "compressed_bytes": 6191,
+      "compressed_bytes": 5925,
       "headings": {
         "recall": 1.0,
         "orig": 18,
@@ -3774,9 +3774,9 @@
       }
     },
     {
-      "savings_pct": 17.4,
+      "savings_pct": 16.9,
       "original_bytes": 6841,
-      "compressed_bytes": 5648,
+      "compressed_bytes": 5685,
       "headings": {
         "recall": 0.938,
         "orig": 16,
@@ -3815,9 +3815,9 @@
         "pass": true
       },
       "inline_code": {
-        "recall": 0.921,
+        "recall": 0.937,
         "orig": 63,
-        "found": 58,
+        "found": 59,
         "pass": true
       },
       "blockquotes": {
@@ -3836,9 +3836,9 @@
       }
     },
     {
-      "savings_pct": 23.7,
+      "savings_pct": 22.6,
       "original_bytes": 12774,
-      "compressed_bytes": 9741,
+      "compressed_bytes": 9882,
       "headings": {
         "recall": 0.957,
         "orig": 23,
@@ -3898,9 +3898,9 @@
       }
     },
     {
-      "savings_pct": 16.1,
+      "savings_pct": 16.0,
       "original_bytes": 18452,
-      "compressed_bytes": 15478,
+      "compressed_bytes": 15501,
       "headings": {
         "recall": 1.0,
         "orig": 64,
@@ -3960,9 +3960,9 @@
       }
     },
     {
-      "savings_pct": 13.7,
+      "savings_pct": 15.4,
       "original_bytes": 11865,
-      "compressed_bytes": 10240,
+      "compressed_bytes": 10035,
       "headings": {
         "recall": 1.0,
         "orig": 62,
@@ -4020,9 +4020,9 @@
       }
     },
     {
-      "savings_pct": 16.4,
+      "savings_pct": 16.1,
       "original_bytes": 10364,
-      "compressed_bytes": 8664,
+      "compressed_bytes": 8692,
       "headings": {
         "recall": 1.0,
         "orig": 77,
@@ -4202,9 +4202,9 @@
       }
     },
     {
-      "savings_pct": 27.5,
+      "savings_pct": 26.0,
       "original_bytes": 2619,
-      "compressed_bytes": 1899,
+      "compressed_bytes": 1937,
       "headings": {
         "recall": 0.923,
         "orig": 13,
@@ -4494,9 +4494,9 @@
       }
     },
     {
-      "savings_pct": 14.7,
+      "savings_pct": 11.2,
       "original_bytes": 2536,
-      "compressed_bytes": 2163,
+      "compressed_bytes": 2251,
       "headings": {
         "recall": 1.0,
         "orig": 11,
@@ -4676,9 +4676,9 @@
       }
     },
     {
-      "savings_pct": 24.7,
+      "savings_pct": 26.7,
       "original_bytes": 6870,
-      "compressed_bytes": 5175,
+      "compressed_bytes": 5034,
       "headings": {
         "recall": 1.0,
         "orig": 27,
@@ -4736,9 +4736,9 @@
       }
     },
     {
-      "savings_pct": 14.9,
+      "savings_pct": 18.7,
       "original_bytes": 10659,
-      "compressed_bytes": 9066,
+      "compressed_bytes": 8661,
       "headings": {
         "recall": 1.0,
         "orig": 29,
@@ -4798,9 +4798,9 @@
       }
     },
     {
-      "savings_pct": 36.6,
+      "savings_pct": 31.9,
       "original_bytes": 8198,
-      "compressed_bytes": 5197,
+      "compressed_bytes": 5586,
       "headings": {
         "recall": 1.0,
         "orig": 18,
@@ -4856,9 +4856,9 @@
       }
     },
     {
-      "savings_pct": 36.4,
+      "savings_pct": 37.6,
       "original_bytes": 10935,
-      "compressed_bytes": 6952,
+      "compressed_bytes": 6819,
       "headings": {
         "recall": 1.0,
         "orig": 28,
@@ -4918,9 +4918,9 @@
       }
     },
     {
-      "savings_pct": 10.9,
+      "savings_pct": 11.8,
       "original_bytes": 5694,
-      "compressed_bytes": 5072,
+      "compressed_bytes": 5023,
       "headings": {
         "recall": 1.0,
         "orig": 10,
@@ -4976,9 +4976,9 @@
       }
     },
     {
-      "savings_pct": 24.8,
+      "savings_pct": 21.3,
       "original_bytes": 9649,
-      "compressed_bytes": 7258,
+      "compressed_bytes": 7594,
       "headings": {
         "recall": 1.0,
         "orig": 21,
@@ -5036,9 +5036,9 @@
       }
     },
     {
-      "savings_pct": 14.1,
+      "savings_pct": 15.2,
       "original_bytes": 3346,
-      "compressed_bytes": 2873,
+      "compressed_bytes": 2837,
       "headings": {
         "recall": 1.0,
         "orig": 16,
@@ -5276,9 +5276,9 @@
       }
     },
     {
-      "savings_pct": 29.5,
+      "savings_pct": 28.7,
       "original_bytes": 13207,
-      "compressed_bytes": 9317,
+      "compressed_bytes": 9419,
       "headings": {
         "recall": 1.0,
         "orig": 65,
@@ -5295,9 +5295,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.976,
+        "recall": 0.964,
         "orig": 166,
-        "found": 162,
+        "found": 160,
         "pass": true
       },
       "tables": {
@@ -5311,9 +5311,9 @@
         "pass": true
       },
       "lists": {
-        "recall": 0.986,
+        "recall": 1.0,
         "orig": 144,
-        "found": 142,
+        "found": 144,
         "pass": true
       },
       "inline_code": {
@@ -5338,9 +5338,9 @@
       }
     },
     {
-      "savings_pct": 29.6,
+      "savings_pct": 29.4,
       "original_bytes": 4378,
-      "compressed_bytes": 3081,
+      "compressed_bytes": 3090,
       "headings": {
         "recall": 1.0,
         "orig": 18,
@@ -5400,9 +5400,9 @@
       }
     },
     {
-      "savings_pct": 25.0,
+      "savings_pct": 28.7,
       "original_bytes": 7699,
-      "compressed_bytes": 5772,
+      "compressed_bytes": 5488,
       "headings": {
         "recall": 1.0,
         "orig": 59,
@@ -5419,9 +5419,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.996,
+        "recall": 0.987,
         "orig": 238,
-        "found": 237,
+        "found": 235,
         "pass": true
       },
       "tables": {
@@ -5460,9 +5460,9 @@
       }
     },
     {
-      "savings_pct": 30.7,
+      "savings_pct": 33.7,
       "original_bytes": 15234,
-      "compressed_bytes": 10564,
+      "compressed_bytes": 10097,
       "headings": {
         "recall": 1.0,
         "orig": 74,
@@ -5479,9 +5479,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.967,
+        "recall": 0.97,
         "orig": 333,
-        "found": 322,
+        "found": 323,
         "pass": true
       },
       "tables": {
@@ -5503,9 +5503,9 @@
         "pass": true
       },
       "inline_code": {
-        "recall": 1.0,
+        "recall": 0.986,
         "orig": 74,
-        "found": 74,
+        "found": 73,
         "pass": true
       },
       "blockquotes": {
@@ -5524,9 +5524,9 @@
       }
     },
     {
-      "savings_pct": 37.8,
+      "savings_pct": 39.3,
       "original_bytes": 10733,
-      "compressed_bytes": 6680,
+      "compressed_bytes": 6516,
       "headings": {
         "recall": 0.979,
         "orig": 48,
@@ -5543,9 +5543,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.981,
+        "recall": 0.985,
         "orig": 262,
-        "found": 257,
+        "found": 258,
         "pass": true
       },
       "tables": {
@@ -5586,9 +5586,9 @@
       }
     },
     {
-      "savings_pct": 32.7,
+      "savings_pct": 30.6,
       "original_bytes": 12302,
-      "compressed_bytes": 8277,
+      "compressed_bytes": 8538,
       "headings": {
         "recall": 0.979,
         "orig": 47,
@@ -5605,9 +5605,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.963,
+        "recall": 0.971,
         "orig": 244,
-        "found": 235,
+        "found": 237,
         "pass": true
       },
       "tables": {
@@ -5623,9 +5623,9 @@
         "reason": "no items"
       },
       "inline_code": {
-        "recall": 0.968,
+        "recall": 1.0,
         "orig": 31,
-        "found": 30,
+        "found": 31,
         "pass": true
       },
       "blockquotes": {
@@ -5644,9 +5644,9 @@
       }
     },
     {
-      "savings_pct": 25.5,
+      "savings_pct": 24.9,
       "original_bytes": 5152,
-      "compressed_bytes": 3840,
+      "compressed_bytes": 3870,
       "headings": {
         "recall": 1.0,
         "orig": 14,
@@ -5663,9 +5663,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.979,
+        "recall": 0.99,
         "orig": 97,
-        "found": 95,
+        "found": 96,
         "pass": true
       },
       "tables": {
@@ -5704,9 +5704,9 @@
       }
     },
     {
-      "savings_pct": 32.0,
+      "savings_pct": 25.3,
       "original_bytes": 1784,
-      "compressed_bytes": 1213,
+      "compressed_bytes": 1333,
       "headings": {
         "recall": 1.0,
         "orig": 10,
@@ -5762,9 +5762,9 @@
       }
     },
     {
-      "savings_pct": 25.3,
+      "savings_pct": 35.6,
       "original_bytes": 8217,
-      "compressed_bytes": 6142,
+      "compressed_bytes": 5290,
       "headings": {
         "recall": 1.0,
         "orig": 35,
@@ -5781,9 +5781,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.948,
+        "recall": 0.915,
         "orig": 153,
-        "found": 145,
+        "found": 140,
         "pass": true
       },
       "tables": {
@@ -5824,9 +5824,9 @@
       }
     },
     {
-      "savings_pct": 29.9,
+      "savings_pct": 33.3,
       "original_bytes": 10079,
-      "compressed_bytes": 7066,
+      "compressed_bytes": 6727,
       "headings": {
         "recall": 0.968,
         "orig": 63,
@@ -5843,9 +5843,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.961,
+        "recall": 0.947,
         "orig": 281,
-        "found": 270,
+        "found": 266,
         "pass": true
       },
       "tables": {
@@ -5884,9 +5884,9 @@
       }
     },
     {
-      "savings_pct": 41.2,
+      "savings_pct": 40.1,
       "original_bytes": 4899,
-      "compressed_bytes": 2883,
+      "compressed_bytes": 2933,
       "headings": {
         "recall": 1.0,
         "orig": 28,
@@ -5903,9 +5903,9 @@
         "pass": true
       },
       "code_content": {
-        "recall": 0.881,
+        "recall": 0.89,
         "orig": 109,
-        "found": 96,
+        "found": 97,
         "pass": true
       },
       "tables": {
@@ -5942,9 +5942,9 @@
       }
     },
     {
-      "savings_pct": 15.0,
+      "savings_pct": 18.9,
       "original_bytes": 12872,
-      "compressed_bytes": 10936,
+      "compressed_bytes": 10442,
       "headings": {
         "recall": 1.0,
         "orig": 38,
@@ -6822,9 +6822,9 @@
       }
     },
     {
-      "savings_pct": 21.7,
+      "savings_pct": 22.1,
       "original_bytes": 12917,
-      "compressed_bytes": 10112,
+      "compressed_bytes": 10068,
       "headings": {
         "recall": 1.0,
         "orig": 19,
@@ -6944,9 +6944,9 @@
       }
     },
     {
-      "savings_pct": 14.1,
+      "savings_pct": 13.0,
       "original_bytes": 22023,
-      "compressed_bytes": 18915,
+      "compressed_bytes": 19157,
       "headings": {
         "recall": 1.0,
         "orig": 296,
@@ -6987,9 +6987,9 @@
         "pass": true
       },
       "inline_code": {
-        "recall": 0.992,
+        "recall": 1.0,
         "orig": 125,
-        "found": 124,
+        "found": 125,
         "pass": true
       },
       "blockquotes": {
